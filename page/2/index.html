@@ -191,195 +191,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-android-performance-optimization-overdraw-1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/10/20/android-performance-optimization-overdraw-1/" class="article-date">
-  	<time datetime="2014-10-20T15:19:23.000Z" itemprop="datePublished">2014-10-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/20/android-performance-optimization-overdraw-1/">Android性能优化之过渡绘制(一)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>博客有一段时间没有更新了，到了新公司后，一直比较忙，博客也更新地不那么频繁了，倒是利用这个VPS搭建的VPN每天都在用，速度也蛮不错的。最近一直在看Android上和性能相关的部分，也就是所谓的Android性能优化，才发现Android性能这一块，自己懂得还是太少了，所以从上层开始看，也算是一点一点入门吧。这个系列将讲解学习过程中总结的和性能相关的内容。</p>
-<p>首先将讲解一下GPU过渡绘制，也是开发者最直接接触的部分吧，这个内容将分为两个部分来将讲，第一部分初步讲解一下gpu过渡绘制的原理，和一些优化建议，第二部分将用实际例子来讲解优化GPU过渡绘制的一般步骤。</p>
-<p><strong>1. 过渡绘制概念:</strong></p>
-<p>GPU过渡绘制的概念：GPU过度绘制指的是在屏幕一个像素上绘制多次(超过一次),比如一个TextView后有背景，那么显示文本的像素至少绘了两次，一次是背景，一次是文本。GPU过度绘制或多或少对性能有些影响,设备的内存带宽是有限的，当过度绘制导致应用需要更多的带宽(超过了可用带宽)的时候性能就会降低。带宽的限制每个设备都可能是不一样的。</p>
-<p><strong>2. 过渡绘制的原因:</strong></p>
-<p>1. 太多的View叠加</p>
-<p>2. 复杂的层级叠加</p>
-<p>3. 更长的inflation时间</p>
-<p><strong>3. 过渡绘制和不合理的xml布局的影响:</strong></p>
-<p>1. 布局文件是一个xml文件，inflate布局文件其实就是解析xml，根据标签信息创建相应的布局对象并做关联。xml中的标签和属性设置越多，节点树的深度越深，在解析时要执行的判断逻辑、函数的嵌套和递归就越多，所以时间消耗越多；</p>
-<p>2. inflate操作只是布局影响的第一个环节，一个界面要显示出来，在requestLayout后还要执行一系列的measure、layout、draw的操作，每一步的执行时间都会受到布局本身的影响。而界面的最终显示是所有这些操作完成后才实现的，所以如果布局质量差，会增加每一步操作的时间成本，最终显示时间就会比较长。</p>
-<p><strong>4. 优化工具介绍:Android提供了三个工具来帮助辨别和解决重绘问题：Hierachy Viewer，Tracer for OpenGL和Show GPU overdraw。前两个可以在ADT工具或者独立的monitor工具中找到，最后一个是在开发者选项的一部分。</strong></p>
-<p>1. GPU过渡绘制:对于过度绘制的测试主要通过人工进行测试，也是发现应用过渡绘制的首选途径 .通过打开开发者选项中的 显示GPU过度绘制(魅族手机:设置—辅助功能—开发人员工具—硬件加速渲染—调试GPU过渡绘制— 显示过渡绘制区域. (魅族手机需要打开开发者模式：需要在电话界面输入: <em>#</em>#6961#<em>#</em> )) 来进行测试（PS：只有android4.2及以上的版本才具备此功能)</p>
-<p>1. 颜色标识: 从好到差:蓝-绿-淡红-红</p>
-<p>1. 蓝色1x过度绘制<br>2. 绿色2x过度绘制<br>3. 淡红色3x过度绘制<br>4. 红色超过4x过度绘制</p>
-<p>2. 验收标准:</p>
-<p>1. 控制过度绘制为2x<br>2. 不允许存在4x过度绘制<br>3. 不允许存在面积超过屏幕1/4区域的3x过度绘制（淡红色区域）</p>
-<p>3. Lint工具:</p>
-<p><a href="\"><img src="\" alt="\"></a></p>
-<p>1. Eclipse中,点击即可,下面的窗口中会出现提示,根据提示和具体解决办法消除.<br>2. Android Studio自带Lint工具,不合理或者需要优化和注意的地方,会用黄色标记出来.<br>3. Lint工具不仅对布局有很好的优化建议,对代码中不合理的活着存在潜在风险的模块也会提出优化建议,所以一个好的建议是:多使用Lint工具检查自己的应用,尽量消除所有的建议.<br>4. Lint工具可以用命令行来运行,具体使用可以参考:tools.android.com<br>5. Lint工具的提升例子(摘自官方文档):</p>
-<p>1. Use compound drawables(使用compound drawables) - A LinearLayout which contains an ImageView and a TextView can be more efficiently handled as a compound drawable.<br>2. Merge root frame(使用Merge根框架) - If a FrameLayout is the root of a layout and does not provide background or padding etc, it can be replaced with a merge tag which is slightly more efficient.<br>3. Useless leaf(去除无用的分支) - A layout that has no children or no background can often be removed (since it is invisible) for a flatter and more efficient layout hierarchy.<br>4. Useless parent (去除无用的父控件)- A layout with children that has no siblings, is not a ScrollView or a root layout, and does not have a background, can be removed and have its children moved directly into the parent for a flatter and more efficient layout hierarchy.<br>5. Deep layouts (注意Layout的深度) - Layouts with too much nesting are bad for performance. Consider using flatter layouts such as RelativeLayout or GridLayout to improve performance. The default maximum depth is</p>
-<p>4. Hierarchy Viewer:此工具是一个ADT工具（或者monitor,最新版本的SDK建议不使用独立的HV工具,而是直接在monitor中进行操作.）的一部分，可以被用作对视图层级进行快速解读。在处理布局问题时特别有用，对于性能问题也很适用。Hierarchy Viewer默认只能在非加密设备使用，例如工程机，工程平板或者模拟器。为了能够在任何手机上使用Hierarchy Viewer，你得在你的应用中添加ViewServer，这是一个开源库,使用方法可以参考这里。连接上设备，打开Hierarchy Viewer(定位到tools/目录下，直接执行hierarchyviewer的命令，选定需要查看的Process，再点击Load View Hierarchy会显示出当前界面的布局Tree。在每个模块的Traffic light上有三个灯，分别代表了Measure, Layout and Draw三个步骤的性能。</p>
-<p><strong>5. 布局优化建议:</strong></p>
-<p>1. 布局原则:在Android UI布局过程中，通过遵守一些惯用、有效的布局原则，我们可以制作出高效且复用性高的UI，概括来说包括如下几点：</p>
-<p>1. 尽量多使用RelativeLayout和LinearLayout, 不要使用绝对布局AbsoluteLayout，</p>
-<p>1. 在布局层次一样的情况下， 建议使用LinearLayout代替RelativeLayout, 因为LinearLayout性能要稍高一点.<br>2. 在完成相对较复杂的布局时,建议使用RelativeLayout,RelativeLayout可以简单实现LinearLayout嵌套才能实现的布局.</p>
-<p>2. 将可复用的组件抽取出来并通过include标签使用；<br>3. 使用ViewStub标签来加载一些不常用的布局；<br>4. 动态地inflation view性能要比SetVisiblity性能要好.当然用VIewStub是最好的选择.<br>5. 使用merge标签减少布局的嵌套层次<br>6. 去掉多余的背景颜色(查看背景颜色是否多余,可以将HierarchyView中的图导出为psd文件,然后用Photoshop查看.具体可以参考这个视频(<a href="https://www.youtube.com/watch?v=URyoiAt8098" target="_blank" rel="external">https://www.youtube.com/watch?v=URyoiAt8098</a>))</p>
-<p>1. 对于有多层背景颜色的Layout来说,留最上面一层的颜色即可,其他底层的颜色都可以去掉<br>2. 对于使用Selector当背景的Layout(比如ListView的Item,会使用Selector来标记点击,选择等不同的状态),可以将normal状态的color设置为\”@android:color/transparent”,来解决对应的问题</p>
-<p>8. 内嵌使用包含layout_weight属性的LinearLayout会在绘制时花费昂贵的系统资源，因为每一个子组件都需要被测量两次。在使用ListView与GridView的时候，这个问题显的尤其重要，因为子组件会重复被创建.所以要尽量避免使用Layout_weight<br>9. 使得Layout宽而浅，而不是窄而深（在Hierarchy Viewer的Tree视图里面体现）</p>
-<p><strong>6. 例子</strong></p>
-<p><strong>1. 过渡绘制优化较好的应用</strong></p>
-<p>设置 画板 录音机（魅族自带应用）:</p>
-<p><a href="\"><img src="\" alt="\"></a>  <a href="\"><img src="\" alt="\"></a>  <a href="\"><img src="\" alt="\"></a></p>
-<p><strong>2. 过渡绘制优化较严重的应用</strong></p>
-<p><strong>文件管理器 图库 应用中心 音乐 视频等</strong></p>
-<p><a href="\"><img src="\" alt="\"></a>  <a href="\"><img src="\" alt="\"></a>  <a href="\"><img src="\" alt="\"></a></p>
-<p>另外一些第三方客户端的过渡绘制也很严重，见<a href="\">微博</a></p>
-<p><img src="\" alt="\">            <img src="\" alt="\"></p>
-<p>  <img src="\" alt="\">          <img src="\" alt="\"></p>
-<p>另外有能力看源码的同学，下面是绘制OverDraw的源码位置：/frameworks/base/libs/hwui/OpenGLRenderer.cpp,有兴趣的可以去研究研究。</p>
-<pre class="\"lang:java" decode:true="" \"="" title="\"CountOverDraw\"">void OpenGLRenderer::renderOverdraw() {
-    if (mCaches.debugOverdraw &amp;&amp; getTargetFbo() == 0) {
-        const Rect* clip = &amp;mTilingClip;
-
-        mCaches.enableScissor();
-        mCaches.setScissor(clip-&gt;left, mFirstSnapshot-&gt;height - clip-&gt;bottom,
-                clip-&gt;right - clip-&gt;left, clip-&gt;bottom - clip-&gt;top);
-
-        // 1x overdraw
-        mCaches.stencil.enableDebugTest(2);
-        drawColor(mCaches.getOverdrawColor(1), SkXfermode::kSrcOver_Mode);
-
-        // 2x overdraw
-        mCaches.stencil.enableDebugTest(3);
-        drawColor(mCaches.getOverdrawColor(2), SkXfermode::kSrcOver_Mode);
-
-        // 3x overdraw
-        mCaches.stencil.enableDebugTest(4);
-        drawColor(mCaches.getOverdrawColor(3), SkXfermode::kSrcOver_Mode);
-
-        // 4x overdraw and higher
-        mCaches.stencil.enableDebugTest(4, true);
-        drawColor(mCaches.getOverdrawColor(4), SkXfermode::kSrcOver_Mode);
-
-        mCaches.stencil.disable();
-    }
-}
-
-void OpenGLRenderer::countOverdraw() {
-    size_t count = mWidth * mHeight;
-    uint32_t* buffer = new uint32_t[count];
-    glReadPixels(0, 0, mWidth, mHeight, GL_RGBA, GL_UNSIGNED_BYTE, &amp;buffer[0]);
-
-    size_t total = 0;
-    for (size_t i = 0; i &lt; count; i++) {
-        total += buffer[i] &amp; 0xff;
-    }
-
-    mOverdraw = total / float(count);
-
-    delete[] buffer;
-}</pre>
-
-<p>还有QA可能用得到的一个指标：OverDraw数值，这个的源码位置在Framework/base/core/java/android/view/HardwareRender.java中</p>
-<pre class="\"lang:java" decode:true\"="" title="\"DrawOverDrawCount\"">private void debugOverdraw(View.AttachInfo attachInfo, Rect dirty,
-                HardwareCanvas canvas, DisplayList displayList) {
-
-            if (mDebugOverdraw == OVERDRAW_TYPE_COUNT) {
-                if (mDebugOverdrawLayer == null) {
-                    mDebugOverdrawLayer = createHardwareLayer(mWidth, mHeight, true);
-                } else if (mDebugOverdrawLayer.getWidth() != mWidth ||
-                        mDebugOverdrawLayer.getHeight() != mHeight) {
-                    mDebugOverdrawLayer.resize(mWidth, mHeight);
-                }
-
-                if (!mDebugOverdrawLayer.isValid()) {
-                    mDebugOverdraw = -1;
-                    return;
-                }
-
-                HardwareCanvas layerCanvas = mDebugOverdrawLayer.start(canvas, dirty);
-                countOverdraw(layerCanvas);
-                final int restoreCount = layerCanvas.save();
-                layerCanvas.drawDisplayList(displayList, null, DisplayList.FLAG_CLIP_CHILDREN);
-                layerCanvas.restoreToCount(restoreCount);
-                mDebugOverdrawLayer.end(canvas);
-
-                float overdraw = getOverdraw(layerCanvas);
-                DisplayMetrics metrics = attachInfo.mRootView.getResources().getDisplayMetrics();
-
-                drawOverdrawCounter(canvas, overdraw, metrics.density);
-            }
-}
-
-private void drawOverdrawCounter(HardwareCanvas canvas, float overdraw, float density) {
-            final String text = String.format(\"%.2fx\", overdraw);
-            final Paint paint = setupPaint(density);
-            // HSBtoColor will clamp the values in the 0..1 range
-            paint.setColor(Color.HSBtoColor(0.28f - 0.28f * overdraw / 3.5f, 0.8f, 1.0f));
-
-            canvas.drawText(text, density * 4.0f, mHeight - paint.getFontMetrics().bottom, paint);
-}</pre>
-
-<p>欢迎大家一起交流。</p>
-<p>下一篇文章会用一个实际案例来讲解如何优化过渡绘制。</p>
-<p>&nbsp;</p>
-<p>参考文章：</p>
-<p>1.<a href="\"> http://blog.chengyunfeng.com/?p=458# 翻译的一个老外的优化过程</a><br>(原链接<a href="http://www.curious-creature.org/2012/12/01/android-performance-case-study/" target="_blank" rel="external">http://www.curious-creature.org/2012/12/01/android-performance-case-study/</a>)<br>2. <a href="\">http://blog.csdn.net/yihongyuelan/article/details/12169647 </a>反编译并添加gpu显示</p>
-<p>3. <a href="\">http://developer.android.com/training/improving-layouts/optimizing-layout.html#Inspect</a> 官网资料</p>
-<p>4. <a href="\">http://developer.android.com/training/improving-layouts/reusing-layouts.html </a>官网资料</p>
-<p>5. <a href="\">http://developer.android.com/training/improving-layouts/loading-ondemand.html</a> 官网资料</p>
-<p>6. <a href="\">http://developer.android.com/training/improving-layouts/smooth-scrolling.html </a>官网资料</p>
-<p>7.<a href="\"> http://developer.android.com/tools/help/hierarchy-viewer.html</a> 官网关于hierarchy view的介绍</p>
-<p>8. <a href="\">http://tools.android.com/tips/lint lint</a>工具介绍</p>
-<blockquote>
-<p><span style="\"color:" #ff0000;\"="">作者：<a href="\" title="\">Gracker</a></span><br><span style="\"color:" #ff0000;\"="">出处：<a href="\" title="\">androidperformance.com</a></span><br><span style="\"color:" #ff0000;\"="">本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</span><br><span style="\"color:" #ff0000;\"="">打赏一下： <a href="\">微博打赏</a></span></p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
     <article id="post-iphone6-and-apple-watch" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1072,6 +883,169 @@ private void drawOverdrawCounter(HardwareCanvas canvas, float overdraw, float de
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/Linux/">Linux</a><a class="article-category-link" href="/categories/Linux/开发工具推荐/">开发工具推荐</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-usevim" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/05/25/usevim/" class="article-date">
+  	<time datetime="2014-05-25T12:27:20.000Z" itemprop="datePublished">2014-05-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/05/25/usevim/">使用VIM</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div style="color: #000000;font-family: 微软雅黑"><br>    <span><br>        为什么有那么多编辑器我要使用vim？因为当我想保存文件时总是习惯性的：wq，即使我正在使用eclipse什么的~<br>        其实使用熟练使用vim可以让你完全摆脱鼠标，摆脱小键盘，摆脱方向键，你的手不用离开那块键盘区域就能完成你能想到的任何事情。<br>        不过vim并不算是个很友好的编辑器，刚开始使用你会觉得它十分特别非常极其的操蛋。你会想怎么会有人用这种东西，还不如notepad，不如gedit，更不如我比较喜欢用的sublime Text。但是如果你强迫自己使用一到两周后慢慢你会发现这东西真是让人爱不释手。<br>        刚开始使用这货的时候，也是各种蛋疼~去看各种VIM命令大全，VIM命令手册等等的吧，收效甚微，看了也记不住。后来慢慢觉得命令不是看会的，而是用会的。不要去记那些命令是什么，而是当你需要什么样的命令时再去找这样的命令，甚至你可以创造一个这样的命令。<br>    </span><br><br>#<br>        VIM的三种模式<br><br>    <span><br>        不过基本的还是要稍微介绍一下的。比如vim的模式。一打开vim什么都不动就是普通（Normal）模式，这个时候是不能输入的，刚开始用你会觉得妈的打开个编辑器还不让我写。不要着急~按一下i就可以插入了，这时候就进入了编辑（Insert ）模式。退出编辑模式可以使用[ESC]，按下[ESC]后回到Normal模式，这时候输“：”就会进入命令模式了，比如：q是退出。现在使用这个命令应该是退不出来了，因为已经编辑了，所以可以使用：q！，加上感叹号之后可以强制命令执行，当然你要是想保存的可以使用：wq，w是写入，q是退出，写入之后就可以退出了吧。执行以下卧槽还不行，木有文件名，vim也不知道写到哪里啊，跟上文件名，使用：wq filename，这个时候就能退出了，这时候当前目录下就会出现名字为filename的文件了，cat一下就是你刚才写的内容，当然你要是毛都没写那在：q的时候就退出了~<br>    </span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.01.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.01.gif" alt="vim.20140525.01">
+        </a><br>    </div><br>    <span><br>        小节：三种模式，普通模式，编辑模式，命令模式，普通模式可以使用一下快捷键，命令模式可以使用命令，比如刚才的w和q，编辑模式就不啰嗦了。<br>    </span><br><br>#<br>        光标移动命令<br><br>    <span><br>        了解了vim的模式可以用了吧？不行~你是不知道怎么移动光标呢。。。那用方向键不行吗？可以是可以的~但是这样手要移动的距离就远了，效率不高了。vim有很多移动光标用的快捷键，也有很多类似的命令，这里可能介绍不全，太多了，我只说我常用的。<br>        h，j，k，l 这四个键就是移动光标用的快捷键，当然要记得快捷键是在普通模式下用的。用之前可以习惯性按一下[ESC]，h在最左边，所以h是左移，l在最右边，所以l是右移，j有个钩，看上去就是个下移的货，K就只能上移了，快来试一下吧。除了这几个快捷键还有很多<br>    </span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.02.jpg" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.02.jpg" alt="vim.20140525.02">
+        </a><br>    </div><br>    <span><br>        随便试几下，感受一下，刚开始肯定不习惯，但是一定要管住自己的手，不要去使用方向键，慢慢去习惯。当然移动光标的方法有很多。<br>        常用快捷键：<br>    </span><br>    <table><br>        <tr> <td>gg</td> <td>移动到文件开头</td> </tr><br>        <tr> <td>G</td> <td>移动到文件末尾</td> </tr><br>        <tr> <td>Ctrl + e</td> <td>向下滚动一行</td> </tr><br>        <tr> <td>Ctrl + y</td> <td>向上滚动一行</td> </tr><br>        <tr> <td>Ctrl + d</td> <td>向下滚动半个屏幕</td> </tr><br>        <tr> <td>Ctrl + u</td> <td>向上滚动半个屏幕</td> </tr><br>        <tr> <td>Ctrl + f</td> <td>向下滚动一个屏幕</td> </tr><br>        <tr> <td>Ctrl + b</td> <td>向上滚动一个屏幕</td> </tr><br>        <tr> <td>-(减号)</td> <td>移动到上面一行的开始</td> </tr><br>        <tr> <td>+ / ENTURN(回车)</td> <td>移动到下面一行的开始</td> </tr><br>        <tr> <td>^ / 0</td> <td>移动到行开头</td> </tr><br>        <tr> <td>$</td> <td>移动到行末尾</td> </tr><br>        <tr> <td>w</td> <td>向右移动一个单词</td> </tr><br>        <tr> <td>W</td> <td>向右移动一个以空格为分隔符的单词</td> </tr><br>        <tr> <td>b</td> <td>向左移动一个单词</td> </tr><br>        <tr> <td>B</td> <td>向左移动一个以空格为分隔符的单词</td> </tr><br>        <tr> <td>e</td> <td>向右移动到一个单词的结尾</td> </tr><br>        <tr> <td>E</td> <td>向右移动到一个以空格为分隔符的单词的结尾</td> </tr><br>        <tr> <td>t(c)</td> <td>向右移动到指定字符(c)之前的一个字符</td> </tr><br>        <tr> <td>T(c)</td> <td>向左移动到指定字符(c)之后的一个字符</td> </tr><br>        <tr> <td>f(c)</td> <td>向右移动到指定字符(c)</td> </tr><br>        <tr> <td>F(c)</td> <td>向左移动到指定字符(c)</td> </tr><br>        <tr> <td>numG</td> <td>移动到第num行(与：num类似)</td> </tr><br>        <tr> <td>H / M / L</td> <td>移动到屏幕 顶部 / 中部 / 底部</td> </tr><br>        <tr> <td>&#096;&#096;(ESC下面那个按键按两次)</td> <td>光标回到之前的位置</td> </tr><br>    </table><br>    <span><br>        这些快捷键不需要一次都记住，看个大概就好，差不多知道有哪些功能就行，等到需要用了回来找一下，然后去用，这样印象深刻才能记得住。上面的快捷键中可能w,b,e三个快捷键的大小写的功能有点绕，用个图片来说明一下，w和W之间的却别，b，e两个与w类似，建议自己尝试一下。<br>    </span><br>    <span>使用w（小写）</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.02.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.02.gif" alt="vim.20140525.02">
+        </a><br>    </div><br>    <span>使用W（大写）</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.03.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.03.gif" alt="vim.20140525.03">
+        </a><br>    </div><br>    <span>常用命令：</span><br><br><em>   :num（行号）     比如:15就是跳到15行的第一个字符
+</em>   :$              移动到文件末尾<br>    <span><br>        说到这再啰嗦一句，要分清楚命令和快捷键，命令要先进入命令模式，也就是先按“ : ”然后输入命令。快捷键是在普通模式下，也就是按完ESC之后可以直接按键。<br>        脱离了方向键的束缚这下可以让你的双手安安心心的放在主键盘区域了。现在学会了模式切换稍微回顾一下：<br>    </span><br><br><em>   [ ESC ]进入普通模式，可以使用快捷键。
+</em>   [ : ]冒号进入命令模式，可以使用命令。<br><em>   [ i ]进入编辑模式，可以编写文本。<br>    <span><br>        学会模式切换，光标移动，还有基本命令就可以编写文本或者程序了，只是效率还不够高，用起来不太方便。没关系，慢慢来，弄VIM这事一定不能急，我第一次用的时候差点把键盘砸了。<br>    </span><br><br># 添加和修改文本<br><br>    <span><br>        要想给文件添加文本就要进入编辑模式（其实也不一定），进入编辑模式的快捷键可不只是i。<br>    </span>
+
+</em>   i / I     在光标前插入  /  在该行第一个非空白字符前插入<br><em>   a / A     在光标后插入  /  在该行行尾插入
+</em>   o / O     在当前行的下面新建一行  /  在当前行的上面新建一行<br><em>   r / R     替换光标指定的字符（一次替换一个）  /   替换从当前光标所在的字符开始，直到按ESC键结束<br>    <span><br>        这四个字母的效果都比较简单，可以自己试一下，这里演示一下 r 和 R 。<br>    </span><br>    <span>使用r（小写）</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.04.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.04.gif" alt="vim.20140525.04">
+        </a><br>    </div><br>    <span>使用R（大写）</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.05.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.05.gif" alt="vim.20140525.05">
+        </a><br>    </div><br>    <span><br>        这四个字母除了 r 和 R 都能使VIM进入编辑模式。编写代码或者文本还需要不断地修改或者删除文本，VIM有各种各样的删除快捷键和命令。<br>    </span>
+
+</em>   x / X      删除光标所在字符 /  删除光标前面一个字符<br>    <span><br>        这个两个快捷键都可以通过连续按键达到持续删除的效果，要注意看光标所在字符。<br>    </span><br>    <span>使用x（小写）</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.06.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.06.gif" alt="vim.20140525.06">
+        </a><br>    </div><br>    <span>使用X（大写）</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.07.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.07.gif" alt="vim.20140525.07">
+        </a><br>    </div><br>    <span><br>        可以看出来 x（小写）会删掉光标所在字符， X （大写）则不会。当然要是觉得连续按不方便可以直接在前面加重复因子，说得这么高大上，其实就是在前面加数字比如：6x 就是相当于按6次x，效果就是删掉6个字符了。前面的数字可以很大不局限于一位数，比如99x也可以的，不过我觉得十以上的你也不会一个字符一个字符的数到你想删除的地方吧。小心眼花~<br>        再看两个字母 c / C 和 d / D<br>        这两个字母的用法差不多，效果也差不多，稍微有点区别的就是使用 c / C 相关的快捷键后会直接从命令模式进入编辑模式，而 d / D 相关的则依然停留在普通模式。<br>    </span><br><br><em>   cc / dd                 删除一整行
+</em>   C, c$ / D, d$           从光标当前位置删除到行尾<br>    <span><br>        cc / dd 也是可以使用重复因子的，比如：5cc / 5dd<br>        在删除多行时除了使用上面的快捷键之外还可以使用命令。<br>    </span><br><br><em>   :num1,num2d             删除行号num1和num2之间的所有行，包含num1和num2。（命令要在命令模式下使用，先按“ : ”）<br>    <span><br>        注意 c$ / d$ 是 d / c 与另一个快捷键 $ 的结合，$ 的作用是把光标移到行尾，所以联想一下别的移动快捷键组合一下：<br>    </span>
+
+</em>   c0, c^ / d0, d^<br><em>   cw / dw</em>   cW / dW<br><em>   ce / de
+</em>   ……<br>    <span><br>        这种快捷键还有很多，你可以自己来尝试组合，并观察效果。<br>    </span><br>    <span>(c)代表一个字符</span><br><br><em>   ct(c) / dt(c)        从光标当前位置删除到当前行的下一个字符(c)，不包括(c)。
+</em>   cf(c) / df(c)        从光标当前位置删除到当前行的下一个字符(c)，包括(c)。<br>    <span><br>        这里交叉演示一下ct(c) 和 df(c) ，除了要看清 t 和 f 的区别，还要注意之前说的 c 和 d 的区别。当然也可以使用 T 和 F ，方向相反而已。<br>    </span><br>    <span>使用ct&#060;</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.08.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.08.gif" alt="vim.20140525.08">
+        </a><br>    </div><br>    <span>使用df&#060;</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.09.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.09.gif" alt="vim.20140525.09">
+        </a><br>    </div><br>    <span>注意字符“ &lt; ”的删除情况和左下角显示的“插入”，这表示VIM进入了编辑模式。</span><br><br><em>   s / S         删除当前字符并进入编辑模式（相当于快捷键 x + i 的组合） /  删除当前行并进入编辑模式（相当于快捷键组合dd + O）<br>    <span><br>        这两个命令也是可是使用重复因子的，具体效果自己尝试。<br>        改变字母的大小写也是比较常见的需求，所以VIM当然会有对应的快捷键<br>    </span>
+
+</em>   ~   光标所在字符变成大写或小写，与字母原状态相反。并且光标右移。<br><em>   gu / gU<br>    <span><br>        这个“ ~ ”同样可以使用重复因子，但是我还是不喜欢去数字符，所以连续按就好了。<br>        gu 和 gU可以像c 和 d 一样在后面加移动快捷键，把当前位置到指定位置的字母全部改变，比较直观的是gu就是变成小写，gU是变成大写。比如gu$ / gU$<br>    </span><br><br># 复制与粘贴<br><br>    <span> 复制快捷键y和d有点相似：</span>
+
+</em>   yy, Y          复制当前行<br><em>   y0, y^</em>   y$<br><em>   ……<br>    <span>跟 d 差不多，同样可以在前面加重复因子，同样可以接移动快捷键，具体效果自己yy吧。而且复制多行的命令也类似：</span>
+
+</em>   :num1,num2y          复制行号num1和num2之间的所有行，包含num1和num2。（命令要在命令模式下使用，先按“ : ”，其实我这条也是从前面 yy 过来的）<br>    <span>粘贴快捷键 </span><br><br>*   p / P       粘贴至光标后，若复制整行则粘贴在当前行的下面。 /   粘贴至光标前，若复制整行则粘贴在当前行的上面。<br>    <span>其实不只是 yy  后可以使用 p / P，dd之后也是可以的，你就当成是剪切吧。</span><br>    <span>快捷键组合 dd + j + j + p</span><br>    <div><br>        <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.10.gif" target="_blank" rel="external"><br>            <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.10.gif" alt="vim.20140525.10">
+        </a><br>    </div>
+
+<h1 id="搜索与替换（命令）">搜索与替换（命令）</h1><pre><code><span class="tag">&lt;<span class="title">span</span>&gt;</span>搜索命令<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+</code></pre><ul>
+<li>:/rexp                      向前搜索rexp</li>
+<li>:?rexp                      向后搜索rexp</li>
+<li>:n                          重复最近一次搜索*   :N                          重复最近一次搜索，但方向相反</li>
+<li>:/                          向前重复最近一次搜索</li>
+<li>:？                         向后重复最近一次搜索</li>
+<li><p>:%                          查找对应的括号如：(  ) , [  ] , {  }<br><span></span></p>
+<pre><code>替换命令
+替换命令的通用格式是   :[address]s<span class="regexp">/old/</span><span class="keyword">new</span>[<span class="regexp">/gc]</span>
+</code></pre><p></p>
+</li>
+<li><p>address                行编号或者由都好分割的两个行编号，” . “代表当前行，” $ “代表最后一行，” % “代表全文，默认为当前行。</p>
+</li>
+<li>old / new              被替换的字符串 / 替换后的字符串</li>
+<li>c                      替换前是否需要确认</li>
+<li>g                      全局替换，每行不止替换一处。<br><span>比如使用   :%s/class/Class/gc</span><div><br>    <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.11.gif" target="_blank" rel="external"><br>        <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.11.gif" alt="vim.20140525.11">
+    </a><br></div><br><span>也可以用来做注释用。 :%s/^/#/g</span><br><div><br>    <a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.12.gif" target="_blank" rel="external"><br>        <img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.12.gif" alt="vim.20140525.12">
+    </a><br></div>
+
+</li>
+</ul>
+<h1 id="区块模式">区块模式</h1><pre><code><span class="tag">&lt;<span class="title">span</span>&gt;</span>
+    首先按esc进入命令行模式下，按下Ctrl + v，进入列（也叫区块）模式；在行首使用上下键选择需要注释的多行。
+    然后可以进行删除或者插入等操作，比如也来个多行注释吧。
+    选择多行后按 I （大写），然后写注释符号，按下ESC，稍等一下注释就出来了。
+<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>
+    [
+        ![vim.20140525.13](http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.13.gif)
+    ](http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.13.gif)
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h1 id="其他快捷键和命令">其他快捷键和命令</h1><pre><code>&lt;span&gt;
+    <span class="constant">VIM还</span>有很多快捷键和命令，这里不可能说全，如图：[<span class="constant">VIM.</span>png](<span class="symbol">http:</span>/<span class="regexp">/coolshell.cn/</span><span class="regexp">/wp-content/uploads</span><span class="regexp">/2009/</span><span class="number">03</span>/vim.png)
+    下面在列举几个常用的吧。
+&lt;<span class="regexp">/span&gt;</span>
+</code></pre><ul>
+<li>J（大写）             将当前行与下一行连接起来</li>
+<li>.                    重复上一次命令</li>
+<li>u                    撤销（可连续使用）</li>
+<li>Ctrl + r             取消上一次撤销（可连续使用）</li>
+<li>Ctrl + P / Ctrl + n  插入模式下使用的快捷键，补全一个词，p是向上搜索，n是向下搜索。</li>
+<li><p>Ctrl + xl            插入模式下使用的快捷键，补全一行，Ctrl + P / Ctrl + n 选择上一个或者下一个匹配。<br><span>使用快捷键组合 J + . (连续三次) + u(连续四次) + <a href="连续四次">Ctrl + r</a></span><br><div></div></p>
+<pre><code><span class="collection">[
+    !<span class="collection">[vim.20140525.14]</span><span class="list">(<span class="keyword">http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.14.gif</span>)</span>
+]</span><span class="list">(<span class="keyword">http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.14.gif</span>)</span>
+</code></pre><p></p></li></ul></div><br><span>使用Ctrl + P / Ctrl + n 和 使用Ctrl + xl </span><br><div><p></p>
+<pre><code><span class="collection">[
+    !<span class="collection">[vim.20140525.15]</span><span class="list">(<span class="keyword">http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.15.gif</span>)</span>
+]</span><span class="list">(<span class="keyword">http://www.grackertalk.com/wp-content/uploads/2014/05/vim.20140525.15.gif</span>)</span>
+</code></pre><p></p></div><br><span>命令</span><p></p>
+
+<li><p>:w ， :w filename， :q! ， :wq          这四个命令前面都说过了，不再赘述。*   :&#120;                将工作缓存区内容写入当前文件并退出（与快捷键 ZZ 相同），功能与 :wq 相同。</p>
+</li>
+<li>:sp / :vsp   横向分屏，竖向分屏。</li>
+<li>:e                打开另一个文件</li>
+<li>:ls                查看已经打开的文件。</li>
+<li>:!bash         执行shell命令<br><span><pre><code>关于分屏和打开多文件建议查看博客：[<span class="link_label">http://coolshell.cn/articles/11312.html</span>](<span class="link_url">http://coolshell.cn/articles/11312.html</span>)
+终极命令 :help
+</code></pre></span></li>
+
+<h1 id="配置文件">配置文件</h1><pre><code>&lt;span&gt;
+    可以通过对VIM配置文件进行修改来达到打开自动配置的效果。比如显示行号。一般修改当前用户的配置文件就可以了，路径<span class="string">" ~/.vimrc "</span>，如果文件不存在可以新建一个。
+&lt;/span&gt;
+&lt;span&gt;
+    <span class="built_in">set</span> ts=<span class="number">4</span>
+    <span class="built_in">set</span> expandtab
+    <span class="built_in">set</span> ai
+    <span class="built_in">set</span> nu
+    <span class="built_in">let</span> mapleader=<span class="string">","</span>
+    inoremap ( ()
+    inoremap [ []
+    inoremap { {}
+    inoremap <span class="string">' '</span><span class="string">'
+    inoremap " ""
+&lt;/span&gt;
+&lt;span&gt;
+    这是一份非常简单的配置文件。里面配置了tab是4个空格，自动缩进，显示行号等等~还有映射。通过映射我们可以设计自己的命令。通过配置文件也可以配置VIM的插件，VIM的插件系统可是十分强大，足够让你打造一个完美的开发环境。快去尝试吧。
+&lt;/span&gt;</span>
+</code></pre><p></p>
+<div style="color: #000000;font-family: 微软雅黑"><br>    <table><br>        <tr><br>            <td>Article Name:</td><br>            <td>使用VIM</td><br>        </tr><br>        <tr><br>            <td>Author:</td><br>            <td>刘天昊</td><br>        </tr><br>        <tr><br>            <td>Email:</td><br>            <td>liutianhao.pro@gmail.com</td><br>        </tr><br>    </table><br></div>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
 	</div>
 
 
