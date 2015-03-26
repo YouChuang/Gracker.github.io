@@ -3,17 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android Perofrmance</title>
+  <title>[Android小技巧]:如何让EditText不自动获取焦点 | Android Perofrmance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Android Perofrmance">
-<meta property="og:url" content="http://androidperformance.com/archives/2015/03/index.html">
+  <meta name="description" content="Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.
+这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:
+android:focusable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android小技巧]:如何让EditText不自动获取焦点">
+<meta property="og:url" content="http://androidperformance.com/2014/06/03/android-edittext-do-not-auto-get-focus/index.html">
 <meta property="og:site_name" content="Android Perofrmance">
-<meta property="og:description">
+<meta property="og:description" content="Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.
+这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:
+android:focusable">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Perofrmance">
-<meta name="twitter:description">
+<meta name="twitter:title" content="[Android小技巧]:如何让EditText不自动获取焦点">
+<meta name="twitter:description" content="Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.
+这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:
+android:focusable">
   
     <link rel="alternative" href="/atom.xml" title="Android Perofrmance" type="application/atom+xml">
   
@@ -189,175 +195,115 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-android-edittext-do-not-auto-get-focus" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2014/06/03/android-edittext-do-not-auto-get-focus/" class="article-date">
+  	<time datetime="2014-06-02T16:31:49.000Z" itemprop="datePublished">2014-06-03</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [Android小技巧]:如何让EditText不自动获取焦点
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/03/15/android-tips-round-up-5/" class="archive-article-date">
-  	<time datetime="2015-03-14T16:32:11.000Z" itemprop="datePublished">Mar 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/15/android-tips-round-up-5/">[译]Android小技巧(5)</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.</p>
+<p>这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:</p>
+<p><pre class="lang:java decode:true ">android:focusable=”true”<br>android:focusableInTouchMode=”true”</pre><br>这样做的原理是让用户进入到这个页面之后,EditText的父控件 获取焦点,这样的话EditText就获取不到焦点,软键盘也不会自动弹起.只有在点击EditText的时候,软键盘才会弹起.</p>
+<p>&nbsp;</p>
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/03/15/android-tips-round-up-4/" class="archive-article-date">
-  	<time datetime="2015-03-14T16:31:02.000Z" itemprop="datePublished">Mar 15</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/15/android-tips-round-up-4/">[译]Android小技巧(4)</a>
-    </h1>
+    <a href="/2014/07/28/how-to-write-a-better-ppt/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          极简PPT的九大原则
+        
+      </div>
+    </a>
   
+  
+    <a href="/2014/06/01/android-frame-animation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android Frame animation模拟脉搏跳动小动画</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/03/15/android-tips-round-up-3-2/" class="archive-article-date">
-  	<time datetime="2015-03-14T16:29:57.000Z" itemprop="datePublished">Mar 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/15/android-tips-round-up-3-2/">[译]Android小技巧(3)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android-edittext-do-not-auto-get-focus" data-title="[Android小技巧]:如何让EditText不自动获取焦点" data-url="http://androidperformance.com/2014/06/03/android-edittext-do-not-auto-get-focus/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/03/12/602/" class="archive-article-date">
-  	<time datetime="2015-03-12T05:57:16.000Z" itemprop="datePublished">Mar 12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/12/602/">602</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/03/12/e8-af-91android-e5-b0-8f-e6-8a-80-e5-b7-a74/" class="archive-article-date">
-  	<time datetime="2015-03-12T05:56:51.000Z" itemprop="datePublished">Mar 12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/12/e8-af-91android-e5-b0-8f-e6-8a-80-e5-b7-a74/">[译]Android小技巧(4)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 </div>
       <footer id="footer">
   <div class="outer">

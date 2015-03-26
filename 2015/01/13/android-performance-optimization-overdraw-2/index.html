@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android性能优化之过渡绘制( 二) | Android Perofrmance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上一篇文章从理论的角度讲解了一下什么是过渡绘制，以及可以用来查看和确认过渡绘制的工具，还提供了一些优化过渡绘制的方法。对代码和布局比较熟悉的人，看完上一篇其实就已经可以对自己的应用进行优化了。我记得有人说过，用iphone你只需要保证苹果有节操即可，用Android你就得保证所有的Android开发者都有节操。但现实是残酷的，现在Android市场上，有很多粗制滥造的应用，其中不乏大厂之作，各位打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能优化之过渡绘制( 二)">
+<meta property="og:url" content="http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/index.html">
+<meta property="og:site_name" content="Android Perofrmance">
+<meta property="og:description" content="上一篇文章从理论的角度讲解了一下什么是过渡绘制，以及可以用来查看和确认过渡绘制的工具，还提供了一些优化过渡绘制的方法。对代码和布局比较熟悉的人，看完上一篇其实就已经可以对自己的应用进行优化了。我记得有人说过，用iphone你只需要保证苹果有节操即可，用Android你就得保证所有的Android开发者都有节操。但现实是残酷的，现在Android市场上，有很多粗制滥造的应用，其中不乏大厂之作，各位打">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094617.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-110629.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/Image.png\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094435.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094445.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/Image1.png\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-105228.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-105302.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-152357.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-152404.jpg\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/Image2.png\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png\"">
+<meta property="og:image" content="\"http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png\"">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android性能优化之过渡绘制( 二)">
+<meta name="twitter:description" content="上一篇文章从理论的角度讲解了一下什么是过渡绘制，以及可以用来查看和确认过渡绘制的工具，还提供了一些优化过渡绘制的方法。对代码和布局比较熟悉的人，看完上一篇其实就已经可以对自己的应用进行优化了。我记得有人说过，用iphone你只需要保证苹果有节操即可，用Android你就得保证所有的Android开发者都有节操。但现实是残酷的，现在Android市场上，有很多粗制滥造的应用，其中不乏大厂之作，各位打">
+  
+    <link rel="alternative" href="/atom.xml" title="Android Perofrmance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Gracker</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="">
+				<hgroup>
+				  <h1 class="header-author">Gracker</h1>
+				</hgroup>
+			</div>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-android-performance-optimization-overdraw-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/13/android-performance-optimization-overdraw-2/" class="article-date">
+  	<time datetime="2015-01-13T11:38:53.000Z" itemprop="datePublished">2015-01-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android性能优化之过渡绘制( 二)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一篇<a href="\&quot;http://www.androidperformance.com/android-performance-optimization-overdraw-1.html\&quot;">文章</a>从理论的角度讲解了一下什么是过渡绘制，以及可以用来查看和确认过渡绘制的工具，还提供了一些优化过渡绘制的方法。对代码和布局比较熟悉的人，看完上一篇其实就已经可以对自己的应用进行优化了。我记得有人说过，用iphone你只需要保证苹果有节操即可，用Android你就得保证所有的Android开发者都有节操。但现实是残酷的，现在Android市场上，有很多粗制滥造的应用，其中不乏大厂之作，各位打开过渡绘制按钮，就知道我所言非虚。作为一个Android开发人员，我肯定是更希望Android能一步一步好起来，超越iphone。</p>
+<p>这篇文章从实战的角度，讲解了一个过渡绘制的优化过程。当然这里用到的只是很少的一部分，毕竟每个应用差别很大，优化方式也各不一样。所以这篇文章仅供参考，想把这块做好还是要下功夫的。不过令我比较欣慰的是，在公司内推行这个优化之后，我们Flyme内部的自带应用已经做得很好了，当然还是有不少界面有优化的空间，但总体还是比较满意的。</p>
+<p>如果没有看过前一篇，可以点这里：<a href="\&quot;http://www.androidperformance.com/android-performance-optimization-overdraw-1.html\&quot;" title="\&quot;Android性能优化之过渡绘制(一)\&quot;">Android性能优化之过渡绘制(一)</a></p>
+<p>话不多说，来看正文吧：</p>
+<h3 id="1-测试用例说明">1.测试用例说明</h3><h4 id="1-测试机器:">1.测试机器:</h4><ol>
+<li>测试机器:MX3(M351)</li>
+<li>固件:meizu_mx3-eng 4.4.4 KTU84P m35x.Flyme_OS_3.6.1 20140717113944 test-keys</li>
+</ol>
+<h4 id="2-测试应用:">2.测试应用:</h4><ol>
+<li>设置</li>
+<li>文件管理器</li>
+</ol>
+<h4 id="3-检测和消除过渡绘制的一般步骤:">3.检测和消除过渡绘制的一般步骤:</h4><ol>
+<li>定位过渡绘制区域</li>
+<li><p>利用Android提供的工具进行位置确认以及修改(HierarchyView , Tracer for OpenGL ES)</p>
+<ol>
+<li>定位到具体的视图(xml文件或者View)</li>
+<li>通过代码和xml文件分析过渡绘制的原因</li>
+<li>结合具体情况进行优化</li>
+</ol>
+</li>
+<li><p>使用Lint工具进一步优化</p>
+</li>
+</ol>
+<h4 id="4-面向人群:">4.面向人群:</h4><ol>
+<li>开发人员:定位到自己负责的app之后,查看过渡绘制情况,然后针对性地进行优化(涉及到xml布局修改和Java代码的修改)</li>
+<li>测试人员:打开gpu过渡绘制之后,就可以查看各个应用是否优化完成.</li>
+</ol>
+<h4 id="5-备注:">5.备注:</h4><ol>
+<li>本教程以MX3为模板,可能有的应用在MX4上换了UI或者公共控件,所以看到的和下面的例子中呈现的不一样. 但是大概的流程的一样的,悉知.</li>
+<li>如有说的不清楚的地方或者说的不对的地方,请及时与我联系,我会及时更正.谢谢.</li>
+</ol>
+<h3 id="2-具体步骤">2.具体步骤</h3><h5 id="2-1-定位过渡绘制区域">2.1.定位过渡绘制区域</h5><ol>
+<li>打开GPU过渡绘制选项:<br>设置—辅助功能—开发人员工具—硬件加速渲染—调试GPU过渡绘制— 显示过渡绘制区域. (打开开发者模式需要在电话界面输入: <em>#</em>#6961#<em>#</em> :注：仅魅族，其余手机方法各异，点击版本号5次也比较常见))</li>
+<li>Kill掉(即清后台)要测试的应用,重新打开就可以看到效果.下面以魅族Flyme3文件管理器和设置为例子,如下图<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094617.jpg\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094617.jpg\&quot;" alt="\&quot;S40723-094617\&quot;"></a>  <a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-110629.jpg\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-110629.jpg\&quot;" alt="\&quot;S40723-110629\&quot;"></a><br>从图上可以看出,按照过渡绘制从好到坏(蓝-绿-粉红-红)来看,文件管理器的过渡绘制是非常严重的,而设置界面的过渡绘制则在可以接受的范围内.下面就以文件管理器为主要分析对象,来看看如何对文件管理器的过渡绘制进行优化.</li>
+<li><p>从文件管理器的图,分析出过渡绘制区域:.</p>
+<ol>
+<li>首先看最上面的ActionBar和最下面的SmartBar,对比设置界面的ActionBar就可以知道,整个文件管理器存在一个不透明的背景,导致每次绘制时,都要先绘制这个看不见且不透明的背景.这个背景一般是应用的主题自带的背景,所以GPU过渡绘制显示其位蓝色,这个背景是可以进行优化的.</li>
+<li>中间的内容部分,最底层是绿色,说明进行了2x的过渡绘制,去掉第一条我们提的那个全局背景,还有一层背景,也就是1x的过渡绘制,对比setting可知,这个背景色也是可以去掉的.</li>
+<li>最容易看出的是这两条,我们先分析和优化这两条,然后再进行其他的优化.</li>
+</ol>
+</li>
+</ol>
+<h5 id="2-2-_使用工具进行位置确认:大概确定了过渡绘制的区域后,让我们来使用工具来进行验证和View确认-">2.2. 使用工具进行位置确认:大概确定了过渡绘制的区域后,让我们来使用工具来进行验证和View确认.</h5><ol>
+<li>打开Monitor(Eclipse和Android Studio中都有快捷打开按钮,即DDMS,)</li>
+<li>右上角选择 Hierarchy View,大概使用如图<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image.png\&quot;" alt="\&quot;Image\&quot;"></a><br>根节点:PhoneWindos$DecorView是整个视图的根节点,唯一的子节点是ActionBarOverlayLayout,这个Layout包含了ActionBar,应用程序,以及SmartBar.</li>
+<li><p>从Hierarchy View结合代码分析出需要进行修改的区域</p>
+<ol>
+<li><p>上面分析过渡绘制区域的第一条,整个window存在一个背景,所以进行了一次重绘,这个背景的重绘是系统级别的,和主题有关,即这个背景是属于ActionBarOverlayLayout的.这种类型的过渡绘制解决也比较方便,在文件管理器的主Activity的onCreate方法中,加入<br><div class="\&quot;highlighted-data"></div></p>
+<div class="\&quot;highlight\&quot;">
+
+<p><span id="\&quot;LC1\&quot;" class="\&quot;line\&quot;"><span class="\&quot;hljs-keyword\&quot;">this</span>.getWindow().setBackgroundDrawableResource(android.R.color.transparent);</span><br><span id="\&quot;LC2\&quot;" class="\&quot;line\&quot;"></span></p>
+</div></li>
+</ol>
+</li>
+</ol>
+<p><br><br>就可以将这个看不见的主题背景去掉.下面是去掉主题背景后的效果图(一张是划开,一张是没有划开):<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094435.jpg\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094435.jpg\&quot;" alt="\&quot;S40723-094435\&quot;"></a>     <a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094445.jpg\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-094445.jpg\&quot;" alt="\&quot;S40723-094445\&quot;"></a><br>对比优化前的图可以发现,背景被去掉之后,少了一层过渡绘制. ActionBar上的蓝色已经消失了.中间的内容由绿色变为蓝色,SmartBar也少了层(SmartBar在只显示返回和menu的时候,过渡绘制不是很严重,一旦增加了其他的icon,就会出现很严重的过渡绘制,这个需要注意,后续也会针对SmartBar进行优化)</p>
+<pre><code>2.  上面分析的第二条说”<span class="keyword">*</span><span class="keyword">*</span>中间的内容部分,最底层是绿色,说明进行了2x的过渡绘制<span class="keyword">*</span><span class="keyword">*</span>”,现在中间部分变成了蓝色,但是这是一个全局的背景,导致右边的view拉过来之后,还是存在大量的红色和绿色. 继续分析Hierarchy View,找到中间view对应的视图:DragRelativeLayout,查看源码可知,DragRelativeLayout继承自公共控件:SlidingMenu ，SlidingMenu 由CustomViewAbove和CustomViewBehind组成,前者是上面可以左右拉动的那部分,后者是底部不能拉动的那部分(这个从HierarchyView中也可以看出来:如下图所示:
+</code></pre><p><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image1.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image1.png\&quot;" alt="\&quot;Image\&quot;"></a><br>点击CustomViewBehind,查看其所占的区域,就可以发现背景是这个View进行绘制的,打开CustomViewBehind的代码可以发现其构造函数中包含下面的代码:setBackgroundColor(getResources().getColor(R.color.mz_slidingmenu_background_light));这个背景是不需要的,查看源码可知,这个view会在SlidingMenu.setMenu的时候,被覆盖掉,还是看不到的.所以这一层view是可以去掉的.下面是去掉一层背景之后的预览图:<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-105228.jpg\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-105228.jpg\&quot;" alt="\&quot;S40723-105228\&quot;"></a>  <img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-105302.jpg\&quot;" alt="\&quot;S40723-105302\&quot;"><br>可以看到这一层背景去掉之后,过渡绘制减轻了很多.</p>
+<pre><code><span class="number">3</span>.  接着进行分析,可以看到CustomViewAbove也是存在一个过渡绘制的背景的,查看Hierarchy View的CustomViewAbove的子节点,可以看到过渡绘制是由ListView导致的.其id为:FilesList,在代码中找到它,并对他进行分析.在我将PartitionItemLayout中<span class="function"><span class="title">onDraw</span><span class="params">()</span></span>函数的setBounds去掉之后,过渡绘制进一步改善了(但是ListItem的View的颜色也比之前要浅了,这一步优化需要根据具体情况进行) 下面是优化后的效果图:
+</code></pre><p><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-152357.jpg\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-152357.jpg\&quot;" alt="\&quot;S40723-152357\&quot;"></a>   <a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-152404.jpg\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/S40723-152404.jpg\&quot;" alt="\&quot;S40723-152404\&quot;"></a><br>可以看到图中的过渡绘制已经非常少了.!点个赞!</p>
+<h4 id="2-3_使用Lint工具进行进一步优化">2.3 使用Lint工具进行进一步优化</h4><ol>
+<li>Lint工具的使用比较简单,根据给出的提示做对应的修改即可.有时候需要工具具体情况来确定是否需要修改. 下图是一个简单地例子.箭头处提示这个Layout或者它的父Layout是不必须的.具体修改方法即去掉FrameLayout,将RelativeLayout提升为根VIew即可.<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image2.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image2.png\&quot;" alt="\&quot;Image\&quot;"></a></li>
+<li><p>Lint工具还会针对代码中潜在的不合理或者Bed Code做出修改意见.比较重要的提示包括</p>
+<ol>
+<li>声明但是没有使用的变量</li>
+<li>可能会产生的空指针</li>
+<li>没必要书写的return,continue</li>
+<li>复杂代码的简化写法</li>
+<li>for循环的简化写法:foreach</li>
+<li>无效的判空</li>
+<li>空if</li>
+<li>无效或者未使用的import</li>
+</ol>
+</li>
+</ol>
+<h4 id="2-4_使用Tracer_For_OpenGL_ES工具查看每一帧的draw情况-">2.4 使用Tracer For OpenGL ES工具查看每一帧的draw情况.</h4><ol>
+<li>Tracer工具也在Android Device Monitor中.点击右上角的Tracer for OpenGL ES按钮就可以进入(如果没有这个按钮,点击旁边的Open Perspective按钮,从选项中选择Tracer for OpenGL ES即可).</li>
+<li>初次打开Tracer工具,里面是没有内容的,点击右上角的两个按钮(一个是打开现有的GLTrace文件,另一个是新建GLTrace文件)<br>点击Trace按钮, 手机会自动启动应用程序并启动对应的Activity,当手机上的内容完全绘制出来之后,就可以点击Stop按钮,生成GlTrace文件.文件会自动打开.<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png\&quot;" alt="\&quot;Image\&quot;"></a></li>
+<li>分析GLTrace文件<br>这张图是优化过后的图,对比优化前的图可以发现,优化后不会去绘制默认的背景图和CustomViewBehind的背景图.<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png\&quot;" alt="\&quot;Image\&quot;"></a><br>这只是一帧的绘制,如果多操作几下生成多个帧的绘制trace文件,会发现这两个背景会被多次的重绘,去掉后不仅会减轻过渡绘制,也会加快GUP的绘制速度.</li>
+</ol>
+<h3 id="3-优化建议">3.优化建议</h3><ol>
+<li>ActionBar上有蓝色(紫色)说明appWindow绘制了一层背景,这层背景是可以去掉的.参考上面的教程.</li>
+<li>公共控件的背景重绘请公共控件的负责人关注一下.(SmartBar在只有两个图标(back,menu)时,不存在过渡绘制,一旦加上其他的按钮,就会出现比较严重的过渡绘制,这个需要注意一下.)</li>
+</ol>
+<h3 id="4-其他参考资料">4.其他参考资料</h3><ol>
+<li><a href="\&quot;http://blog.chengyunfeng.com/?p=458#\&quot;">http://blog.chengyunfeng.com/?p=458#</a> 翻译的一个老外的优化过程 (原链接<a href="\&quot;http://www.curious-creature.org/2012/12/01/android-performance-case-study/\&quot;">http://www.curious-creature.org/2012/12/01/android-performance-case-study/</a>)</li>
+<li><a href="\&quot;http://blog.csdn.net/yihongyuelan/article/details/12169647\&quot;">http://blog.csdn.net/yihongyuelan/article/details/12169647</a> 反编译并添加gpu显示</li>
+<li><a href="\&quot;http://developer.android.com/training/improving-layouts/optimizing-layout.html#Inspect\&quot;">http://developer.android.com/training/improving-layouts/optimizing-layout.html#Inspect</a> 官网资料</li>
+<li><a href="\&quot;http://developer.android.com/training/improving-layouts/reusing-layouts.html\&quot;">http://developer.android.com/training/improving-layouts/reusing-layouts.html</a> 官网资料</li>
+<li><a href="\&quot;http://developer.android.com/training/improving-layouts/loading-ondemand.html\&quot;">http://developer.android.com/training/improving-layouts/loading-ondemand.html</a> 官网资料</li>
+<li><a href="\&quot;http://developer.android.com/training/improving-layouts/smooth-scrolling.html\&quot;">http://developer.android.com/training/improving-layouts/smooth-scrolling.html</a> 官网资料</li>
+<li><a href="\&quot;http://developer.android.com/tools/help/hierarchy-viewer.html\&quot;">http://developer.android.com/tools/help/hierarchy-viewer.html</a> 官网关于hierarchy view的介绍</li>
+<li><a href="\&quot;http://tools.android.com/tips/lint\&quot;">http://tools.android.com/tips/lint</a> lint工具介绍<blockquote>
+<p>作者：<a href="\&quot;http://weibo.com/1315612820/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo\&quot;" title="\&quot;个人微博\&quot;">Gracker</a></p>
+<p>出处：<a href="\&quot;http://www.androidperformance.com/\&quot;" title="\&quot;网站主页\&quot;">androidperformance.com</a></p>
+<p>本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</p>
+<p>打赏一下： <a href="\&quot;http://weibo.com/p/1001603801588257955883?from=page_100505_profile&amp;wvr=6&amp;mod=wenzhangmod\&quot;">微博打赏</a></p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/16/view-android-source-code-with-androidstudio/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          使用Android Studio查看Android Lollipop源码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/10/20/android-performance-optimization-overdraw-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android性能优化之过渡绘制(一)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android-performance-optimization-overdraw-2" data-title="Android性能优化之过渡绘制( 二)" data-url="http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Gracker
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
