@@ -6,17 +6,17 @@
   <title>[译]Android小技巧(3) | Android Perofrmance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.
-原文地址:http://blog.danlew.net/2">
+正文UrlQuerySanitizer——使用这个工具可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[译]Android小技巧(3)">
-<meta property="og:url" content="http://androidperformance.com/2015/02/06/android-tips-round-up-3/index.html">
+<meta property="og:url" content="http://androidperformance.com/2015/03/15/android-tips-round-up-3/index.html">
 <meta property="og:site_name" content="Android Perofrmance">
 <meta property="og:description" content="前言本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.
-原文地址:http://blog.danlew.net/2">
+正文UrlQuerySanitizer——使用这个工具可以">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译]Android小技巧(3)">
 <meta name="twitter:description" content="前言本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.
-原文地址:http://blog.danlew.net/2">
+正文UrlQuerySanitizer——使用这个工具可以">
   
     <link rel="alternative" href="/atom.xml" title="Android Perofrmance" type="application/atom+xml">
   
@@ -195,8 +195,8 @@
       <div class="body-wrap"><article id="post-android-tips-round-up-3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/02/06/android-tips-round-up-3/" class="article-date">
-  	<time datetime="2015-02-06T06:03:27.000Z" itemprop="datePublished">2015-02-06</time>
+      <a href="/2015/03/15/android-tips-round-up-3/" class="article-date">
+  	<time datetime="2015-03-14T16:29:57.000Z" itemprop="datePublished">2015-03-15</time>
 </a>
     </div>
   
@@ -229,26 +229,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言">前言</h3><p>本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
-<p>原文地址:<a href="http://blog.danlew.net/2014/04/28/android-tips-round-up-part-3/" target="_blank" rel="external">http://blog.danlew.net/2014/03/30/android-tips-round-up-part-3/</a></p>
-<p>原文作者<a href="http://blog.danlew.net/2014/04/28/android-tips-round-up-part-3/" target="_blank" rel="external">:http://blog.danlew.net/about/</a></p>
-<p>本文地址:<a href="http://www.androidperformance.com/android-tips-round-up-3.html" target="_blank" rel="external">http://www.androidperformance.com/<span id="editable-post-name" title="临时固定链接，点击可更改这部分。">android-tips-round-up-3</span>.html</a><span id="sample-permalink" tabindex="-1"> 转载请注明.</span></p>
-<p>More: <a href="http://www.grackertalk.com/android-tips-round-up.html" title="[译]Android小技巧(1)" target="_blank" rel="external">Part1</a> , <a href="http://www.grackertalk.com/android-tips-round-up-2.html" title="android-tips-2" target="_blank" rel="external">Part2</a> , Part3 , Part4 ,Part5</p>
-<h3 id="正文">正文</h3><p><a href="http://developer.android.com/reference/android/net/UrlQuerySanitizer.html" target="_blank" rel="external"><code>UrlQuerySanitizer</code></a> - Sanitize URLs with this handy utility.</p>
-<p><a href="http://developer.android.com/reference/android/app/Fragment.html#setArguments%28android.os.Bundle%29" target="_blank" rel="external"><code>Fragment.setArguments</code></a> - Since you can’t use a Fragment constructor w/ parameters this is the second best thing. Arguments set before creation last throughout the entire Fragment’s lifecycle (even if it’s destroyed/recreated due to a configuration change).</p>
-<p><a href="http://developer.android.com/reference/android/app/DialogFragment.html#setShowsDialog%28boolean%29" target="_blank" rel="external"><code>DialogFragment.setShowsDialog()</code></a> - Neat trick - DialogFragments can act like normal Fragments! That way you can have the same Fragment do double-duty. I usually create a third View generation method that both <code>onCreateView()</code> and <code>onCreateDialog()</code> call into when creating a dual-purpose Fragment.</p>
-<p><a href="http://developer.android.com/reference/android/app/FragmentManager.html#enableDebugLogging%28boolean%29" target="_blank" rel="external"><code>FragmentManager.enableDebugLogging()</code></a> - Help when you need it when figuring out Fragments.</p>
-<p><a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html" target="_blank" rel="external"><code>LocalBroadcastManager</code></a> - Safer than global broadcasts. Simple and quick. Event buses like <a href="http://square.github.io/otto/" target="_blank" rel="external">otto</a> may make more sense for your use case though.</p>
-<p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#formatNumber%28java.lang.String%29" target="_blank" rel="external"><code>PhoneNumberUtils.formatNumber()</code></a> - Let someone else figure out this problem for you.</p>
-<p><a href="http://developer.android.com/reference/android/graphics/Region.html#op%28android.graphics.Region,%20android.graphics.Region,%20android.graphics.Region.Op%29" target="_blank" rel="external"><code>Region.op()</code></a> - I found this useful for comparing two generic areas before rendering. If I’ve got two Paths, do they overlap? I can figure that out with this method.</p>
-<p><a href="http://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks%28android.app.Application.ActivityLifecycleCallbacks%29" target="_blank" rel="external"><code>Application.registerActivityLifecycleCallbacks</code></a> - Though lacking documentation I feel this is self-evident. Just a handy tool.</p>
-<p><a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types" target="_blank" rel="external"><code>versionNameSuffix</code></a> - This gradle setting lets you modify the versionName field in your manifest based on different build types. For example, I would setup my debug build type to end in “-SNAPSHOT”; that way you can easily tell if you’re on a debug build or release build.</p>
-<p><a href="http://developer.android.com/reference/android/database/CursorJoiner.html" target="_blank" rel="external"><code>CursorJoiner</code></a> - If you’re using a single database then a join in SQL is the natural solution, but what if you’ve received data from two separate ContentProviders? In that case CursorJoiner can be helpful.</p>
-<p><a href="http://www.genymotion.com/" target="_blank" rel="external"><code>Genymotion</code></a> - A much faster Android emulator. I use it all day.</p>
-<p><a href="http://developer.android.com/guide/practices/screens_support.html#qualifiers" target="_blank" rel="external"><code>-nodpi</code></a> - Most qualifiers (-mdpi, -hdpi, -xhdpi, etc.) automatically scale assets/dimensions if you’re on a device that isn’t explicitly defined. Sometimes you just want something consistent though; in that case use -nodpi.</p>
-<p><a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html#setDebugUnregister%28boolean%29" target="_blank" rel="external"><code>BroadcastRecevier.setDebugUnregister()</code></a> - Another handy debugging tool.</p>
-<p><a href="http://developer.android.com/reference/android/app/Activity.html#recreate%28%29" target="_blank" rel="external"><code>Activity.recreate()</code></a> - Forces an Activity to recreate itself for whatever reason.</p>
-<p><a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#checkSignatures%28java.lang.String,%20java.lang.String%29" target="_blank" rel="external"><code>PackageManager.checkSignatures()</code></a> - You can use this to find out if two apps (presumably your own) are installed at the same time. Without checking signatures someone could imitate your app easily by just using the same package name.</p>
+        <h2 id="前言">前言</h2><p>本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
+<h2 id="正文">正文</h2><p><a href="http://developer.android.com/reference/android/net/UrlQuerySanitizer.html" target="_blank" rel="external">UrlQuerySanitizer</a>——使用这个工具可以方便对 URL 进行检查。</p>
+<p><a href="http://developer.android.com/reference/android/app/Fragment.html#setArguments%28android.os.Bundle%29" target="_blank" rel="external">Fragment.setArguments</a>——因为在构建 Fragment 的时候不能加参数，所以这是个很好的东西，可以在创建 Fragment 之前设置参数（即使在 configuration 改变的时候仍然会导致销毁/重建）。</p>
+<p><a href="http://developer.android.com/reference/android/app/DialogFragment.html#setShowsDialog%28boolean%29" target="_blank" rel="external">DialogFragment.setShowsDialog ()</a>—— 这是一个很巧妙的方式，DialogFragment 可以作为正常的 Fragment 显示！这里可以让 Fragment 承担双重任务。我通常在创建 Fragment 的时候把 onCreateView ()和 onCreateDialog ()都加上，就可以创建一个具有双重目的的 Fragment。</p>
+<p><a href="http://developer.android.com/reference/android/app/FragmentManager.html#enableDebugLogging%28boolean%29" target="_blank" rel="external">FragmentManager.enableDebugLogging ()</a>——在需要观察 Fragment 状态的时候会有帮助。</p>
+<p><a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html" target="_blank" rel="external">LocalBroadcastManager</a>——这个会比全局的 broadcast 更加安全，简单，快速。像 <a href="http://square.github.io/otto/" target="_blank" rel="external">otto</a> 这样的 Event buses 机制对你的应用场景更加有用。</p>
+<p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#formatNumber%28java.lang.String%29" target="_blank" rel="external">PhoneNumberUtils.formatNumber ()</a>——顾名思义，这是对数字进行格式化操作的时候用的。</p>
+<p><a href="http://developer.android.com/reference/android/graphics/Region.html#op%28android.graphics.Region,%20android.graphics.Region,%20android.graphics.Region.Op%29" target="_blank" rel="external">Region.op()</a>——我发现在对比两个渲染之前的区域的时候很实用，如果你有两条路径，那么怎么知道它们是不是会重叠呢？使用这个方法就可以做到。</p>
+<p><a href="http://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks%28android.app.Application.ActivityLifecycleCallbacks%29" target="_blank" rel="external">Application.registerActivityLifecycleCallbacks</a>——虽然缺少官方文档解释，不过我想它就是注册 Activity 的生命周期的一些回调方法（顾名思义），就是一个方便的工具。</p>
+<p><a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types" target="_blank" rel="external">versionNameSuffix</a>——这个 gradle 设置可以让你在基于不同构建类型的 manifest 中修改版本名这个属性，例如，如果需要在在 debug 版本中以”-SNAPSHOT”结尾，那么就可以轻松的看出当前是 debug 版还是 release 版。</p>
+<p><a href="http://developer.android.com/reference/android/database/CursorJoiner.html" target="_blank" rel="external">CursorJoiner</a>——如果你是只使用一个数据库的话，使用 SQL 中的 join 就可以了，但是如果收到的数据是来自两个独立的 ContentProvider，那么 CursorJoiner 就很实用了。</p>
+<p><a href="http://www.genymotion.com/" target="_blank" rel="external">Genymotion</a>——一个非常快的 Android 模拟器，本人一直在用。</p>
+<p><a href="http://developer.android.com/guide/practices/screens_support.html#qualifiers" target="_blank" rel="external">-nodpi</a>——在没有特别定义的情况下，很多修饰符(-mdpi,-hdpi,-xdpi等等)都会默认自动缩放 assets/dimensions，有时候我们需要保持显示一致，这种情况下就可以使用 -nodpi。</p>
+<p><a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html#setDebugUnregister%28boolean%29" target="_blank" rel="external">BroadcastRecevier.setDebugUnregister ()</a>——又一个方便的调试工具。</p>
+<p><a href="http://developer.android.com/reference/android/app/Activity.html#recreate%28%29" target="_blank" rel="external">Activity.recreate ()</a>——强制让 Activity 重建。</p>
+<p><a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#checkSignatures%28java.lang.String,%20java.lang.String%29" target="_blank" rel="external">PackageManager.checkSignatures ()</a>——如果同时安装了两个 app 的话，可以用这个方法检查。如果不进行签名检查的话，其他人可以轻易通过使用一样的包名来模仿你的 app。</p>
+<h2 id="备忘">备忘</h2><p>More: <a href="http://www.androidperformance.com/android-tips-round-up.html" target="_blank" rel="external">Part1</a> , <a href="http://www.androidperformance.com/android-tips-round-up-2.html" target="_blank" rel="external">Part2</a> , <a href="http://www.androidperformance.com/android-tips-round-up-3.html" target="_blank" rel="external">Part3</a> , <a href="http://www.androidperformance.com/android-tips-round-up-4.html" target="_blank" rel="external">Part4</a>, <a href="http://www.androidperformance.com/android-tips-round-up-5.html" target="_blank" rel="external">Part5</a><br>原文地址:<a href="http://blog.danlew.net/2014/03/30/android-tips-round-up-part-3/" target="_blank" rel="external">http://blog.danlew.net/2014/03/30/android-tips-round-up-part-3/</a><br>原文作者:<a href="http://blog.danlew.net/about/" target="_blank" rel="external">http://blog.danlew.net/about/</a><br>本文地址:<a href="http://www.androidperformance.com/android-tips-round-up-3.html" target="_blank" rel="external">http://www.androidperformance.com/android-tips-round-up-3.html</a> 转载请注明.</p>
 
       
     </div>
@@ -258,7 +255,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/03/12/e8-af-91android-e5-b0-8f-e6-8a-80-e5-b7-a74/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/03/15/android-tips-round-up-4/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
@@ -298,7 +295,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="android-tips-round-up-3" data-title="[译]Android小技巧(3)" data-url="http://androidperformance.com/2015/02/06/android-tips-round-up-3/"></div>
+	<div class="ds-thread" data-thread-key="android-tips-round-up-3" data-title="[译]Android小技巧(3)" data-url="http://androidperformance.com/2015/03/15/android-tips-round-up-3/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
