@@ -420,7 +420,7 @@ td {
 .full-image.full-image.full-image {
   border: none;
 }
-@media (min-width: 1280px) {
+@media (min-width: 992px) {
   .full-image.full-image.full-image {
     max-width: none;
     width: 126%;
@@ -1167,7 +1167,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4aff91;
+  background: #b8b3f9;
 }
 .sidebar-nav {
   margin: 0;
@@ -1328,7 +1328,7 @@ body {
 .posts-expand {
   padding-top: 40px;
 }
-@media (max-width: 900px) {
+@media (max-width: 1280px) {
   .posts-expand {
     margin: 0 20px;
   }
