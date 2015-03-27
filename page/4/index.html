@@ -1,223 +1,164 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="theme-next use-motion theme-next-next">
 <head>
-  <meta charset="utf-8">
   
-  <title>Android Perofrmance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Android Perofrmance">
-<meta property="og:url" content="http://androidperformance.com/page/4/index.html">
-<meta property="og:site_name" content="Android Perofrmance">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Perofrmance">
-<meta name="twitter:description">
-  
-    <link rel="alternative" href="/atom.xml" title="Android Perofrmance" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> Android Perofrmance </title>
 </head>
+
 <body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			<img src="">
-		</a>
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Gracker</a></h1>
-		</hgroup>
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Android Perofrmance</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
 
-		
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          首页
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          归档
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          标签
+        </a>
+      </li>
+    
+  </ul>
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="/#" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
-					        
-								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
-			        
-			        </div>
-				</section>
-				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
-</div>
+      </div>
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Gracker</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img src="">
-				<hgroup>
-				  <h1 class="header-author">Gracker</h1>
-				</hgroup>
-			</div>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="/#" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
-			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
-</nav>
-      <div class="body-wrap">
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
   
-    <article id="post-ubuntu-adb-can-not-find-devices" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/03/25/ubuntu-adb-can-not-find-devices/" class="article-date">
-  	<time datetime="2014-03-25T03:15:17.000Z" itemprop="datePublished">2014-03-25</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2014/03/25/ubuntu-adb-can-not-find-devices/">
+                Android:Ubuntu下执行Adb命令找不到设备
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-25
+          
+        </span>
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/25/ubuntu-adb-can-not-find-devices/">Android:Ubuntu下执行Adb命令找不到设备</a>
-    </h1>
-  
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/Android/">Android</a>
 
-      </header>
-      
+                
+                
+                  ， 
+                
+
+              
+                <a href="/categories/Android/Linux/">Linux</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-问题概述">1.问题概述</h2><p><span style="color: #000000;">最近开发Nokia项目，遇到的问题如下：</span></p>
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id="1-问题概述">1.问题概述</h2><p><span style="color: #000000;">最近开发Nokia项目，遇到的问题如下：</span></p>
 <p><span style="color: #000000;">插入Nokia x后，电脑没有反应，即不识别，同事的windows也不识别，最后在谷歌上搜索了良久，才找到了解决方案，但是没有记录，后来又要给别人配置的时候，发现忘记怎么配置了。想想这也是一个具有通性的问题，还是记录下来，分享给大家。</span></p>
 <h2 id="2-问题解决方案">2.问题解决方案</h2><p><span style="color: #000000;">首先问题是：执行adb命令提示找不到设备，在做其他操作之前，请先确认已经做了如下操作：</span></p>
 <ol>
@@ -254,58 +195,83 @@ udev start/running, process 14636</pre>
 <h3 id="2-4-打开_～/-android/adb_usb-ini，加入之前的lsusb得到的信息"><span style="color: #000000;">2.4.打开 ～/.android/adb_usb.ini，加入之前的lsusb得到的信息</span></h3><p><pre class="lang:java decode:true"># ANDROID 4RD PARTY USB VENDOR ID LIST — DO NOT EDIT.</pre></p>
 <h1 id="USE_‘android_update_adb’_TO_GENERATE-">USE ‘android update adb’ TO GENERATE.</h1><h1 id="1_USB_VENDOR_ID_PER_LINE">1 USB VENDOR ID PER LINE</h1><h1 id="for_nokia_x">for nokia x</h1><p>0x0421<br><span style="color: #000000;"> 保存关闭后，就可以识别了。windows下也是如此，不多叙述了。</span></p>
 
-      
-    </div>
+          
+        
+      </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Linux/">Linux</a>
-	</div>
 
+    
+      <div class="post-footer">
+        
 
-      
-      <div class="clearfix"></div>
-    </div>
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
     
   </div>
-  
-</article>
-
-
-
-
 
 
   
-    <article id="post-android-build-your-own-android-notification-service-app" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/03/17/android-build-your-own-android-notification-service-app/" class="article-date">
-  	<time datetime="2014-03-17T06:07:53.000Z" itemprop="datePublished">2014-03-17</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2014/03/17/android-build-your-own-android-notification-service-app/">
+                Android Service：开发自己的通知中心(1):辅助性服务介绍
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-17
+          
+        </span>
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/17/android-build-your-own-android-notification-service-app/">Android Service：开发自己的通知中心(1):辅助性服务介绍</a>
-    </h1>
-  
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/Android/">Android</a>
 
-      </header>
-      
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id=""> </h2><h1 id="1_辅助性服务介绍">1 辅助性服务介绍</h1><p>辅助性服务是安卓框架的一个特性，它的设计是为了让已经安装在安卓设备上的应用程序能够为用户提供一种导航式(引导式）回应。一个辅助性服务能够传达给<br>用户关于这个应用程序的利益，例如把文本转换成语音、当用户手指停留屏幕的一个重要区域时的haptic反馈。这一节涵盖了怎样去创建一个辅助性服务，如何处理应用程序的信息接收，还有如何把信息反馈给用户。<br>创建自己的辅助性服务</p>
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id=""> </h2><h1 id="1_辅助性服务介绍">1 辅助性服务介绍</h1><p>辅助性服务是安卓框架的一个特性，它的设计是为了让已经安装在安卓设备上的应用程序能够为用户提供一种导航式(引导式）回应。一个辅助性服务能够传达给<br>用户关于这个应用程序的利益，例如把文本转换成语音、当用户手指停留屏幕的一个重要区域时的haptic反馈。这一节涵盖了怎样去创建一个辅助性服务，如何处理应用程序的信息接收，还有如何把信息反馈给用户。<br>创建自己的辅助性服务</p>
 <p>&nbsp;</p>
 <h1 id="2_创建自己的辅助性服务">2 创建自己的辅助性服务</h1><h2 id="2-1_继承AccessibilitySerivce">2.1 继承AccessibilitySerivce</h2><p>一个辅助性服务可以被捆绑到一个标准的应用程序上，或者以一个单独的安卓工程被创建。在任何情况下，创建这类服务的步骤都是一样的。在你的工程中，创建一个类继续AccessibilitySerivce。</p>
 <pre class="\"lang:java" decode:true\"="" title="\"继承AccessibilityService\"">package com.example.android.apis.accessibility;
@@ -474,58 +440,83 @@ public void onAccessibilityEvent(AccessibilityEvent event) {
 <p><span style="\"color:" #ff0000;\"="">作者：<a href="\" title="\">Gracker</a></span><br><span style="\"color:" #ff0000;\"="">出处：<a href="\" title="\">androidperformance.com</a></span><br><span style="\"color:" #ff0000;\"="">本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</span><br><span style="\"color:" #ff0000;\"="">打赏一下： <a href="\">微博打赏</a></span></p>
 </blockquote>
 
-      
-    </div>
+          
+        
+      </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
 
+    
+      <div class="post-footer">
+        
 
-      
-      <div class="clearfix"></div>
-    </div>
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
     
   </div>
-  
-</article>
-
-
-
-
 
 
   
-    <article id="post-android-adb-push-and-adb-install-different" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/03/10/android-adb-push-and-adb-install-different/" class="article-date">
-  	<time datetime="2014-03-10T15:41:41.000Z" itemprop="datePublished">2014-03-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2014/03/10/android-adb-push-and-adb-install-different/">
+                Android中adb push和adb install的使用区别
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-10
+          
+        </span>
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/10/android-adb-push-and-adb-install-different/">Android中adb push和adb install的使用区别</a>
-    </h1>
-  
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/Android/">Android</a>
 
-      </header>
-      
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇文章由史迎春(<a href="http://weibo.com/ctj13513871718" target="_blank" rel="external">@三俗小女子</a>)投稿。转载请注明原文地址。</p>
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>本篇文章由史迎春(<a href="http://weibo.com/ctj13513871718" target="_blank" rel="external">@三俗小女子</a>)投稿。转载请注明原文地址。</p>
 <p>在Android实际开发中，经常会使用adb命令，安装应用程序可以使用adb push 或者adb install。下面就来讲讲这两种安装方式的区别。</p>
 <ol>
 <li>adb push 能够指定安装目录。比如执行”adb push xxx.apk system/app” 后，xxx.apk被安装到了system/app目录下，此目录下的软件为上文中提到的system application。（注意，system/app是只读的，所以只有有root权限才能push apk进去，而且在push进去的apk会把原本的apk覆盖掉。）adb push本身的意思是将文件复制到系统中的某个文件夹下，但是将apk push到system/app下并且重启手机以后会注册应用程序。</li>
@@ -558,58 +549,83 @@ public void onAccessibilityEvent(AccessibilityEvent event) {
 <p>作者介绍：</p>
 <p>史迎春，女程序员，主要研究Android系统Framework层，目前任职于HTC。</p>
 
-      
-    </div>
+          
+        
+      </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
 
+    
+      <div class="post-footer">
+        
 
-      
-      <div class="clearfix"></div>
-    </div>
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
     
   </div>
-  
-</article>
-
-
-
-
 
 
   
-    <article id="post-life-and-college-about-gracker" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/03/01/life-and-college-about-gracker/" class="article-date">
-  	<time datetime="2014-03-01T12:22:47.000Z" itemprop="datePublished">2014-03-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2014/03/01/life-and-college-about-gracker/">
+                大学 毕业 工作
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-01
+          
+        </span>
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/01/life-and-college-about-gracker/">大学 毕业 工作</a>
-    </h1>
-  
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/生活感悟/">生活感悟</a>
 
-      </header>
-      
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我是一个喜欢总结并且做计划的人。从我知道如何规划自己到现在，我做了无数的计划，这些计划雄心勃勃，大有上五天揽月下五洋捉鳖之势，仿佛自己就是救世主，亿万人民等着我去拯救。但现实总是那么的残酷，我做的计划很少有能够坚持下来并完成的，以至于大家都亲切地叫我：“三分钟热情”，每思及此，也没啥好的办法。还好每个人都有自己的缺点，也都有自己的优点，而且随着时间的变化，人也是会变的。这篇博客摘录了我大学期间，大学毕业，工作了一段时间三个时期的个人总结：变的是心态，是年龄，不变的是激情，是梦想。</p>
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>我是一个喜欢总结并且做计划的人。从我知道如何规划自己到现在，我做了无数的计划，这些计划雄心勃勃，大有上五天揽月下五洋捉鳖之势，仿佛自己就是救世主，亿万人民等着我去拯救。但现实总是那么的残酷，我做的计划很少有能够坚持下来并完成的，以至于大家都亲切地叫我：“三分钟热情”，每思及此，也没啥好的办法。还好每个人都有自己的缺点，也都有自己的优点，而且随着时间的变化，人也是会变的。这篇博客摘录了我大学期间，大学毕业，工作了一段时间三个时期的个人总结：变的是心态，是年龄，不变的是激情，是梦想。</p>
 <p>第一篇是大三开学之前在学校的实验室写的，那个夏天去了大连东软进行实训，为期半个月左右，具体做了什么忘记了，就记得大连的雨，一下就是好几天。实训结束后为没有回家，直接搬了床和被子在实验室住下了。每天和看实验室的大爷做斗争，晚上一个人睡觉，饿了就煮泡面，现在想来，那段日子真是惬意。然后快开学的时候，写了这篇总结（最后一句真是亮瞎我的24K氪金狗眼阿）：</p>
 <blockquote>
 <p>转眼间，就已经是大三的人了，由于我们专业的教学计划与别的专业不同，我们在学校待的时间只有3年。也就是说，这是我在大学的最后一年了。</p>
@@ -649,58 +665,83 @@ public void onAccessibilityEvent(AccessibilityEvent event) {
 
 <div>思考！你的工作。 think ，about your work</div><br><div>大家自己感受一下。</div><br><div></div></blockquote>
 
-      
-    </div>
+          
+        
+      </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/生活感悟/">生活感悟</a>
-	</div>
 
+    
+      <div class="post-footer">
+        
 
-      
-      <div class="clearfix"></div>
-    </div>
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
     
   </div>
-  
-</article>
-
-
-
-
 
 
   
-    <article id="post-build-your-own-blog-by-wordpress" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/02/26/build-your-own-blog-by-wordpress/" class="article-date">
-  	<time datetime="2014-02-26T02:27:21.000Z" itemprop="datePublished">2014-02-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2014/02/26/build-your-own-blog-by-wordpress/">
+                使用Wordpress建立个人独立博客
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-02-26
+          
+        </span>
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/02/26/build-your-own-blog-by-wordpress/">使用Wordpress建立个人独立博客</a>
-    </h1>
-  
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/Wordpress/">Wordpress</a>
 
-      </header>
-      
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="\"><img src="\" alt="\"></a></p>
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p><a href="\"><img src="\" alt="\"></a></p>
 <p>配图来自网络。</p>
 <h1 id="个人吐槽阶段">个人吐槽阶段</h1><p>说到建立独立博客，很多人都很不屑地说，CSDN、博客园不是也提供博客地址么？为什么要花这么大力气，自己搭建一个博客呢？举个不太恰当的例子，很多人刚毕业没钱，在外边租房子，提供租房服务的很多，一租好几年，但每个人都想拥有自己的房子。这独立博客就相当于自己的房子，自己的房子用起来，当然就要比租的房子用起来要那么用心一点，有空就搞个装修啊，买点家具啊，修个游泳池啊（想多了），养点花花草草猫猫狗狗之类的。租的房子，能住人绝对不养狗，能叫外面绝对不下厨。不能比啊不能比，这是个态度问题。</p>
 <h1 id="准备阶段">准备阶段</h1><p>废话说了这么多，还是尽快切入主题。说到个人建站，网上教程一堆一堆的，我自然也不会自己一个一个地去摸索。我主要参考的文章是Mac君的《趣谈个人建站》：<a href="\" title="\">http://macshuo.com/?p=547</a>。Mac君使用的是godaddy+ubuntu+linode。而我的不一样的点是我在国内买的域名：阿里云万网：<a href="\" title="\">http://www.net.cn/</a>。下面的内容大部分都来自Mac君的博文《趣谈个人建站》：<a href="\" title="\">http://macshuo.com/?p=547</a>。</p>
@@ -954,143 +995,387 @@ sudo usermod -a -G www-data username   <span style="\"color:" #ff6600;\"="">（�
 <p><span style="\"color:" #ff0000;\"="">作者：<a href="\" title="\">Gracker</a></span><br><span style="\"color:" #ff0000;\"="">出处：<a href="\" title="\">androidperformance.com</a></span><br><span style="\"color:" #ff0000;\"="">本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</span><br><span style="\"color:" #ff0000;\"="">打赏一下： <a href="\">微博打赏</a></span></p>
 </blockquote>
 
-      
-    </div>
+          
+        
+      </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Wordpress/">Wordpress</a>
-	</div>
 
+    
+      <div class="post-footer">
+        
 
-      
-      <div class="clearfix"></div>
-    </div>
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
     
   </div>
-  
-</article>
-
-
-
-
 
 
   
-    <article id="post-hello-gracker-blog-was-build" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/02/24/hello-gracker-blog-was-build/" class="article-date">
-  	<time datetime="2014-02-24T07:54:49.000Z" itemprop="datePublished">2014-02-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2014/02/24/hello-gracker-blog-was-build/">
+                Gracker的个人博客开通了！
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-02-24
+          
+        </span>
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/02/24/hello-gracker-blog-was-build/">Gracker的个人博客开通了！</a>
-    </h1>
-  
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/生活感悟/">生活感悟</a>
 
-      </header>
-      
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>计划了很久，终于把博客开通了。</p>
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>计划了很久，终于把博客开通了。</p>
 <p>自从接触到<a href="http://apple.com" target="_blank" rel="external">Mac OS</a>之后，便对苹果佩服的五体投地，硬件上突出一个高大上，而且携带方便，软件上更是无人出其右。有时候你用他就觉得是一种享受。这不是我有意夸大，谁用谁知道。</p>
 <p>然后顺理成章地知道了Mac君，微信上MacTalk也是每一篇都一字不差地看完，最后买了多看版，也买了实体书，一本书有这样的魔力，我也很惊奇。同样是搞技术的，为何他就能写出这样的文字，而我却只能对着程序发呆。究其原因，这里面有人生经历的原因，更重要的是他的热情和坚持，让我这种三分钟热情的人表示很汗颜。想想自己最能坚持的事，就是一局又一局的DOTA。每思及此，痛心疾首，所以下决心要做点什么。</p>
 <p>Mac君的书中有一段：“即便是最简单的坚持，最后的结果也都是惊人的。这世界上一直存在一条路，让我们的能力从平庸到杰出，这条路漫长而且艰辛，只有少数人愿意走下去，所以，优秀的人永远是少数”。这段话让我感触很多，也让我下定决定要把这个博客搭建起来，养成写作的习惯。少刷点微博，少打两把DOTA，时间就那么多，再浪费下去，以后的我，会痛恨现在的我的。</p>
 <p>现在计划每周更新博客两次，周一到周五发一篇，周末发一篇。尽量做到言之有物，对别人有实质性的帮助，不讲空话，技术上用实例说明问题。可能初期的文笔不是很好，但我相信，简单的坚持，借用红米的一句话：“永远相信美好的事情即将发生”。</p>
 
-      
-    </div>
+          
+        
+      </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/生活感悟/">生活感悟</a>
-	</div>
 
+    
+      <div class="post-footer">
+        
 
-      
-      <div class="clearfix"></div>
-    </div>
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
     
   </div>
-  
-</article>
-
-
-
-
 
 
   
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
-  
+
+          </div>
+
+          
+            <div class="pagination">
+              <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+            </div>
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
 </div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2015 Gracker
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
-    </div>
-  </div>
-</footer>
-    </div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="Gracker" />
+        <p class="site-author-name">Gracker</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">标签</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">页面</span>
+        </div>
+      </div>
 
-<script src="/js/mobile.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+      
 
+      <div class="links-of-author motion-element">
+        
+      </div>
 
+      
+      
 
+    </div>
 
-
-<! -- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+    
 
   </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Gracker</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+
+  
 </body>
 </html>
