@@ -420,7 +420,7 @@ td {
 .full-image.full-image.full-image {
   border: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 1280px) {
   .full-image.full-image.full-image {
     max-width: none;
     width: 126%;
@@ -1167,7 +1167,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2036ff;
+  background: #4aff91;
 }
 .sidebar-nav {
   margin: 0;
