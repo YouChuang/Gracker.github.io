@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/tags/index.html</loc>
+    <lastmod>2015-03-27T02:44:20.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/categories/index.html</loc>
+    <lastmod>2015-03-27T02:43:56.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/about/index.html</loc>
     <lastmod>2015-03-27T02:17:50.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://androidperformance.com/tags/index.html</loc>
-    <lastmod>2015-03-27T02:00:30.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://androidperformance.com/2015/02/04/build-rom-for-nexus5/</loc>
     <lastmod>2015-03-26T13:23:06.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/25/usevim/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
   <url>
@@ -183,6 +183,11 @@
   
   <url>
     <loc>http://androidperformance.com/2014/05/31/using-listview-in-android/</loc>
+    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/25/usevim/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
