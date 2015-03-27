@@ -178,6 +178,7 @@
 <li>数据采集部分：Android定义了一个Trace类。应用程序可利用该类把统计信息输出给ftrace。同时，Android还有一个atrace程序，它可以从ftrace中读取统计信息然后交给数据分析工具来处理。</li>
 <li>数据分析工具：Android提供一个systrace.py（python脚本文件，位于Android SDK目录/tools/systrace中，其内部将调用atrace程序）用来配置数据采集的方式（如采集数据的标签、输出文件名等）和收集ftrace统计数据并生成一个结果网页文件供用户查看。 从本质上说，Systrace是对Linux Kernel中ftrace的封装。应用进程需要利用Android提供的Trace类来使用Systrace.<br>关于Systrace的官方介绍和使用可以看这里：<a href="http://developer.android.com/tools/help/systrace.html" title="SysTrace官方介绍" target="_blank" rel="external">Systrace</a></li>
 </ul>
+<a id="more"></a>
 <h2 id="1-Systrace简单使用">1.Systrace简单使用</h2><p>使用Systrace前，要先了解一下Systrace在各个平台上的使用方法，鉴于大家使用Eclipse和Android Studio的居多，所以直接摘抄官网关于这个的使用方法，不过不管是什么工具，流程是一样的：</p>
 <ul>
 <li>手机准备好你要进行抓取的界面</li>
@@ -342,7 +343,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

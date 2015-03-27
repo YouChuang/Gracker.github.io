@@ -2,6 +2,151 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2014/04/01/android-service-build-your-own-notification-servers-app/</loc>
+    <lastmod>2015-03-27T05:27:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/01/30/android-performance-tools-systrace-1/</loc>
+    <lastmod>2015-03-27T05:27:06.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</loc>
+    <lastmod>2015-03-27T05:26:55.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/10/20/android-performance-optimization-overdraw-1/</loc>
+    <lastmod>2015-03-27T05:26:48.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/06/01/android-frame-animation/</loc>
+    <lastmod>2015-03-27T05:26:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/06/03/android-edittext-do-not-auto-get-focus/</loc>
+    <lastmod>2015-03-27T05:26:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/03/17/android-build-your-own-android-notification-service-app/</loc>
+    <lastmod>2015-03-27T05:26:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/03/10/android-adb-push-and-adb-install-different/</loc>
+    <lastmod>2015-03-27T05:26:09.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/18/wordpress-change-theme-with-blank/</loc>
+    <lastmod>2015-03-27T05:26:01.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/01/16/view-android-source-code-with-androidstudio/</loc>
+    <lastmod>2015-03-27T05:25:47.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/25/usevim/</loc>
+    <lastmod>2015-03-27T05:25:21.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/02/use-vps-and-vpn/</loc>
+    <lastmod>2015-03-27T05:25:06.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/03/25/ubuntu-adb-can-not-find-devices/</loc>
+    <lastmod>2015-03-27T05:25:00.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/03/01/life-and-college-about-gracker/</loc>
+    <lastmod>2015-03-27T05:24:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/28/javamodifier/</loc>
+    <lastmod>2015-03-27T05:24:30.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/21/it-blog-rss-list/</loc>
+    <lastmod>2015-03-27T05:24:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/02/gracker-booklist/</loc>
+    <lastmod>2015-03-27T05:23:49.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/11/crazy-coder/</loc>
+    <lastmod>2015-03-27T05:22:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/02/26/build-your-own-blog-by-wordpress/</loc>
+    <lastmod>2015-03-27T05:20:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/02/04/build-rom-for-nexus5/</loc>
+    <lastmod>2015-03-27T05:20:44.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/04/13/beautiful-ios-app-ios5coins/</loc>
+    <lastmod>2015-03-27T05:20:11.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card/</loc>
+    <lastmod>2015-03-27T05:20:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/02/android_log_to_file/</loc>
+    <lastmod>2015-03-27T05:19:46.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/</loc>
+    <lastmod>2015-03-27T05:19:36.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-5/</loc>
+    <lastmod>2015-03-27T05:19:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-4/</loc>
+    <lastmod>2015-03-27T05:19:07.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-3/</loc>
+    <lastmod>2015-03-27T05:19:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/31/android-tips-round-up-2/</loc>
+    <lastmod>2015-03-27T05:18:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/28/android-tips-round-up-1/</loc>
+    <lastmod>2015-03-27T05:18:48.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/tags/index.html</loc>
     <lastmod>2015-03-27T02:47:49.000Z</lastmod>
   </url>
@@ -17,161 +162,6 @@
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2015/02/04/build-rom-for-nexus5/</loc>
-    <lastmod>2015-03-26T13:23:06.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/02/use-vps-and-vpn/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/03/25/ubuntu-adb-can-not-find-devices/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/27/picture-about-vim/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/03/01/life-and-college-about-gracker/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/28/javamodifier/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/21/it-blog-rss-list/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/09/10/iphone6-and-apple-watch/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/07/28/how-to-write-a-better-ppt/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/02/24/hello-gracker-blog-was-build/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/02/gracker-booklist/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/11/crazy-coder/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/02/26/build-your-own-blog-by-wordpress/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/18/wordpress-change-theme-with-blank/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/04/13/beautiful-ios-app-ios5coins/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/01/16/view-android-source-code-with-androidstudio/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-5/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-4/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-3/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/31/android-tips-round-up-2/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/28/android-tips-round-up-1/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/04/01/android-service-build-your-own-notification-servers-app/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/01/30/android-performance-tools-systrace-1/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/10/20/android-performance-optimization-overdraw-1/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/06/01/android-frame-animation/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/06/03/android-edittext-do-not-auto-get-focus/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/03/17/android-build-your-own-android-notification-service-app/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/03/10/android-adb-push-and-adb-install-different/</loc>
-    <lastmod>2015-03-26T12:45:53.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://androidperformance.com/2014/04/12/analysishashmap/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
@@ -182,17 +172,17 @@
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2014/05/31/using-listview-in-android/</loc>
+    <loc>http://androidperformance.com/2014/05/27/picture-about-vim/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2014/05/25/usevim/</loc>
+    <loc>http://androidperformance.com/2014/02/24/hello-gracker-blog-was-build/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2014/05/02/android_log_to_file/</loc>
+    <loc>http://androidperformance.com/2014/07/28/how-to-write-a-better-ppt/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   

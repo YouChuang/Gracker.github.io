@@ -177,6 +177,7 @@
 <p><a href="https://developer.android.com/reference/android/content/Context.htmlgetExternalFilesDir%28java.lang.String%29" target="_blank" rel="external">Context.getExternalFilesDir()</a>———— 申请了SD卡写权限后，你可以在SD的任何地方写数据，把你的数据写在设计好的合适位置会更加有礼貌。这样数据可以及时被清理，也会有更好的用户体验。此外，Android 4.0 Kitkat中在这个文件夹下写数据是不需要权限的，每个用户有自己的独立的数据存储路径。<strong>译者注：</strong>该API从V8才开始支持。</p>
 <p><a href="https://developer.android.com/reference/android/util/SparseArray.html" target="_blank" rel="external">SparseArray</a>——Map的高效优化版本。推荐了解姐妹类SparseBooleanArray、SparseIntArray和SparseLongArray。</p>
 <p><a href="https://developer.android.com/reference/android/content/pm/PackageManager.htmlsetComponentEnabledSetting%28android.content.ComponentName,%20int,%20int%29" target="_blank" rel="external">PackageManager.setComponentEnabledSetting()</a>——可以用来启动或者禁用程序清单中的组件。对于关闭不需要的功能组件是非常赞的，比如关掉一个当前不用的广播接收器。</p>
+<a id="more"></a>
 <p><a href="https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.htmlyieldIfContendedSafely%28%29" target="_blank" rel="external">SQLiteDatabase.yieldIfContendedSafely()</a>——让你暂时停止一个数据库事务， 这样你可以就不会占用太多的系统资源。</p>
 <p><a href="https://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory%28java.lang.String%29" target="_blank" rel="external">Environment.getExternalStoragePublicDirectory()</a>——还是那句话，用户期望在SD卡上得到统一的用户体验。用这个方法可以获得在用户设备上放置指定类型文件（音乐、图片等）的正确目录。</p>
 <p><a href="https://developer.android.com/reference/android/view/View.htmlgenerateViewId%28%29" target="_blank" rel="external">View.generateViewId()</a>——每次我都想要推荐动态生成控件的ID。需要注意的是，不要和已经存在的控件ID或者其他已经生成的控件ID重复。</p>
@@ -264,7 +265,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

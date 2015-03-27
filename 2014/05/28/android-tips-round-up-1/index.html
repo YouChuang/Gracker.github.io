@@ -177,6 +177,7 @@
 <p><a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html" target="_blank" rel="external">Build.VERSION_CODES</a> 这个标明了当前的版本号,在处理兼容性问题的时候经常会用到.点进去可以看到各个版本的不同特性</p>
 <p><a href="http://developer.android.com/reference/android/util/Log.html#getStackTraceString(java.lang.Throwable" target="_blank" rel="external">Log.getStackTraceString()</a>) 方便的日志类工具,方法Log.v()、Log.d()、Log.i()、Log.w()和Log.e()都是将信息打印到LogCat中，有时候需要将出错的信息插入到数据库或一个自定义的日志文件中，那么这种情况就需要将出错的信息以字符串的形式返回来，也就是使用static String getStackTraceString(Throwable tr)方法的时候.</p>
 <p><a href="http://developer.android.com/reference/android/view/LayoutInflater.html#from%28android.content.Context%29" target="_blank" rel="external">LayoutInflater.from()</a> 顾名思义,用于Inflate一个layout,参数是layout的id.这个经常写Adapter的人会用的比较多.</p>
+<a id="more"></a>
 <p><a href="http://developer.android.com/reference/android/view/ViewConfiguration.html#getScaledTouchSlop%28%29" target="_blank" rel="external">ViewConfiguration.getScaledTouchSlop()</a> 使用 ViewConfiguration 中提供的值以保证所有触摸的交互都是统一的。这个方法获取的值表示:用户的手滑动这个距离后,才判定为正在进行滑动.当然这个值也可以自己来决定.但是为了一致性,还是使用标准的值较好.</p>
 <p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#convertKeypadLettersToDigits%28java.lang.String%29" target="_blank" rel="external">PhoneNumberUtils.convertKeypadLettersToDigits</a> 顾名思义.将字母转换为数字,类似于T9输入法,</p>
 <p><a href="http://developer.android.com/reference/android/content/Context.html#getCacheDir%28%29" target="_blank" rel="external">Context.getCacheDir()</a> 获取缓存数据文件夹的路径,很简单但是知道的人不多,这个路径通常在SD卡上(这里的SD卡指的是广义上的SD卡,包括外部存储和内部存储)Adnroid/data/您的应用程序包名/cache/  下面.测试的时候,可以去这里面看是否缓存成功.缓存在这里的好处是:不用自己再去手动创建文件夹,不用担心用户把自己创建的文件夹删掉,在应用程序卸载的时候,这里会被清空,使用第三方的清理工具的时候,这里也会被清空.</p>
@@ -265,7 +266,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

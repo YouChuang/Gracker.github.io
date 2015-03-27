@@ -170,6 +170,7 @@
 
         
           <h2 id="1-辅助性服务实战介绍">1.辅助性服务实战介绍</h2><p>上一篇文章介绍了什么是Accessibility以及简单的使用，这一篇文章就来讲讲如何使用Accessibility服务来创建一个简单的Android通知中心。Android中通知中心是一个系统层面的服务，负责显示应用和系统发来的通知（Notification，比如USB插入、选择输入法、未接来电、截图、天气信息、新闻推送等等）。在android4.3之前，一般的第三方应用是无法获取Notification list的（在Android4.3之后，有了一个新的接口,NotificationListenerService.getActiveNotifications(),可以获取当前的Notification）。但是利用Accessibility服务可以监听到各种事件的特性，可以开发一个第三方的通知中心，实现与系统通知栏类似的功能。</p>
+<a id="more"></a>
 <p>下面就来介绍如何开发自己的通知中心。</p>
 <h2 id="2-开发第三方通知中心">2.开发第三方通知中心</h2><h3 id="2-1继承AccessibilitySerivce">2.1继承AccessibilitySerivce</h3><p>按照上一篇辅助性服务的介绍，一个辅助性服务可以被捆绑到一个标准的应用程序上，或者以一个单独的安卓工程被创建，我们这里建立一个服务，继承AccessibilitySerivce</p>
 <pre class="\"lang:java" decode:true\"="" title="\"继承AccessibilityService\"">import android.accessibilityservice.AccessibilityService;
@@ -460,7 +461,7 @@ public class NotificaitonActivity extends Activity {
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

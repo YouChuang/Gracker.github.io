@@ -173,7 +173,7 @@
 <h2 id="0-问题背景">0.问题背景</h2><p>在站长工具<a href="http://www.google.com.hk/webmasters/tools/richsnippets?q=http%3A%2F%2Fgrackertalk.com%2F" target="_blank" rel="external">Google Structured Data Testing Tool</a>中跑网站测试的时候,发现会有很多bug导致搜索结果的富内容不完善,有个人信息(与Google+相连),也有文章中的Bug,我使用的主题是Dinky,作者是<span style="color: #121212;"><a href="http://misam.ir/" target="_blank" rel="external">Misam Saki</a>,就会出现:错误： Missing required field “updated”.</span></p>
 <p>找到错误后,就去进行相应地修改,这个错误的意思就是说,文章中缺少updated这个字段,是因为有的主题(也可能是所有wordpress主题,不确定)会把updated这个字段去掉,用post_on这样类似的字段来代替.OK,原因找到了,就可以去修改了.然后就呵呵呵了.</p>
 <p>找到functions.php,找到显示post_on相关的字段,加上update字段(网上摘抄),点击更新…..然后…..就没有然后了.不管怎么刷,网站的所有页面都是白屏,啥都看不到.</p>
-<p>&nbsp;</p>
+<a id="more"></a>
 <h2 id="1-问题解决">1.问题解决</h2><p>昨天遇到这个问题两次,第一次可谓大动干戈,差点就重装VPS了(把wordpress重装了一下,所有的插件,主题都重装的),最后发现还是不行,白屏,最后侥幸进了后台(重装之前后台也进不了),把改坏了的主题替换成其他的主题,熟悉的界面又一次出现了(泪流满面,果然是no zuo no die).</p>
 <p>第二次又碰到了这个原因(不是说no zuo no die么?唐僧不是有一句话,我不下地狱,谁下地狱?),好吧自我安慰一下.这次就很镇定了,分析了一下问题后,尝试了Google出的一些方法,大部分是说编码问题,可是我的编码是utf8,没有问题.后来想了想,问题还是出在functions.php上,但是网页修改主题的界面是空白,就算返回可以看到修改前的文件,点击更新就会白屏.</p>
 <p><span style="color: #ff0000;">于是远程登录vps后台,找到wordpress的根目录,进入到 /wo-content/theme/下,找到对应的主题,进去看这个主题的functions.php,发现被我改坏的哪一行依旧在,意思就是说前台的修改并没有成功.ORZ……删掉那一行之后又看到了熟悉的界面,</span>这次前后不到5分钟,虽然是个小问题,但是记录下来,如果能帮大家一个忙,也是不错的.</p>
@@ -261,7 +261,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

@@ -177,6 +177,7 @@
 <p><a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html" target="_blank" rel="external">LocalBroadcastManager</a>——这个会比全局的 broadcast 更加安全，简单，快速。像 <a href="http://square.github.io/otto/" target="_blank" rel="external">otto</a> 这样的 Event buses 机制对你的应用场景更加有用。</p>
 <p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#formatNumber%28java.lang.String%29" target="_blank" rel="external">PhoneNumberUtils.formatNumber ()</a>——顾名思义，这是对数字进行格式化操作的时候用的。</p>
 <p><a href="http://developer.android.com/reference/android/graphics/Region.html#op%28android.graphics.Region,%20android.graphics.Region,%20android.graphics.Region.Op%29" target="_blank" rel="external">Region.op()</a>——我发现在对比两个渲染之前的区域的时候很实用，如果你有两条路径，那么怎么知道它们是不是会重叠呢？使用这个方法就可以做到。</p>
+<a id="more"></a>
 <p><a href="http://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks%28android.app.Application.ActivityLifecycleCallbacks%29" target="_blank" rel="external">Application.registerActivityLifecycleCallbacks</a>——虽然缺少官方文档解释，不过我想它就是注册 Activity 的生命周期的一些回调方法（顾名思义），就是一个方便的工具。</p>
 <p><a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types" target="_blank" rel="external">versionNameSuffix</a>——这个 gradle 设置可以让你在基于不同构建类型的 manifest 中修改版本名这个属性，例如，如果需要在在 debug 版本中以”-SNAPSHOT”结尾，那么就可以轻松的看出当前是 debug 版还是 release 版。</p>
 <p><a href="http://developer.android.com/reference/android/database/CursorJoiner.html" target="_blank" rel="external">CursorJoiner</a>——如果你是只使用一个数据库的话，使用 SQL 中的 join 就可以了，但是如果收到的数据是来自两个独立的 ContentProvider，那么 CursorJoiner 就很实用了。</p>
@@ -266,7 +267,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

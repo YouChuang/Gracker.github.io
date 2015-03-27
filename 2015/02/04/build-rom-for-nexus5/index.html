@@ -172,11 +172,12 @@
           <p>接前一篇文章<a href="http://www.androidperformance.com/view-android-source-code-with-androidstudio.html" target="_blank" rel="external">使用Android Studio查看Android Lollipop源码</a>, 我们知道,仅仅看代码,提高是比较有限的,而且理解起来也比较肤浅,往往过目就忘. 而自己写过的代码,往往会印象比较深刻,在写的时候也会比较容易理解流程. 所以我们在看代码的同时, 如果能修改代码, 在手机上跑起来并看到修改的效果,这无疑会加快看代码的效率和积极性. 所以这篇文章,就讲解一下如何自己编译AndroidL的源码,并且在Nexus5上跑起来. 至于为何需要自己编译固件,而不是直接安装Google给出的工厂固件?原因是Google给出的工厂固件是User版本,是没法随心所欲Push东西进去的. 所以我们需要编译自己的Userdebug版本.</p>
 <p>本文假设你已经下载了AndroidL的源码,并且有一台Nexus5手机(手机系统开发人员必备), 如果你还没有AndroidL的源码,或者你有源码但是没有配置编译的环境,那么 <a href="https://source.android.com/source/initializing.html" target="_blank" rel="external">Initializing a Build Environment</a> 和<a href="https://source.android.com/source/downloading.html" target="_blank" rel="external">Downloading the Source</a>这两篇文章你应该先去看一下(我又一次假设你会翻墙,如果你不会翻墙,那么下代码也是一个痛苦的事情). 这后面的教程Google官网也有教程.所以我只针对Nexus5进行讲解.</p>
 <p>另外你需要知道AOSP,AOSP即Android Open Source Project 汉语意思是：谷歌开放源代码项目.我们通过Google官方下载的源代码,就是AOSP的代码, 其中是不包含Google开发的那些个应用的,各个厂商拿到的也是这个版本,在这个版本的基础上进行修改. 而Google发布的工厂固件则是包含全套Google服务的. 厂商如果想安装Google服务,就需要过Google的那一套认证,比较麻烦,而且价格不菲,鉴于Google在国内的尴尬地位,国内很多厂商都没有过这个认证.</p>
+<a id="more"></a>
 <h3 id="1-_初始化编译环境">1. 初始化编译环境</h3><pre class="lang:java decode:true "> . build/envsetup.sh</pre>
 
-<h3 id=""> </h3><h3 id="2-_加载机型">2. 加载机型</h3><pre class="lang:java decode:true ">lunch</pre>
+<h3 id="2-_加载机型">2. 加载机型</h3><pre class="lang:java decode:true ">lunch</pre>
 
-<h3 id="-1"> </h3><h3 id="3-_选择要编译的机器">3. 选择要编译的机器</h3><pre class="lang:java decode:true">You're building on Linux
+<h3 id="3-_选择要编译的机器">3. 选择要编译的机器</h3><pre class="lang:java decode:true">You're building on Linux
 
 Lunch menu... pick a combo:
      1\. aosp_arm-eng
@@ -400,7 +401,7 @@ Install system fs image: out/target/product/hammerhead/system.img
 out/target/product/hammerhead/system.img+out/target/product/hammerhead/obj/PACKAGING/recovery_patch_intermediates/recovery_from_boot.p maxsize=1096212480 blocksize=135168 total=336629666 reserve=11083776
 </pre>
 
-<h3 id="-2"> </h3><h3 id="6-_刷机命令">6. 刷机命令</h3><p>Nexus5关机状态下,长按音量下+电源,即可进入recovery模式, 然后在源码根目录下执行下面命令:</p>
+<h3 id="6-_刷机命令">6. 刷机命令</h3><p>Nexus5关机状态下,长按音量下+电源,即可进入recovery模式, 然后在源码根目录下执行下面命令:</p>
 <pre class="lang:java decode:true">fastboot -w flashall</pre>
 刷机成功后会自动重启
 <pre class="lang:java decode:true">~/Android-SourceCode fastboot -w flashall
@@ -467,7 +468,7 @@ rebooting...
 finished. total time: 70.095s
 </pre>
 
-<h3 id="7-_秀桌面">7. 秀桌面</h3><h3 id="-3"> </h3><h3 id="-4"><img src="http://www.androidperformance.com/wp-content/uploads/2015/02/Nexus5.png" alt="image"></h3>
+<h3 id="7-_秀桌面">7. 秀桌面</h3><h3 id=""><img src="http://www.androidperformance.com/wp-content/uploads/2015/02/Nexus5.png" alt="image"></h3>
         
       </div>
     
@@ -547,7 +548,7 @@ finished. total time: 70.095s
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
@@ -602,7 +603,7 @@ finished. total time: 70.095s
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_初始化编译环境"><span class="nav-number">1.</span> <span class="nav-text">1. 初始化编译环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_加载机型"><span class="nav-number">3.</span> <span class="nav-text">2. 加载机型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">4.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_选择要编译的机器"><span class="nav-number">5.</span> <span class="nav-text">3. 选择要编译的机器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1_机型对照表"><span class="nav-number">5.1.</span> <span class="nav-text">3.1 机型对照表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2_三个版本说明版本"><span class="nav-number">5.2.</span> <span class="nav-text">3.2 三个版本说明版本</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_生成驱动目录"><span class="nav-number">6.</span> <span class="nav-text">4. 生成驱动目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_执行编译命令"><span class="nav-number">7.</span> <span class="nav-text">5. 执行编译命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-2"><span class="nav-number">8.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-_刷机命令"><span class="nav-number">9.</span> <span class="nav-text">6. 刷机命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-_秀桌面"><span class="nav-number">10.</span> <span class="nav-text">7. 秀桌面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-3"><span class="nav-number">11.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-4"><span class="nav-number">12.</span> <span class="nav-text"></span></a></li></ol></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_初始化编译环境"><span class="nav-number">1.</span> <span class="nav-text">1. 初始化编译环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_加载机型"><span class="nav-number">2.</span> <span class="nav-text">2. 加载机型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_选择要编译的机器"><span class="nav-number">3.</span> <span class="nav-text">3. 选择要编译的机器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1_机型对照表"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 机型对照表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2_三个版本说明版本"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 三个版本说明版本</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_生成驱动目录"><span class="nav-number">4.</span> <span class="nav-text">4. 生成驱动目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_执行编译命令"><span class="nav-number">5.</span> <span class="nav-text">5. 执行编译命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-_刷机命令"><span class="nav-number">6.</span> <span class="nav-text">6. 刷机命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-_秀桌面"><span class="nav-number">7.</span> <span class="nav-text">7. 秀桌面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.</span> <span class="nav-text"></span></a></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>

@@ -175,7 +175,7 @@
 <li>adb push 能够指定安装目录。比如执行”adb push xxx.apk system/app” 后，xxx.apk被安装到了system/app目录下，此目录下的软件为上文中提到的system application。（注意，system/app是只读的，所以只有有root权限才能push apk进去，而且在push进去的apk会把原本的apk覆盖掉。）adb push本身的意思是将文件复制到系统中的某个文件夹下，但是将apk push到system/app下并且重启手机以后会注册应用程序。</li>
 <li>adb install 用此命令安装的软件位于 data/app 目录，带有参数 -r才能强制安装，为user application。<br>由以上两条可知，adb install和adb push的apk主要区别有：<br><table cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"></td><br><td valign="middle">push</td><br><td valign="middle">install</td><br></tr><br><tr><br><td valign="middle">目录</td><br><td valign="middle">system/app</td><br><td valign="middle">data/app</td><br></tr><br><tr><br><td valign="middle">权限</td><br><td valign="middle">系统级（权限全开）</td><br><td valign="middle">用户级（没全开）</td><br></tr><br><tr><br><td valign="middle">卸载</td><br><td valign="middle">root后删除</td><br><td valign="middle">可卸载</td><br></tr><br><tr><br><td valign="middle">大小</td><br><td valign="middle">无限制，自定义</td><br><td valign="middle">有限制</td><br></tr><br><tr><br><td valign="middle">安装</td><br><td valign="middle">pm重新注册</td><br><td valign="middle">不会重新弄注册</td><br></tr><br></tbody><br></table><br>手动安装的APK版本号和系统内置API版本号一样。</li>
 </ol>
-<p>&nbsp;</p>
+<a id="more"></a>
 <p>更深一层的分析：</p>
 <p><strong>1**</strong>、<strong><strong>Android</strong></strong>系统应用更新机制**</p>
 <ul>
@@ -281,7 +281,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
