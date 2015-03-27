@@ -171,13 +171,13 @@
         
           <h2 id="前言">前言</h2><p>本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <h2 id="正文">正文</h2><p><a href="http://developer.android.com/reference/android/net/UrlQuerySanitizer.html" target="_blank" rel="external">UrlQuerySanitizer</a>——使用这个工具可以方便对 URL 进行检查。</p>
+<a id="more"></a>
 <p><a href="http://developer.android.com/reference/android/app/Fragment.html#setArguments%28android.os.Bundle%29" target="_blank" rel="external">Fragment.setArguments</a>——因为在构建 Fragment 的时候不能加参数，所以这是个很好的东西，可以在创建 Fragment 之前设置参数（即使在 configuration 改变的时候仍然会导致销毁/重建）。</p>
 <p><a href="http://developer.android.com/reference/android/app/DialogFragment.html#setShowsDialog%28boolean%29" target="_blank" rel="external">DialogFragment.setShowsDialog ()</a>—— 这是一个很巧妙的方式，DialogFragment 可以作为正常的 Fragment 显示！这里可以让 Fragment 承担双重任务。我通常在创建 Fragment 的时候把 onCreateView ()和 onCreateDialog ()都加上，就可以创建一个具有双重目的的 Fragment。</p>
 <p><a href="http://developer.android.com/reference/android/app/FragmentManager.html#enableDebugLogging%28boolean%29" target="_blank" rel="external">FragmentManager.enableDebugLogging ()</a>——在需要观察 Fragment 状态的时候会有帮助。</p>
 <p><a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html" target="_blank" rel="external">LocalBroadcastManager</a>——这个会比全局的 broadcast 更加安全，简单，快速。像 <a href="http://square.github.io/otto/" target="_blank" rel="external">otto</a> 这样的 Event buses 机制对你的应用场景更加有用。</p>
 <p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#formatNumber%28java.lang.String%29" target="_blank" rel="external">PhoneNumberUtils.formatNumber ()</a>——顾名思义，这是对数字进行格式化操作的时候用的。</p>
 <p><a href="http://developer.android.com/reference/android/graphics/Region.html#op%28android.graphics.Region,%20android.graphics.Region,%20android.graphics.Region.Op%29" target="_blank" rel="external">Region.op()</a>——我发现在对比两个渲染之前的区域的时候很实用，如果你有两条路径，那么怎么知道它们是不是会重叠呢？使用这个方法就可以做到。</p>
-<a id="more"></a>
 <p><a href="http://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks%28android.app.Application.ActivityLifecycleCallbacks%29" target="_blank" rel="external">Application.registerActivityLifecycleCallbacks</a>——虽然缺少官方文档解释，不过我想它就是注册 Activity 的生命周期的一些回调方法（顾名思义），就是一个方便的工具。</p>
 <p><a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types" target="_blank" rel="external">versionNameSuffix</a>——这个 gradle 设置可以让你在基于不同构建类型的 manifest 中修改版本名这个属性，例如，如果需要在在 debug 版本中以”-SNAPSHOT”结尾，那么就可以轻松的看出当前是 debug 版还是 release 版。</p>
 <p><a href="http://developer.android.com/reference/android/database/CursorJoiner.html" target="_blank" rel="external">CursorJoiner</a>——如果你是只使用一个数据库的话，使用 SQL 中的 join 就可以了，但是如果收到的数据是来自两个独立的 ContentProvider，那么 CursorJoiner 就很实用了。</p>

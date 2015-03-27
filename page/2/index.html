@@ -267,12 +267,6 @@
           
             <h2 id="前言">前言</h2><p>本文是一篇译文,这篇是这个系列的第二篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <h2 id="正文">正文</h2><p><a href="http://developer.android.com/reference/android/text/format/DateUtils.html#formatDateTime%28android.content.Context,%20long,%20int%29">DateUtils.formatDateTime()</a> 用来进行区域格式化工作,输出格式化和本地化的时间或者日期.</p>
-<p><a href="http://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent">AlarmManager.setInexactRepeating</a>) 通过闹铃分组的方式省电,即使你只调用了一个闹钟,这也是一个好的选择,（可以确保在使用完毕时自动调用 AlarmManager.cancel ()。原文说的比较抽象,这里详细说一下:setInexactRepeating指的是设置非准确闹钟,使用方法:alarmManager.setInexactRepeating(AlarmManager.RTC, startTime,intervalL, pendingIntent),非准确闹钟只能保证大致的时间间隔，但是不一定准确，可能出现设置间隔为30分钟，但是实际上一次间隔20分钟，另一次间隔40分钟。它的最大的好处是可以合并闹钟事件，比如间隔设置每30分钟一次，不唤醒休眠，在休眠8小时后已经积累了16个闹钟事件，而在手机被唤醒的时候，非准时闹钟可以把16个事件合并为一个, 所以这么看来,非准时闹钟一般来说比较节约能源.</p>
-<p><a href="http://developer.android.com/reference/android/text/format/Formatter.html#formatFileSize(android.content.Context, long">Formatter.formatFileSize()</a>) 一个区域化的文件大小格式化工具。通俗来说就是把大小转换为MB,G,KB之类的字符串.</p>
-<p><a href="http://developer.android.com/reference/android/app/ActionBar.html#hide(">ActionBar.hide()</a>)/<a href="http://developer.android.com/reference/android/app/ActionBar.html#show(">.show()</a>) 顾名思义,隐藏和显示ActionBar,可以优雅地在全屏和带Actionbar之间转换.</p>
-<p><a href="http://developer.android.com/reference/android/text/util/Linkify.html#addLinks(android.text.Spannable, int">Linkify.addLinks()</a>)  在Text上添加链接.很实用.</p>
-<p><a href="http://developer.android.com/reference/android/text/StaticLayout.html">StaticLayout</a> 在自定义 View 中渲染文字的时候很实用。</p>
-<p><a href="http://developer.android.com/reference/android/app/Activity.html#onBackPressed(">Activity.onBackPressed()</a>) 很方便的管理back键的方法,有时候需要自己控制返回键的事件的时候,可以重写一下.比如加入 “点两下back键退出” 功能.</p>
             <div class="post-more-link text-center">
               <a class="btn" href="../../2014/05/31/android-tips-round-up-2/#more">
                 阅读全文 &raquo;
@@ -363,12 +357,6 @@
           
             <h2 id="前言">前言</h2><p>本文是一篇译文,这篇是这个系列的第一篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <h2 id="正文">正文</h2><p><a href="http://developer.android.com/reference/android/app/Activity.html#startActivities(android.content.Intent[]">Activity.startActivities()</a>) 常用于在应用程序中间启动其他的Activity.</p>
-<p><a href="http://developer.android.com/reference/android/text/TextUtils.html#isEmpty(java.lang.CharSequence">TextUtils.isEmpty()</a>) 简单的工具类,用于检测是否为空</p>
-<p><a href="http://developer.android.com/reference/android/text/Html.html#fromHtml(java.lang.String">Html.fromHtml()</a>) 用于生成一个Html,参数可以是一个字符串.个人认为它不是很快,所以我不怎么经常去用.（我说不经常用它是为了重点突出这句话：请多手动构建 Spannable 来替换 Html.fromHtml），但是它对渲染从 web 上获取的文字还是很不错的。</p>
-<p><a href="http://developer.android.com/reference/android/widget/TextView.html#setError%28java.lang.CharSequence%29">TextView.setError()</a> 在验证用户输入的时候很棒</p>
-<p><a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">Build.VERSION_CODES</a> 这个标明了当前的版本号,在处理兼容性问题的时候经常会用到.点进去可以看到各个版本的不同特性</p>
-<p><a href="http://developer.android.com/reference/android/util/Log.html#getStackTraceString(java.lang.Throwable">Log.getStackTraceString()</a>) 方便的日志类工具,方法Log.v()、Log.d()、Log.i()、Log.w()和Log.e()都是将信息打印到LogCat中，有时候需要将出错的信息插入到数据库或一个自定义的日志文件中，那么这种情况就需要将出错的信息以字符串的形式返回来，也就是使用static String getStackTraceString(Throwable tr)方法的时候.</p>
-<p><a href="http://developer.android.com/reference/android/view/LayoutInflater.html#from%28android.content.Context%29">LayoutInflater.from()</a> 顾名思义,用于Inflate一个layout,参数是layout的id.这个经常写Adapter的人会用的比较多.</p>
             <div class="post-more-link text-center">
               <a class="btn" href="../../2014/05/28/android-tips-round-up-1/#more">
                 阅读全文 &raquo;

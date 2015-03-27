@@ -177,12 +177,6 @@
           
             <h2 id="前言">前言</h2><p>本文是一篇译文,这篇是这个系列的第五篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <h2 id="正文">正文</h2><p><a href="https://developer.android.com/reference/android/support/v4/widget/ViewDragHelper.html">ViewDragHelper</a> ——视图拖动是一个比较复杂的问题。这个类可以帮助解决不少问题。如果你需要一个例子，<a href="https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html">DrawerLayout</a>就是利用它实现扫滑。Flavient Laurent 还写了一些关于这方面的<a href="http://flavienlaurent.com/blog/2013/08/28/each-navigation-drawer-hides-a-viewdraghelper/">优秀文章</a>。</p>
-<p><a href="https://developer.android.com/reference/android/widget/PopupWindow.html">PopupWindow</a>——Android到处都在使用PopupWindow ，甚至你都没有意识到（标题导航条ActionBar，自动补全AutoComplete，编辑框错误提醒Edittext Errors）。这个类是创建浮层内容的主要方法。</p>
-<p><a href="https://developer.android.com/reference/android/app/ActionBar.htmlgetThemedContext%28%29">Actionbar.getThemrContext()</a>——导航栏的主题化是很复杂的（不同于Activity其他部分的主题化）。你可以得到一个上下文（Context），用这个上下文创建的自定义组件可以得到正确的主题。</p>
-<p><a href="https://developer.android.com/reference/android/media/ThumbnailUtils.html">ThumbnailUtils</a>——帮助创建缩略图。通常我都是用现有的图片加载库（比如，Picasso 或者 Volley），不过这个ThumbnaiUtils可以创建视频缩略图。<strong>译者注：</strong>该API从V8才开始支持。</p>
-<p><a href="https://developer.android.com/reference/android/content/Context.htmlgetExternalFilesDir%28java.lang.String%29">Context.getExternalFilesDir()</a>———— 申请了SD卡写权限后，你可以在SD的任何地方写数据，把你的数据写在设计好的合适位置会更加有礼貌。这样数据可以及时被清理，也会有更好的用户体验。此外，Android 4.0 Kitkat中在这个文件夹下写数据是不需要权限的，每个用户有自己的独立的数据存储路径。<strong>译者注：</strong>该API从V8才开始支持。</p>
-<p><a href="https://developer.android.com/reference/android/util/SparseArray.html">SparseArray</a>——Map的高效优化版本。推荐了解姐妹类SparseBooleanArray、SparseIntArray和SparseLongArray。</p>
-<p><a href="https://developer.android.com/reference/android/content/pm/PackageManager.htmlsetComponentEnabledSetting%28android.content.ComponentName,%20int,%20int%29">PackageManager.setComponentEnabledSetting()</a>——可以用来启动或者禁用程序清单中的组件。对于关闭不需要的功能组件是非常赞的，比如关掉一个当前不用的广播接收器。</p>
             <div class="post-more-link text-center">
               <a class="btn" href="2015/03/15/android-tips-round-up-5/#more">
                 阅读全文 &raquo;
@@ -273,12 +267,6 @@
           
             <h2 id="前言">前言</h2><p>本文是一篇译文,这篇是这个系列的第四篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <h2 id="正文">正文</h2><p><a href="http://developer.android.com/reference/android/app/Activity.html#isChangingConfigurations%28%29">Activity.isChangingConfigurations ()</a>——如果在 Activity 中 configuration 会经常改变的话，使用这个方法就可以不用手动做保存状态的工作了。</p>
-<p><a href="http://developer.android.com/reference/android/content/SearchRecentSuggestionsProvider.html">SearchRecentSuggestionsProvider</a>——可以创建最近提示效果的 provider，是一个简单快速的方法。</p>
-<p><a href="http://developer.android.com/reference/android/view/ViewTreeObserver.html">ViewTreeObserver</a>——这是一个很棒的工具。可以进入到 VIew 里面，并监控 View 结构的各种状态，通常我都用来做 View 的测量操作（自定义视图中经常用到）。</p>
-<p><a href="https://www.timroes.de/2013/09/12/speed-up-gradle/">org.gradle.daemon=true</a>——这句话可以帮助减少 Gradle 构建的时间，仅在命令行编译的时候用到，因为 Android Studio 已经这样使用了。</p>
-<p><a href="http://developer.android.com/reference/android/database/DatabaseUtils.html">DatabaseUtils</a>——一个包含各种数据库操作的使用工具。</p>
-<p><a href="http://developer.android.com/reference/android/widget/LinearLayout.html#attr_android:weightSum">android:weightSum (LinearLayout)</a>——如果想使用 layout weights，但是却不想填充整个 LinearLayout 的话，就可以用 weightSum 来定义总的 weight 大小。</p>
-<p><a href="http://developer.android.com/reference/android/view/View.html#attr_android:duplicateParentState">android:duplicateParentState (View)</a>——此方法可以使得子 View 可以复制父 View 的状态。比如如果一个 ViewGroup 是可点击的，那么可以用这个方法在它被点击的时候让它的子 View 都改变状态。</p>
             <div class="post-more-link text-center">
               <a class="btn" href="2015/03/15/android-tips-round-up-4/#more">
                 阅读全文 &raquo;
@@ -369,12 +357,6 @@
           
             <h2 id="前言">前言</h2><p>本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <h2 id="正文">正文</h2><p><a href="http://developer.android.com/reference/android/net/UrlQuerySanitizer.html">UrlQuerySanitizer</a>——使用这个工具可以方便对 URL 进行检查。</p>
-<p><a href="http://developer.android.com/reference/android/app/Fragment.html#setArguments%28android.os.Bundle%29">Fragment.setArguments</a>——因为在构建 Fragment 的时候不能加参数，所以这是个很好的东西，可以在创建 Fragment 之前设置参数（即使在 configuration 改变的时候仍然会导致销毁/重建）。</p>
-<p><a href="http://developer.android.com/reference/android/app/DialogFragment.html#setShowsDialog%28boolean%29">DialogFragment.setShowsDialog ()</a>—— 这是一个很巧妙的方式，DialogFragment 可以作为正常的 Fragment 显示！这里可以让 Fragment 承担双重任务。我通常在创建 Fragment 的时候把 onCreateView ()和 onCreateDialog ()都加上，就可以创建一个具有双重目的的 Fragment。</p>
-<p><a href="http://developer.android.com/reference/android/app/FragmentManager.html#enableDebugLogging%28boolean%29">FragmentManager.enableDebugLogging ()</a>——在需要观察 Fragment 状态的时候会有帮助。</p>
-<p><a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html">LocalBroadcastManager</a>——这个会比全局的 broadcast 更加安全，简单，快速。像 <a href="http://square.github.io/otto/">otto</a> 这样的 Event buses 机制对你的应用场景更加有用。</p>
-<p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#formatNumber%28java.lang.String%29">PhoneNumberUtils.formatNumber ()</a>——顾名思义，这是对数字进行格式化操作的时候用的。</p>
-<p><a href="http://developer.android.com/reference/android/graphics/Region.html#op%28android.graphics.Region,%20android.graphics.Region,%20android.graphics.Region.Op%29">Region.op()</a>——我发现在对比两个渲染之前的区域的时候很实用，如果你有两条路径，那么怎么知道它们是不是会重叠呢？使用这个方法就可以做到。</p>
             <div class="post-more-link text-center">
               <a class="btn" href="2015/03/15/android-tips-round-up-3/#more">
                 阅读全文 &raquo;

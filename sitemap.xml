@@ -2,6 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-5/</loc>
+    <lastmod>2015-03-27T05:35:34.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-4/</loc>
+    <lastmod>2015-03-27T05:35:21.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/31/android-tips-round-up-2/</loc>
+    <lastmod>2015-03-27T05:35:09.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-3/</loc>
+    <lastmod>2015-03-27T05:35:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2014/05/28/android-tips-round-up-1/</loc>
+    <lastmod>2015-03-27T05:34:46.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2014/04/01/android-service-build-your-own-notification-servers-app/</loc>
     <lastmod>2015-03-27T05:27:19.000Z</lastmod>
   </url>
@@ -122,31 +147,6 @@
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-5/</loc>
-    <lastmod>2015-03-27T05:19:16.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-4/</loc>
-    <lastmod>2015-03-27T05:19:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/03/15/android-tips-round-up-3/</loc>
-    <lastmod>2015-03-27T05:19:02.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/31/android-tips-round-up-2/</loc>
-    <lastmod>2015-03-27T05:18:54.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2014/05/28/android-tips-round-up-1/</loc>
-    <lastmod>2015-03-27T05:18:48.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://androidperformance.com/tags/index.html</loc>
     <lastmod>2015-03-27T02:47:49.000Z</lastmod>
   </url>
@@ -162,12 +162,12 @@
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2014/04/12/analysishashmap/</loc>
+    <loc>http://androidperformance.com/2014/02/24/hello-gracker-blog-was-build/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2014/05/01/about_random/</loc>
+    <loc>http://androidperformance.com/2014/07/28/how-to-write-a-better-ppt/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
@@ -177,12 +177,12 @@
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2014/02/24/hello-gracker-blog-was-build/</loc>
+    <loc>http://androidperformance.com/2014/04/12/analysishashmap/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2014/07/28/how-to-write-a-better-ppt/</loc>
+    <loc>http://androidperformance.com/2014/05/01/about_random/</loc>
     <lastmod>2015-03-26T12:45:53.000Z</lastmod>
   </url>
   
