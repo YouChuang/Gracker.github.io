@@ -1167,7 +1167,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #00f954;
+  background: #93254a;
 }
 .sidebar-nav {
   margin: 0;
@@ -2104,8 +2104,8 @@ hr {
   margin-bottom: 20px;
 }
 .posts-expand .post-title {
-  font-size: 28px;
-  font-weight: 300;
+  font-size: 30px;
+  font-weight: 400;
 }
 .posts-expand .post-body img {
   margin: 0;
@@ -2164,7 +2164,7 @@ hr {
   }
 }
 .full-image.full-image.full-image {
-  max-width: 150%;
+  max-width: 100%;
   width: auto;
   margin: 0;
 }
