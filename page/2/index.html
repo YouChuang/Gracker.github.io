@@ -126,6 +126,93 @@
           
           
             
+              <a class="post-title-link" href="../../2014/06/03/android-edittext-do-not-auto-get-focus/">
+                [Android小技巧]:如何让EditText不自动获取焦点
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-06-02
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/06/03/android-edittext-do-not-auto-get-focus/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/03/android-edittext-do-not-auto-get-focus/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.</p>
+<p>这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:</p>
+<p><pre class="lang:java decode:true ">android:focusable=”true”<br>android:focusableInTouchMode=”true”</pre><br>这样做的原理是让用户进入到这个页面之后,EditText的父控件 获取焦点,这样的话EditText就获取不到焦点,软键盘也不会自动弹起.只有在点击EditText的时候,软键盘才会弹起.</p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="../../2014/06/01/android-frame-animation/">
                 Android Frame animation模拟脉搏跳动小动画
               </a>
@@ -946,117 +1033,6 @@
 
 
   
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/">
-                [Android4.4]Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-14
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h4 id="摘要:_Android4-4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案-">摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</h4><p>&nbsp;</p>
-<h3 id="0-_问题背景">0. 问题背景</h3><p>在Android4.4之前，许多应用程序使用如下代码去通知更新文件数据库</p>
-<pre class=\"lang:java decode:true\" title=\"通知系统更新文件系统\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, 
-     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
-
-<p>这样做的坏处：每次发送这个广播，都会<span style=\"color: #222222;\">让MediaScanner重新扫描一次系统文件，很影响设备的电池寿命。当然传入的路径可以</span> 是单个文件或者内容很少的文件夹，会减轻扫描系统文件的压力，但是还是会因为扫描频繁而浪费电。所以在Android4.4<span style=\"color: #222222;\">开始，只允许系统应用发送这样的intent。</span> 所以在Android4.4系统的机器上会出现如下错误：</p>
-<pre class=\"lang:java decode:true\" title=\"错误\"> Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED</pre>
-
-<h3 id="1-_解决办法：">1. 解决办法：</h3><p>1 . 将Intent换为 <a href="\"><code>ACTION_MEDIA_SCANNER_SCAN_FILE</code></a><span style=\"color: #000000;\">.</span></p>
-<pre class=\"lang:java decode:true\" title=\"ACTION_MEDIA_SCANNER_SCAN_FILE\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, 
-     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
-
-<p>但是这个Intent只扫描文件，不扫描文件夹。如果你的应用只操作单个文件而不是文件夹，就可以使用这个。 2. 不发广播，换为MediaScannerConnection进行通知更新</p>
-<pre class=\"lang:java decode:true\" title=\"MediaScannerConnection\"> MediaScannerConnection.scanFile(this,
-          new String[] { file.toString() }, null,
-          new MediaScannerConnection.OnScanCompletedListener() {
-      public void onScanCompleted(String path, Uri uri) {
-          Log.i(\"ExternalStorage\", \"Scanned \" + path + \":\");
-          Log.i(\"ExternalStorage\", \"-&gt; uri=\" + uri);
-      }
- });</pre>
-
-<p>这样做就属于不发送广播,在4.4上可以正常工作.</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
 
           </div>
 
@@ -1089,11 +1065,11 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
-            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-count">1</span>
             <span class="site-state-item-name">标签</span>
         </div>
         <div class="site-state-item site-state-pages">
