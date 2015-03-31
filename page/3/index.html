@@ -126,117 +126,6 @@
           
           
             
-              <a class="post-title-link" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/">
-                [Android4.4]Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-14
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h4 id="摘要:_Android4-4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案-">摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</h4><p>&nbsp;</p>
-<h3 id="0-_问题背景">0. 问题背景</h3><p>在Android4.4之前，许多应用程序使用如下代码去通知更新文件数据库</p>
-<pre class=\"lang:java decode:true\" title=\"通知系统更新文件系统\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, 
-     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
-
-<p>这样做的坏处：每次发送这个广播，都会<span style=\"color: #222222;\">让MediaScanner重新扫描一次系统文件，很影响设备的电池寿命。当然传入的路径可以</span> 是单个文件或者内容很少的文件夹，会减轻扫描系统文件的压力，但是还是会因为扫描频繁而浪费电。所以在Android4.4<span style=\"color: #222222;\">开始，只允许系统应用发送这样的intent。</span> 所以在Android4.4系统的机器上会出现如下错误：</p>
-<pre class=\"lang:java decode:true\" title=\"错误\"> Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED</pre>
-
-<h3 id="1-_解决办法：">1. 解决办法：</h3><p>1 . 将Intent换为 <a href="\"><code>ACTION_MEDIA_SCANNER_SCAN_FILE</code></a><span style=\"color: #000000;\">.</span></p>
-<pre class=\"lang:java decode:true\" title=\"ACTION_MEDIA_SCANNER_SCAN_FILE\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, 
-     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
-
-<p>但是这个Intent只扫描文件，不扫描文件夹。如果你的应用只操作单个文件而不是文件夹，就可以使用这个。 2. 不发广播，换为MediaScannerConnection进行通知更新</p>
-<pre class=\"lang:java decode:true\" title=\"MediaScannerConnection\"> MediaScannerConnection.scanFile(this,
-          new String[] { file.toString() }, null,
-          new MediaScannerConnection.OnScanCompletedListener() {
-      public void onScanCompleted(String path, Uri uri) {
-          Log.i(\"ExternalStorage\", \"Scanned \" + path + \":\");
-          Log.i(\"ExternalStorage\", \"-&gt; uri=\" + uri);
-      }
- });</pre>
-
-<p>这样做就属于不发送广播,在4.4上可以正常工作.</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="../../2014/05/11/crazy-coder/">
                 读书笔记
               </a>
@@ -1127,6 +1016,95 @@
 
 
   
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/03/17/android-build-your-own-android-notification-service-app/">
+                Android Service：开发自己的通知中心(1):辅助性服务介绍
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-17
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/03/17/android-build-your-own-android-notification-service-app/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/17/android-build-your-own-android-notification-service-app/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id=""> </h2><h1 id="1_辅助性服务介绍">1 辅助性服务介绍</h1><p>辅助性服务是安卓框架的一个特性，它的设计是为了让已经安装在安卓设备上的应用程序能够为用户提供一种导航式(引导式）回应。一个辅助性服务能够传达给<br>用户关于这个应用程序的利益，例如把文本转换成语音、当用户手指停留屏幕的一个重要区域时的haptic反馈。这一节涵盖了怎样去创建一个辅助性服务，如何处理应用程序的信息接收，还有如何把信息反馈给用户。<br>创建自己的辅助性服务</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/03/17/android-build-your-own-android-notification-service-app/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
 
           </div>
 
@@ -1159,7 +1137,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
