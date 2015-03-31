@@ -870,7 +870,7 @@ body {
 .use-motion .site-title {
   opacity: 0;
   position: relative;
-  top: -10px;
+  top: 0px;
 }
 .menu {
   margin-top: 20px;
@@ -1053,7 +1053,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0df1ff;
+  background: #9ea1c1;
 }
 .sidebar-nav {
   margin: 0;
