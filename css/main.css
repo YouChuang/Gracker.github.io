@@ -513,15 +513,15 @@ td {
   font-style: italic;
 }
 @font-face {
-  font-family: 'linecons';
-  src: url("../fonts/icon-linecons/icomoon.eot?-9394c0");
-  src: url("../fonts/icon-linecons/icomoon.eot?#iefix-9394c0") format('embedded-opentype'), url("../fonts/icon-linecons/icomoon.woff?-9394c0") format('woff'), url("../fonts/icon-linecons/icomoon.ttf?-9394c0") format('truetype'), url("../fonts/icon-linecons/icomoon.svg?-9394c0#linecons") format('svg');
+  font-family: 'fifty-shades';
+  src: url("../fonts/icon-fifty-shades/icomoon.eot?-9394c0");
+  src: url("../fonts/icon-fifty-shades/icomoon.eot?#iefix-9394c0") format('embedded-opentype'), url("../fonts/icon-fifty-shades/icomoon.woff?-9394c0") format('woff'), url("../fonts/icon-fifty-shades/icomoon.ttf?-9394c0") format('truetype'), url("../fonts/icon-fifty-shades/icomoon.svg?-9394c0#fifty-shades") format('svg');
   font-weight: normal;
   font-style: normal;
 }
 [class^="icon-"],
 [class*=" icon-"] {
-  font-family: 'linecons';
+  font-family: 'fifty-shades';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -551,191 +551,77 @@ td {
 .icon-heart {
   font-size: 14px;
 }
-.menu-item-icon.menu-item-icon.menu-item-icon {
-  font-size: 20px;
+.icon-logo.icon-logo {
+  font-size: 18px;
 }
-.icon-external-link {
-  font-size: 14px;
+.menu-item-icon.menu-item-icon.menu-item-icon {
+  font-size: 16px;
 }
 .icon-logo:before {
-  content: "\e629";
-}
-.icon-home:before {
-  content: "\e62e";
-}
-.icon-categories:before {
-  content: "\e620";
-}
-.icon-archives:before {
-  content: "\e625";
-}
-.icon-tags:before {
-  content: "\e60c";
-}
-.icon-feed:before {
-  content: "\e60e";
-}
-.icon-heart:before {
-  content: "\e600";
-}
-.icon-about:before {
-  content: "\e607";
-}
-.icon-external-link:before {
-  content: "\e622";
-}
-.icon-heart:before {
-  content: "\e600";
-}
-.icon-cloud:before {
-  content: "\e601";
-}
-.icon-star:before {
-  content: "\e602";
-}
-.icon-tv:before {
   content: "\e603";
 }
-.icon-sound:before {
-  content: "\e604";
-}
-.icon-video:before {
-  content: "\e605";
-}
-.icon-trash:before {
-  content: "\e606";
-}
-.icon-user:before {
-  content: "\e607";
-}
-.icon-key:before {
-  content: "\e608";
-}
-.icon-search:before {
-  content: "\e609";
-}
-.icon-settings:before {
-  content: "\e60a";
-}
-.icon-camera:before {
-  content: "\e60b";
-}
-.icon-tag:before {
-  content: "\e60c";
-}
-.icon-lock:before {
-  content: "\e60d";
-}
-.icon-bulb:before {
+.icon-home:before {
   content: "\e60e";
 }
-.icon-pen:before {
+.icon-categories:before {
+  content: "\e60b";
+}
+.icon-archives:before {
+  content: "\e604";
+}
+.icon-about:before {
+  content: "\e605";
+}
+.icon-feed:before {
+  content: "\e607";
+}
+.icon-tags:before {
+  content: "\e608";
+}
+.icon-external-link:before {
+  content: "\e609";
+}
+.icon-heart:before {
+  content: "\e602";
+}
+.icon-search:before {
+  content: "\e606";
+}
+.icon-comment:before {
+  content: "\e600";
+}
+.icon-chat:before {
+  content: "\e601";
+}
+.icon-edit:before {
+  content: "\e603";
+}
+.icon-desktop:before {
+  content: "\e606";
+}
+.icon-picture:before {
+  content: "\e60a";
+}
+.icon-wand:before {
+  content: "\e60b";
+}
+.icon-pin:before {
+  content: "\e60c";
+}
+.icon-search:before {
+  content: "\e60d";
+}
+.icon-cloud:before {
   content: "\e60f";
-}
-.icon-diamond:before {
-  content: "\e610";
-}
-.icon-display:before {
-  content: "\e611";
-}
-.icon-location:before {
-  content: "\e612";
-}
-.icon-eye:before {
-  content: "\e617";
-}
-.icon-bubble:before {
-  content: "\e618";
-}
-.icon-stack:before {
-  content: "\e619";
-}
-.icon-cup:before {
-  content: "\e61a";
-}
-.icon-phone:before {
-  content: "\e61b";
-}
-.icon-news:before {
-  content: "\e61c";
-}
-.icon-mail:before {
-  content: "\e61d";
-}
-.icon-like:before {
-  content: "\e61e";
-}
-.icon-photo:before {
-  content: "\e61f";
-}
-.icon-note:before {
-  content: "\e620";
-}
-.icon-clock:before {
-  content: "\e621";
-}
-.icon-paperplane:before {
-  content: "\e622";
-}
-.icon-params:before {
-  content: "\e623";
-}
-.icon-banknote:before {
-  content: "\e624";
-}
-.icon-data:before {
-  content: "\e625";
-}
-.icon-music:before {
-  content: "\e626";
-}
-.icon-megaphone:before {
-  content: "\e627";
-}
-.icon-study:before {
-  content: "\e628";
-}
-.icon-lab:before {
-  content: "\e629";
-}
-.icon-food:before {
-  content: "\e62a";
-}
-.icon-t-shirt:before {
-  content: "\e62b";
-}
-.icon-fire:before {
-  content: "\e62c";
-}
-.icon-clip:before {
-  content: "\e62d";
-}
-.icon-shop:before {
-  content: "\e62e";
-}
-.icon-calendar:before {
-  content: "\e62f";
-}
-.icon-wallet:before {
-  content: "\e630";
-}
-.icon-vynil:before {
-  content: "\e631";
-}
-.icon-truck:before {
-  content: "\e632";
-}
-.icon-world:before {
-  content: "\e633";
 }
 .post pre,
 .post .highlight {
-  background: #000;
+  background: #002451;
   margin: 20px 0;
   padding: 15px;
   overflow: auto;
   font-size: 13px;
-  color: #eaeaea;
+  color: #fff;
   line-height: 1.8;
 }
 .post .highlight .gutter pre,
@@ -771,7 +657,7 @@ td {
 }
 .post .highlight figcaption {
   font-size: 0.85em;
-  color: #969896;
+  color: #7285b7;
   line-height: 1em;
   margin-bottom: 1em;
 }
@@ -798,7 +684,7 @@ td {
   border-style: solid;
   border-color: $baseBorderColor;
   border-width: 1px 0;
-  background: #000;
+  background: #002451;
   padding: 15px 40px 15px 15px;
 }
 .post .gist .gist-file {
@@ -824,8 +710,8 @@ td {
   border: none;
 }
 .post .gist .gist-file .gist-meta {
-  background: #000;
-  color: #969896;
+  background: #002451;
+  color: #7285b7;
   font: 13px Lato, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   text-shadow: 0 0;
   padding: 0;
@@ -840,7 +726,7 @@ td {
   text-decoration: underline;
 }
 pre .comment {
-  color: #969896;
+  color: #7285b7;
 }
 pre .variable,
 pre .attribute,
@@ -854,7 +740,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #d54e53;
+  color: #ff9da4;
 }
 pre .number,
 pre .preprocessor,
@@ -862,11 +748,11 @@ pre .built_in,
 pre .literal,
 pre .params,
 pre .constant {
-  color: #e78c45;
+  color: #ffc58f;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute {
-  color: #b9ca4a;
+  color: #d1f1a9;
 }
 pre .string,
 pre .value,
@@ -874,11 +760,11 @@ pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata {
-  color: #b9ca4a;
+  color: #d1f1a9;
 }
 pre .title,
 pre .css .hexcolor {
-  color: #70c0b1;
+  color: #9ff;
 }
 pre .function,
 pre .python .decorator,
@@ -888,11 +774,11 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #7aa6da;
+  color: #bbdaff;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #c397d8;
+  color: #ebbbff;
 }
 html,
 body {
@@ -1167,7 +1053,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8bffff;
+  background: #0df1ff;
 }
 .sidebar-nav {
   margin: 0;
