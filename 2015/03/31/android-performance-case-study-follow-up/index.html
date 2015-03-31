@@ -34,7 +34,7 @@
 
 
 
-  <title> HashMap源码分析 // Android Perofrmance </title>
+  <title>  // Android Perofrmance </title>
 </head>
 
 <body>
@@ -123,7 +123,7 @@
           
           
             
-              HashMap源码分析
+              
             
           
         </h1>
@@ -132,22 +132,11 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2014-04-11
+            发表于 2015-03-31
           
         </span>
 
         
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../../../categories/Java/">Java</a>
-
-                
-                
-
-              
-            </span>
           
         
 
@@ -155,8 +144,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2014/04/12/analysishashmap/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/12/analysishashmap/"></span>
+            <a href="/2015/03/31/android-performance-case-study-follow-up/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/31/android-performance-case-study-follow-up/"></span>
             </a>
           </span>
           
@@ -171,51 +160,45 @@
         
 
         
-          <div style="text-align: left">          链表和数组可以按照人们意愿排列元素的次序，但是，如果想要查看某个指定的元素，却又忘记了它的位置，就需要访问所有的元素，直到找到为止。如果集合中元素很多，将会消耗很多时间。有一种数据结构可以快速查找所需要查找的对象，这个就是哈希表（hash table）。</div><br><div>          HashMap是基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了非同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。</div><br><div>          1.HashMap的数据结构：</div><br><div><a href="http://www.grackertalk.com/wp-content/uploads/2014/04/hm01.png" target="_blank" rel="external"><img src="http://www.grackertalk.com/wp-content/uploads/2014/04/hm01.png" alt="hm01"></a></div><br><div>           HashMap使用数组和链表来共同组成的。可以看出底层是一个数组，而数组的每个元素都是一个链表头。</div><br><div></div><br><div><br><pre class="theme:eclipse lang:java decode:true">    static class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; {<br>        final K key;<br>        V value;<br>        Entry&lt;K,V&gt; next;<br>        int hash;<br>        …<br>     }</pre><br><div align="left">Entry是HashMap中的一个内部静态类，包级私有，实现了Map中的接口Entey&lt;K,V&gt;。可以看出来它内部含有一个指向下一个元素的指针。</div><br><div align="left"><span style="font-family: Consolas"> </span></div><br><div>          2.构造函数</div><br><div>          HashMap的构造函数有四个：</div><br><div>HashMap()</div><br><div>          构造一个具有默认初始容量 (16) 和默认加载因子 (0.75) 的空 HashMap。</div><br><div>HashMap(int initialCapacity)</div><br><div>          构造一个带指定初始容量和默认加载因子 (0.75) 的空 HashMap。</div><br><div>HashMap(int initialCapacity, float loadFactor)</div><br><div>          构造一个带指定初始容量和加载因子的空 HashMap。</div><br><div>HashMap(Map&lt;? extends K,? extends V&gt; m)</div><br><div>          构造一个映射关系与指定 Map 相同的新 HashMap。</div><br><div>实际上就两种，一个是指定初始容量和加载因子，一个是用一个给定的映射关系生成一个新的HashMap。先来说第一个。</div><br><div><br><pre class="theme:eclipse lang:java decode:true">    /<strong><br>     <em> Constructs an empty &lt;tt&gt;HashMap &lt;/tt&gt; with the specified initial
-     </em> capacity and load factor.<br>     <em>
-     </em> @param  initialCapacity the initial capacity<br>     <em> @param  loadFactor      the load factor
-     </em> @throws IllegalArgumentException if the initial capacity is negative<br>     <em>         or the load factor is nonpositive
-     </em>/<br>    public HashMap( int initialCapacity, float loadFactor) {<br>        if (initialCapacity &lt; 0)<br>            throw new IllegalArgumentException( “Illegal initial capacity: “ +<br>                                               initialCapacity);<br>        if (initialCapacity &gt; MAXIMUM_CAPACITY)<br>            initialCapacity = MAXIMUM_CAPACITY;<br>        if (loadFactor &lt;= 0 || Float. isNaN(loadFactor))<br>            throw new IllegalArgumentException( “Illegal load factor: “ +<br>                                               loadFactor);<br><br>        // Find a power of 2 &gt;= initialCapacity<br>        int capacity = 1;<br>        while (capacity &lt; initialCapacity)<br>            capacity &lt;&lt;= 1;<br><br>        this.loadFactor = loadFactor;<br>        threshold = (int)Math.min(capacity * loadFactor, MAXIMUM_CAPACITY + 1);<br>        table = new Entry[capacity];<br>        useAltHashing = sun.misc.VM. isBooted() &amp;&amp;<br>                (capacity &gt;= Holder. ALTERNATIVE_HASHING_THRESHOLD);<br>        init();<br>    }</strong></pre><br>&nbsp;<br><div><br><div align="left">参数很简单，初始容量，和加载因子。初始容量定义了初识数组的大小，加载因子和初始容量的乘积确定了一个阈值。阈值最大是(1&lt;&lt;30) + 1。初始容量一定是2的N次方，而且刚刚比要设置的值大。默认初始容量是16，默认加载因子是0.75。当表中的元素数量大于等于阈值时，数组的容量会翻倍，并重新插入元素到新的数组中，所以HashMap不保证顺序恒久不变。</div><br><div align="left">当输入的加载因子小于零或者不是浮点数时会抛出异常（IllegalArgumentException）。</div><br><div align="left"></div><br><div align="left"><br><div>3.put操作</div><br><div><br><pre class="theme:eclipse lang:java decode:true ">    /<br>     <em> Associates the specified value with the specified key in this map.
-     </em> If the map previously contained a mapping for the key, the old<br>     <em> value is replaced.
-     </em><br>     <em> @param key key with which the specified value is to be associated
-     </em> @param value value to be associated with the specified key<br>     <em> @return the previous value associated with &lt;tt&gt;key &lt;/tt&gt;, or
-     </em>         &lt;tt&gt;null &lt;/tt&gt; if there was no mapping for &lt;tt&gt; key&lt;/tt&gt; .<br>     <em>         (A &lt;tt&gt;null &lt;/tt&gt; return can also indicate that the map
-     </em>         previously associated &lt;tt&gt;null &lt;/tt&gt; with &lt;tt&gt; key&lt;/tt&gt; .)<br>     <em>/<br>    public V put(K key, V value) {<br>        if (key == null)<br>            return putForNullKey(value);<br>        int hash = hash(key);<br>        int i = indexFor(hash, table .length );<br>        for (Entry&lt;K,V&gt; e = table[i]; e != null; e = e. next) {<br>            Object k;<br>            if (e. hash == hash &amp;&amp; ((k = e. key) == key || key.equals(k))) {<br>                V oldValue = e. value;<br>                e. value = value;<br>                e.recordAccess( this);<br>                return oldValue;<br>            }<br>        }<br><br>        modCount++;<br>        addEntry(hash, key, value, i);<br>        return null;<br>    }</em></pre><br>&nbsp;<br><div>由于HashMap只是key值为null，所以首先要判断key值是不是为null，是则进行特殊处理。</div><br></div><br></div><br></div><br></div><br>&nbsp;<br><pre class="theme:eclipse lang:java decode:true ">    /**
-      Offloaded version of put for null keys<br>     <em>/<br>    private V putForNullKey(V value) {<br>        for (Entry&lt;K,V&gt; e = table[0]; e != null; e = e. next) {<br>            if (e. key == null) {<br>                V oldValue = e. value;<br>                e. value = value;<br>                e.recordAccess( this);<br>                return oldValue;<br>            }<br>        }<br>        modCount++;<br>        addEntry(0, null, value, 0);<br>        return null;<br>    }</em></pre><br>&nbsp;<br><div><br><div align="left">可以看出key值为null则会插入到数组的第一个位置。如果第一个位置存在，则替代，不存在则添加一个新的。稍后会看到addEntry函数。</div><br><div align="left">PS：考虑一个问题，key值为null会插入到table[0]，那为什么还要遍历整个链表呢？</div><br><div align="left">回到put函数中。在判断key不为null后，会求key的hash值，并通过indexFor函数找出这个key应该存在table中的位置。</div><br><div align="left"><br><pre class="theme:eclipse lang:java decode:true ">    /**
-      Returns index for hash code h.<br>     <em>/<br>    static int indexFor (int h, int length) {<br>        return h &amp; (length-1);<br>    }</em></pre><br>&nbsp;<br><div><br><div align="left">indexFor函数很简短，但是却实现的很巧妙。一般来说我们把一个数映射到一个固定的长度会用取余（%）运算，也就是h % length，但里巧妙地运用了table.length的特性。还记得前面说了数组的容量都是很特殊的数，是2的N次方。用二进制表示也就是一个1后面N个0，（length-1）就是N个1了。这里直接用与运算，运算速度快，效率高。但是这是是利用了length的特殊性，如果length不是2的N次方的话可能会增加冲突。</div><br><div align="left">前面的问题在这里就有答案了。因为indexFor函数返回值的范围是0到（length-1），所以可能会有key值不是null的Entry存到table[0]中，所以前面还是需要遍历链表的。</div><br><div align="left">得到key值对应在table中的位置，就可以对链表进行遍历，如果存在该key则，替换value，并把旧的value返回，modCount++代表操作数加1。这个属性用于Fail-Fast机制，后面讲到。如果遍历链表后发现key不存在，则要插入一个新的Entry到链表中。这时就会调用addEntry函数。</div><br><div align="left"><br><pre class="theme:eclipse lang:java decode:true ">    /**
-      Adds a new entry with the specified key, value and hash code to<br>     <em> the specified bucket.  It is the responsibility of this
-     </em> method to resize the table if appropriate.<br>     <em>
-     </em> Subclass overrides this to alter the behavior of put method.<br>     <em>/<br>    void addEntry (int hash, K key, V value, int bucketIndex) {<br>        if ((size &gt;= threshold) &amp;&amp; ( null != table[bucketIndex])) {<br>            resize(2 </em> table. length);<br>            hash = ( null != key) ? hash(key) : 0;<br>            bucketIndex = indexFor(hash, table.length);<br>        }<br><br>        createEntry(hash, key, value, bucketIndex);<br>    }</pre><br>&nbsp;<br><div>这个函数有四个参数，第一个是key的hash值，第二个第三个分别是key和value，最后一个是这个key在table中的位置，也就是indexFor(hash(key), table.length-1)。首先会判断size（当前表中的元素个数）是不是大于或等于阈值。并且判断数组这个位置是不是空。如果条件满足则要resize(2 <em> table. length)，等下我们来看这个操作。超过阈值要resize是为了减少冲突，提高访问效率。判断当前位置不是空时才resize是为了尽可能减少resize次数，因为这个位置是空，放一个元素在这也没有冲突，所以不影响效率，就先不进行resize了。</em></div><br><div><br><pre class="theme:eclipse lang:java decode:true ">    /**
-      Rehashes the contents of this map into a new array with a<br>     <em> larger capacity.  This method is called automatically when the
-     </em> number of keys in this map reaches its threshold.<br>     <em>
-     </em> If current capacity is MAXIMUM_CAPACITY, this method does not<br>     <em> resize the map, but sets threshold to Integer.MAX_VALUE.
-     </em> This has the effect of preventing future calls.<br>     <em>
-     </em> @param newCapacity the new capacity, MUST be a power of two;<br>     <em>        must be greater than current capacity unless current
-     </em>        capacity is MAXIMUM_CAPACITY (in which case value<br>     <em>        is irrelevant).
-     </em>/<br>    void resize(int newCapacity) {<br>        Entry[] oldTable = table;<br>        int oldCapacity = oldTable. length;<br>        if (oldCapacity == MAXIMUM_CAPACITY) {<br>            threshold = Integer. MAX_VALUE;<br>            return;<br>        }<br><br>        Entry[] newTable = new Entry[newCapacity];<br>        boolean oldAltHashing = useAltHashing;<br>        useAltHashing |= sun.misc.VM. isBooted() &amp;&amp;<br>                (newCapacity &gt;= Holder. ALTERNATIVE_HASHING_THRESHOLD);<br>        boolean rehash = oldAltHashing ^ useAltHashing;<br>        transfer(newTable, rehash);<br>        table = newTable;<br>        threshold = (int)Math.min(newCapacity <em> loadFactor , MAXIMUM_CAPACITY + 1);<br>    }</em></pre><br>&nbsp;<br><div><br><div align="left">resize操作先要判断当前table的长度是不是已经等于最大容量（1&lt;&lt;30）了，如果是则把阈值调到整数的最大值（(1&lt;&lt;31) - 1），就没有再拓展table的必要了。如果没有到达最大容量，就要生成一个新的空数组，长度是原来的两倍。这时候可能要问了，如果oldTable. length不等于MAXIMUM_CAPACITY，但是（2  oldTable. length）也就是newCapacity大于MAXIMUM_CAPACITY怎么办？这个是不可能的，因为数组长度是2的N次方，而MAXIMUM_CAPACITY = 1&lt;&lt;30。</div><br><div align="left">生成新的数组后要执行transfer函数。</div><br><div align="left"><br><pre class="theme:eclipse lang:java decode:true">    /<strong><br>     <em> Transfers all entries from current table to newTable.
-     </em>/<br>    void transfer(Entry[] newTable, boolean rehash) {<br>        int newCapacity = newTable. length;<br>        for (Entry&lt;K,V&gt; e : table) {<br>            while( null != e) {<br>                Entry&lt;K,V&gt; next = e. next;<br>                if ( rehash) {<br>                    e. hash = null == e. key ? 0 : hash(e. key);<br>                }<br>                int i = indexFor(e.hash, newCapacity);<br>                e. next = newTable[i];<br>                newTable[i] = e;<br>                e = next;<br>            }<br>        }<br>    }</strong></pre><br>&nbsp;<br><div><br><div align="left">这个函数要做的就是把原来table中的值挨个拿出来插到新数组中，由于数组长度发生了改变，所以元素的位置肯定发生变化，所以HashMap不能保证该顺序恒久不变。回到resize函数，这时新的数组已经生成了，只需要替换原来数组就好了。并且要更新一下阈值。可以看出来resize是个比较消耗资源的函数，所以能减少resize的次数就尽量减少。</div><br><div align="left">回到函数addEntry 中，判断完是不是需要resize后就需要创建一个新的Entry了。</div><br><div align="left"><br><pre class="theme:eclipse lang:java decode:true ">    /<br>     <em> Like addEntry except that this version is used when creating entries
-     </em> as part of Map construction or “pseudo -construction” (cloning,<br>     <em> deserialization).  This version needn’t worry about resizing the table.
-     </em><br>     <em> Subclass overrides this to alter the behavior of HashMap(Map),
-     </em> clone, and readObject.<br>     <em>/<br>    void createEntry( int hash, K key, V value, int bucketIndex) {<br>        Entry&lt;K,V&gt; e = table[bucketIndex];<br>        table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);<br>        size++;<br>    }</em></pre><br>&nbsp;<br><div>调用createEntry函数，参数跟addEntry一样，第一个是key的hash值，第二个第三个分别是key和value，最后一个是这个key在table中的位置。这里的操作与Entry的构造函数有关系。</div><br><div><br><pre class="theme:eclipse lang:java decode:true ">        /**
-          Creates new entry.<br>         <em>/<br>        Entry (int h, K k, V v, Entry&lt;K,V&gt; n) {<br>            value = v;<br>            next = n;<br>            key = k;<br>            hash = h;<br>        }</em></pre><br>&nbsp;<br><div>构造函数中传入一个Entry对象，并把它当做这个新生成的Entry的next。所以createEntry函数中的操作相当于把table[bucketIndex]上的链表拿下来，放在新的Entry后面，然后再把新的Entry放到table[bucketIndex]上。</div><br><div><a href="http://www.grackertalk.com/wp-content/uploads/2014/04/hm02.png" target="_blank" rel="external"><img src="http://www.grackertalk.com/wp-content/uploads/2014/04/hm02.png" alt="hm02"></a></div><br><div></div><br><div><br><div><br><div align="left">到这里整个put函数算是结束了。如果新插入的K，V则会返回null。</div><br><div align="left"></div><br><div align="left">4.get操作</div><br><div align="left"><br><pre class="theme:eclipse lang:java decode:true ">    /**
-      Returns the value to which the specified key is mapped,<br>     <em> or {@code null} if this map contains no mapping for the key.
-     </em><br>     <em> &lt;p&gt;More formally, if this map contains a mapping from a key
-     </em> {@code k} to a value {@code v} such that {@code (key==null ? k==null :<br>     <em> key.equals(k))}, then this method returns {@code v}; otherwise
-     </em> it returns {@code null}.  (There can be at most one such mapping.)<br>     <em>
-     </em> &lt;p&gt;A return value of {@code null} does not &lt;i&gt;necessarily &lt;/i&gt;<br>     <em> indicate that the map contains no mapping for the key; it’s also
-     </em> possible that the map explicitly maps the key to {@code null}.<br>     <em> The {@link #containsKey containsKey} operation may be used to
-     </em> distinguish these two cases.<br>     <em>
-     </em> @see #put(Object, Object)<br>     <em>/<br>    public V get(Object key) {<br>        if (key == null)<br>            return getForNullKey();<br>        Entry&lt;K,V&gt; entry = getEntry(key);<br><br>        return null == entry ? null : entry.getValue();<br>    }</em></pre><br>&nbsp;<br><div>也是先判断key是不是null，做特殊处理。直接上代码，不赘述。</div><br><div><br><pre class="theme:eclipse lang:java decode:true ">    /**
-      Offloaded version of get() to look up null keys.  Null keys map<br>     <em> to index 0.  This null case is split out into separate methods
-     </em> for the sake of performance in the two most commonly used<br>     <em> operations (get and put), but incorporated with conditionals in
-     </em> others.<br>     <em>/<br>    private V getForNullKey() {<br>        for (Entry&lt;K,V&gt; e = table[0]; e != null; e = e. next) {<br>            if (e. key == null)<br>                return e. value;<br>        }<br>        return null;<br>    }</em></pre><br>&nbsp;<br><div>key不是null则会调用getEntry函数，并返回一个Entry对象，如果不是null，就返回entry的value。</div><br><div><br><pre class="theme:eclipse lang:java decode:true ">    /**
-      Returns the entry associated with the specified key in the<br>     <em> HashMap.  Returns null if the HashMap contains no mapping
-     </em> for the key.<br>     <em>/<br>    final Entry&lt;K,V&gt; getEntry(Object key) {<br>        int hash = (key == null) ? 0 : hash(key);<br>        for (Entry&lt;K,V&gt; e = table[ indexFor(hash, table.length)];<br>             e != null;<br>             e = e. next) {<br>            Object k;<br>            if (e. hash == hash &amp;&amp;<br>                ((k = e. key) == key || (key != null &amp;&amp; key.equals(k))))<br>                return e;<br>        }<br>        return null;<br>    }</em></pre><br>&nbsp;<br><div><br><div align="left">直接求key值hash值，然后求table中的位置，遍历链表。有返回entry对象，没有返回null。</div><br><div align="left"></div><br><div align="left">5. Fail-Fast机制：</div><br></div><br></div><br></div><br><pre class="theme:eclipse lang:java decode:true ">    /**
-      The number of times this HashMap has been structurally modified<br>     <em> Structural modifications are those that change the number of mappings in
-     </em> the HashMap or otherwise modify its internal structure (e.g.,<br>     <em> rehash).  This field is used to make iterators on Collection-views of
-     </em> the HashMap fail -fast.  (See ConcurrentModificationException).<br>     */<br>    transient int modCount;</pre><br>&nbsp;<br><div><br><div align="left">    我们知道java.util.HashMap不是线程安全的，因此如果在使用迭代器的过程中有其他线程修改了map，那么将抛出ConcurrentModificationException，这就是所谓fail-fast策略。</div><br><div align="left">    这一策略在源码中的实现是通过modCount域，保证线程之间修改的可见性。，modCount顾名思义就是修改次数，对HashMap内容的修改都将增加这个值，那么在迭代器初始化过程中会将这个值赋给迭代器的expectedModCount。</div><br><div>注意，迭代器的快速失败行为不能得到保证，一般来说，存在非同步的并发修改时，不可能作出任何坚决的保证。快速失败迭代器尽最大努力抛出 ConcurrentModificationException。因此，编写依赖于此异常的程序的做法是错误的，正确做法是：迭代器的快速失败行为应该仅用于检测程序错误。</div><br><div></div><br><div><br><div><br><div>《Core JAVA》</div><br><div>《JDK 中文文档》</div>
+          <h1 id="前言">前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757" target="_blank" rel="external">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/" target="_blank" rel="external">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
+<h1 id="译文正文">译文正文</h1><p>两年前，我发表了一篇名为<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study/" target="_blank" rel="external">Android Performance Case Study</a> 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。</p>
+<p>那篇文章以一个Twitter客户端 <a href="https://play.google.com/store/apps/details?id=com.jv.materialfalcon" target="_blank" rel="external">Falcon Pro</a>为典范，其开发人员为 Joaquim Vergès. Joaquim人不错，他允许我在我的文章中使用它的程序作为例子，并且快速处理了我发现的所有问题。一切都OK，直到Joaquim 从头开始开发Falcon Pro 3，前不久在他准备发布它的新应用的时候，他联系了我，因为他有一个和滚动相关的性能问题需要我来帮助他，这一次我依然没有源代码可以参考。</p>
+<p>Joaquim使用了所有的工具来找出问题所在，他发现Overdraw不是问题的原因，他觉得是 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank" rel="external">ViewPager</a> 的用法导致了这个问题。他给我发来了下面的截图：</p>
+<p><img src="../images/android-performance-case-study-follow-up/falconpro3.png" alt="Falcon Pro"></p>
+<p>Joaquim使用了系统内置的GPU profiling工具来发现掉帧现象， 左边的截图是在没有ViewPager 的情况下滑动时间线，右边的截图是有ViewPager的情况下滑动（他使用的是2014年的Moto x来截的图），问题看起来很明显。</p>
+<p>我最先想到的是查看ViewPager是不是由于滥用硬件加速导致，这个性能问题看起来像是在滑动的过程中每一帧都使用了硬件加速。系统的 <a href="http://www.curious-creature.com/2013/09/13/optimizing-hardware-layers/" target="_blank" rel="external">hardware layers updates debugging tool</a>没有显示什么有用的信息。我反复使用HierarchyViewer 查看布局情况，令我满意的是ViewPager的表现很正确（相反，不太可能会出问题）</p>
+<p>之后我打开了另一个强大的工具却很少用到的工具：Tracer for OpenGL 。我之前的那篇<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study" target="_blank" rel="external">文章</a>解释了如何使用工具获得更多细节。你首先需要知道的是这个工具收集了所有UI界面发给GPU的绘制命令。</p>
+<blockquote>
+<p><strong>Android 4.3 and up</strong>: <em>Tracer</em> has unfortunately become a little more difficult to use since Android 4.3 when we introduced<a href="https://developers.google.com/events/io/sessions/325418001" target="_blank" rel="external">reordering and merging of drawing commands</a>. It’s an amazingly useful optimization but it prevents <em>Tracer</em> from grouping drawing commands by view. You can restore the old behavior by disabling display lists optimization using the following command (before you start your application)(意思是说Android4.3之后，这个工具不太好用了，因为有reordering and merging 机制的引进)</p>
+<p><strong>Reading OpenGL traces</strong>: Commands shown in blue are GL operations that draw pixels on screen. All other commands are used to transfer data or set state and can easily be ignored. Every time you click on one of the blue commands, Tracer will update the Details tab and show you the content of the current render target right after the command you clicked is executed. You can thus reconstruct a frame by clicking on each blue command one after another. It’s pretty much how I analyze performance issues with Tracer. Seeing how a frame is rendered gives a lot of insight on what the application is doing.(意思是说只蓝色的行是真正进行绘制的命令，点击可以看到绘制的这一帧的图像，其他的命令都是一些数据的转换)</p>
+</blockquote>
+<p>滑动一段时间Falcon Pro应用后，我仔细查看Gl Trace收集到的数据，我很惊奇地发现很多SaveLayer/ComposeLayer阻塞命令。</p>
+<p><img src="../images/android-performance-case-study-follow-up/glTrace.png" alt="Paste_Image.png"></p>
+<p>这些命令表明应用在生成一个临时的Hardware Layer。这些临时的Layer被不同的 <a href="http://developer.android.com/reference/android/graphics/Canvas.html#saveLayer(float, float, float, float, android.graphics.Paint, int" target="_blank" rel="external">Canvas.saveLayer()</a>)所创建，这些UI控件在下面的情况下使用Canvas.saveLayer()方法去绘制 alpha &lt; 1 (see<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float" target="_blank" rel="external">View.setAlpha()</a>)的View(即半透明View)：</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/view/View.html#getAlpha(" target="_blank" rel="external">getAlpha()</a> returns a value &lt; 1</li>
+<li><a href="http://developer.android.com/reference/android/view/View.html#onSetAlpha(int" target="_blank" rel="external">onSetAlpha()</a> returns false</li>
+<li><a href="http://developer.android.com/reference/android/view/View.html#getLayerType(" target="_blank" rel="external">getLayerType()</a> returns LAYER_TYPE_NONE</li>
+<li><a href="http://developer.android.com/reference/android/view/View.html#hasOverlappingRendering(" target="_blank" rel="external">hasOverlappingRendering()</a> returns true</li>
+</ul>
+<p>我和Chet 在很多演示中解释过为什么你应该 <a href="https://youtu.be/vQZFaec9NpA?t=29m51s" target="_blank" rel="external">use alpha with care</a>，每次UI控件使用一个临时的Layer，绘制命令会发送不同的渲染目标，对GPU来说，切换渲染目标是很昂贵的操作,这对于使用tiling/deferred架构的GPU（ImaginationTech’s SGX, Qualcomm’s Adreno, etc）等是硬伤，直接渲染架构的GPU，比如 Nvidia，则会好一点。因为我和Joaquim 使用的是搭载高通处理器的Moto X 2014版本，所以使用多个临时硬件层是最有可能的性能问题的根源。</p>
+<p>那么问题来了，是什么创建了这些零食的Layer呢？<em>Tracer</em>告诉我们了答案，如果你看了刚刚上面那张<a href="http://www.curious-creature.com/blog/wp-content/uploads/2015/03/Screen-Shot-2015-03-25-at-11.00.53-AM-950x552.png" target="_blank" rel="external">图</a>,你可以看到只有SaveLayer这个组中OpenGl命令绘制了一个小圆圈（图被工具放大了），我们来看一下应用截图：</p>
+<p><img src="../images/android-performance-case-study-follow-up/before.png" alt="Falcon Pro 3"></p>
+<p>你看到最上面的小圆圈了么？那是ViewPager的指示器，来显示当前的位置。Joaquim 使用了一个第三方库来绘制这些指示器，有趣的是这些库如何绘制指示器的：当前的Page用一个白色的圈指示，其他的页用类似灰色的圆圈来指示。我说类似灰色因为这个圆圈其实是半透明的白色圆圈。这个库使用 setAlpha()方法来给每个圆圈设置颜色。</p>
+<p>有下面几种方法来解决这个问题：</p>
+<ul>
+<li>Use a customizable “inactive” color instead of setting an opacity on the View（ 使用动态的“inactive”颜色(即根据状态来设置View的颜色)而不是设置透明度。）</li>
+<li><p>Return false from hasOverlappingRendering() and the framework will set the proper alpha on the Paint<br>for you（使hasOverlappingRendering()返回false，这样系统会设置适当的alpha，关于这个的用法，这篇<a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">文章</a>中有提到：同时Android提供了hasOverlappingRendering()接口，通过重写该接口可以告知系统当前View是否存在内容重叠的情况，帮助系统优化绘制流程，原理是这样的：对于有重叠内容的View，系统简单粗暴的使用 offscreen buffer来协助处理。当告知系统该View无重叠内容时，系统会分别使用合适的alpha值绘制每一层。）</p>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Returns whether this View has content which overlaps. This function, intended <span class="keyword">to</span> be</span><br><span class="line"> * overridden <span class="keyword">by</span> specific View types, <span class="keyword">is</span> an optimization when alpha <span class="keyword">is</span> <span class="keyword">set</span> <span class="function_start"><span class="keyword">on</span></span> a view. If</span><br><span class="line"> * rendering overlaps <span class="keyword">in</span> a view <span class="keyword">with</span> alpha &lt; <span class="number">1</span>, <span class="keyword">that</span> view <span class="keyword">is</span> drawn <span class="keyword">to</span> an offscreen buffer</span><br><span class="line"> * <span class="keyword">and</span> <span class="keyword">then</span> composited <span class="keyword">it</span> <span class="keyword">into</span> place, which can be expensive. If <span class="keyword">the</span> view has no overlapping</span><br><span class="line"> * rendering, <span class="keyword">the</span> view can draw each primitive <span class="keyword">with</span> <span class="keyword">the</span> appropriate alpha value directly.</span><br><span class="line"> * An example <span class="keyword">of</span> overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> a background image, such <span class="keyword">as</span> a</span><br><span class="line"> * Button. An example <span class="keyword">of</span> non-overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> no background, <span class="keyword">or</span></span><br><span class="line"> * an ImageView <span class="keyword">with</span> only <span class="keyword">the</span> foreground image. The default implementation returns <span class="constant">true</span>;</span><br><span class="line"> * subclasses should override <span class="keyword">if</span> they have cases which can be optimized.</span><br><span class="line"> *</span><br><span class="line"> * @<span class="constant">return</span> <span class="constant">true</span> <span class="keyword">if</span> <span class="keyword">the</span> content <span class="keyword">in</span> this view might overlap, <span class="constant">false</span> otherwise.</span><br><span class="line"> */</span><br><span class="line">public <span class="type">boolean</span> hasOverlappingRendering() &#123;</span><br><span class="line"><span class="command">    return</span> <span class="constant">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Return true from onSetAlpha() and set an alpha on the Paint used to draw the “gray” circles（使onSetAlpha() 返回True并对Paint设置alpha来绘制“gray”圆圈）</p>
+ <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">paint.setAlpha((int) alpha * <span class="number">255</span>);</span><br><span class="line">canvas.draw*(<span class="keyword">...</span>, paint);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最简单的方法是使用第二种，但是他只能在API16以上使用，如果你要支持旧版本的Android，使用其他两个方法，我相信Joaquim 已经丢弃那个第三方库并使用自己的指示器了。</p>
+<p>我希望这篇文章能让大家清楚如何从看似无辜的和无害的操作中寻找可能会出现性能问题。所以请记住:不要仅仅做出假设,要实际去验证、测量。</p>
+<h1 id="附录">附录</h1><p>更多关于Alpha的使用，可以参考这篇文章：<br><a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">Android Tips: Best Practices for Using Alpha</a></p>
 
-<div style="color: #000000;font-family: 微软雅黑"><br>        <table><br>            <tr><br>                <td>Article Name:</td><br>                <td>HashMap源码分析</td><br>            </tr><br>            <tr><br>                <td>Author:</td><br>                <td>刘天昊</td><br>            </tr><br>            <tr><br>                <td>Email:</td><br>                <td>liutianhao.pro@gmail.com</td><br>            </tr><br>        </table><br></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
         
       </div>
     
@@ -228,13 +211,11 @@
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="../../13/beautiful-ios-app-ios5coins/">5coins–轻松记账</a>
-              
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="../../01/android-service-build-your-own-notification-servers-app/">Android Service：开发自己的通知中心(2):辅助性服务实战</a>
+                <a href="../../15/android-tips-round-up-5/">[译]Android小技巧(5)</a>
               
             </div>
           </div>
@@ -251,8 +232,8 @@
   
     <div class="comments" id="comments">
       
-        <div class="ds-thread" data-thread-key="2014/04/12/analysishashmap/"
-             data-title="HashMap源码分析" data-url="http://androidperformance.com/2014/04/12/analysishashmap/">
+        <div class="ds-thread" data-thread-key="2015/03/31/android-performance-case-study-follow-up/"
+             data-title="" data-url="http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up/">
         </div>
 
       
@@ -350,7 +331,7 @@
         <div class="post-toc">
           
           
-            <p class="post-toc-empty">此文章未包含目录</p>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#译文正文"><span class="nav-number">2.</span> <span class="nav-text">译文正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">3.</span> <span class="nav-text">附录</span></a></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
