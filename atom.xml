@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://androidperformance.com/"/>
-  <updated>2015-03-31T01:36:07.000Z</updated>
+  <updated>2015-03-31T08:11:08.000Z</updated>
   <id>http://androidperformance.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up/"/>
     <id>http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up/</id>
     <published>2015-03-31T01:29:00.000Z</published>
-    <updated>2015-03-31T01:36:07.000Z</updated>
+    <updated>2015-03-31T08:11:08.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757" target="_blank" rel="external">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/" target="_blank" rel="external">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
 <h1 id="译文正文">译文正文</h1><p>两年前，我发表了一篇名为<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study/" target="_blank" rel="external">Android Performance Case Study</a> 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。</p>
 <p>那篇文章以一个Twitter客户端 <a href="https://play.google.com/store/apps/details?id=com.jv.materialfalcon" target="_blank" rel="external">Falcon Pro</a>为典范，其开发人员为 Joaquim Vergès. Joaquim人不错，他允许我在我的文章中使用它的程序作为例子，并且快速处理了我发现的所有问题。一切都OK，直到Joaquim 从头开始开发Falcon Pro 3，前不久在他准备发布它的新应用的时候，他联系了我，因为他有一个和滚动相关的性能问题需要我来帮助他，这一次我依然没有源代码可以参考。</p>
@@ -43,7 +43,7 @@
 <li><a href="http://developer.android.com/reference/android/view/View.html#hasOverlappingRendering(" target="_blank" rel="external">hasOverlappingRendering()</a> returns true</li>
 </ul>
 <p>我和Chet 在很多演示中解释过为什么你应该 <a href="https://youtu.be/vQZFaec9NpA?t=29m51s" target="_blank" rel="external">use alpha with care</a>，每次UI控件使用一个临时的Layer，绘制命令会发送不同的渲染目标，对GPU来说，切换渲染目标是很昂贵的操作,这对于使用tiling/deferred架构的GPU（ImaginationTech’s SGX, Qualcomm’s Adreno, etc）等是硬伤，直接渲染架构的GPU，比如 Nvidia，则会好一点。因为我和Joaquim 使用的是搭载高通处理器的Moto X 2014版本，所以使用多个临时硬件层是最有可能的性能问题的根源。</p>
-<p>那么问题来了，是什么创建了这些零食的Layer呢？<em>Tracer</em>告诉我们了答案，如果你看了刚刚上面那张<a href="http://www.curious-creature.com/blog/wp-content/uploads/2015/03/Screen-Shot-2015-03-25-at-11.00.53-AM-950x552.png" target="_blank" rel="external">图</a>,你可以看到只有SaveLayer这个组中OpenGl命令绘制了一个小圆圈（图被工具放大了），我们来看一下应用截图：</p>
+<p>那么问题来了，是什么创建了这些临时的Layer呢？<em>Tracer</em>告诉我们了答案，如果你看了刚刚上面那张<a href="http://www.curious-creature.com/blog/wp-content/uploads/2015/03/Screen-Shot-2015-03-25-at-11.00.53-AM-950x552.png" target="_blank" rel="external">图</a>,你可以看到只有SaveLayer这个组中OpenGl命令绘制了一个小圆圈（图被工具放大了），我们来看一下应用截图：</p>
 <p><img src="/img/android-performance-case-study-follow-up/before.png" alt="Falcon Pro 3"></p>
 <p>你看到最上面的小圆圈了么？那是ViewPager的指示器，来显示当前的位置。Joaquim 使用了一个第三方库来绘制这些指示器，有趣的是这些库如何绘制指示器的：当前的Page用一个白色的圈指示，其他的页用类似灰色的圆圈来指示。我说类似灰色因为这个圆圈其实是半透明的白色圆圈。这个库使用 setAlpha()方法来给每个圆圈设置颜色。</p>
 <p>有下面几种方法来解决这个问题：</p>

@@ -182,7 +182,7 @@
 <li><a href="http://developer.android.com/reference/android/view/View.html#hasOverlappingRendering(" target="_blank" rel="external">hasOverlappingRendering()</a> returns true</li>
 </ul>
 <p>我和Chet 在很多演示中解释过为什么你应该 <a href="https://youtu.be/vQZFaec9NpA?t=29m51s" target="_blank" rel="external">use alpha with care</a>，每次UI控件使用一个临时的Layer，绘制命令会发送不同的渲染目标，对GPU来说，切换渲染目标是很昂贵的操作,这对于使用tiling/deferred架构的GPU（ImaginationTech’s SGX, Qualcomm’s Adreno, etc）等是硬伤，直接渲染架构的GPU，比如 Nvidia，则会好一点。因为我和Joaquim 使用的是搭载高通处理器的Moto X 2014版本，所以使用多个临时硬件层是最有可能的性能问题的根源。</p>
-<p>那么问题来了，是什么创建了这些零食的Layer呢？<em>Tracer</em>告诉我们了答案，如果你看了刚刚上面那张<a href="http://www.curious-creature.com/blog/wp-content/uploads/2015/03/Screen-Shot-2015-03-25-at-11.00.53-AM-950x552.png" target="_blank" rel="external">图</a>,你可以看到只有SaveLayer这个组中OpenGl命令绘制了一个小圆圈（图被工具放大了），我们来看一下应用截图：</p>
+<p>那么问题来了，是什么创建了这些临时的Layer呢？<em>Tracer</em>告诉我们了答案，如果你看了刚刚上面那张<a href="http://www.curious-creature.com/blog/wp-content/uploads/2015/03/Screen-Shot-2015-03-25-at-11.00.53-AM-950x552.png" target="_blank" rel="external">图</a>,你可以看到只有SaveLayer这个组中OpenGl命令绘制了一个小圆圈（图被工具放大了），我们来看一下应用截图：</p>
 <p><img src="/img/android-performance-case-study-follow-up/before.png" alt="Falcon Pro 3"></p>
 <p>你看到最上面的小圆圈了么？那是ViewPager的指示器，来显示当前的位置。Joaquim 使用了一个第三方库来绘制这些指示器，有趣的是这些库如何绘制指示器的：当前的Page用一个白色的圈指示，其他的页用类似灰色的圆圈来指示。我说类似灰色因为这个圆圈其实是半透明的白色圆圈。这个库使用 setAlpha()方法来给每个圆圈设置颜色。</p>
 <p>有下面几种方法来解决这个问题：</p>
