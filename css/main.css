@@ -1053,7 +1053,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff606a;
+  background: #ffffbe;
 }
 .sidebar-nav {
   margin: 0;
@@ -1900,7 +1900,7 @@ hr {
 @media (max-width: 767px) {
   .logo-line-before,
   .logo-line-after {
-    width: 40%;
+    width: 100%;
   }
 }
 .logo-line-before i,
