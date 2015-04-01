@@ -639,7 +639,7 @@
           
             <p> 本文是Android性能优化工具系列的第一篇，这个系列主要介绍Android性能优化过程中会使用到的一些工具，以及如何用这些工具来发现问题和解决问题。在性能优化方面，Android有不少性能工具供大家来使用，按照我们一贯地 “发现问题-解决问题”的思路来看，发现问题才是最主要的，一上来就想着如何去解决问题，反而会事倍功半。</p>
 <p>这一篇先来简单介绍一下Systrace这个工具。</p>
-<h2 id="0-Systrace简单介绍">0.Systrace简单介绍</h2><p>Systrace是Android4.1中新增的性能数据采样和分析工具。它可帮助开发者收集Android关键子系统（如surfaceflinger、WindowManagerService等Framework部分关键模块、服务，View系统等）的运行信息，从而帮助开发者更直观的分析系统瓶颈，改进性能。</p>
+<h2 id="Systrace简单介绍">Systrace简单介绍</h2><p>Systrace是Android4.1中新增的性能数据采样和分析工具。它可帮助开发者收集Android关键子系统（如surfaceflinger、WindowManagerService等Framework部分关键模块、服务，View系统等）的运行信息，从而帮助开发者更直观的分析系统瓶颈，改进性能。</p>
 <p>Systrace的功能包括跟踪系统的I/O操作、内核工作队列、CPU负载以及Android各个子系统的运行状况等。在Android平台中，它主要由3部分组成：</p>
 <ul>
 <li>内核部分：Systrace利用了Linux Kernel中的ftrace功能。所以，如果要使用Systrace的话，必须开启kernel中和ftrace相关的模块。</li>
