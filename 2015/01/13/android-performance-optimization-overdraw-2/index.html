@@ -250,9 +250,14 @@
 </ol>
 <h4 id="2-4_使用Tracer_For_OpenGL_ES工具查看每一帧的draw情况-">2.4 使用Tracer For OpenGL ES工具查看每一帧的draw情况.</h4><ol>
 <li>Tracer工具也在Android Device Monitor中.点击右上角的Tracer for OpenGL ES按钮就可以进入(如果没有这个按钮,点击旁边的Open Perspective按钮,从选项中选择Tracer for OpenGL ES即可).</li>
-<li>初次打开Tracer工具,里面是没有内容的,点击右上角的两个按钮(一个是打开现有的GLTrace文件,另一个是新建GLTrace文件)<br>点击Trace按钮, 手机会自动启动应用程序并启动对应的Activity,当手机上的内容完全绘制出来之后,就可以点击Stop按钮,生成GlTrace文件.文件会自动打开.<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png\&quot;" alt="\&quot;Image\&quot;"></a></li>
-<li>分析GLTrace文件<br>这张图是优化过后的图,对比优化前的图可以发现,优化后不会去绘制默认的背景图和CustomViewBehind的背景图.<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png\&quot;" alt="\&quot;Image\&quot;"></a><br>这只是一帧的绘制,如果多操作几下生成多个帧的绘制trace文件,会发现这两个背景会被多次的重绘,去掉后不仅会减轻过渡绘制,也会加快GUP的绘制速度.</li>
+<li>初次打开Tracer工具,里面是没有内容的,点击右上角的两个按钮(一个是打开现有的GLTrace文件,另一个是新建GLTrace文件)<br>点击Trace按钮, 手机会自动启动应用程序并启动对应的Activity,当手机上的内容完全绘制出来之后,就可以点击Stop按钮,生成GlTrace文件.文件会自动打开.</li>
 </ol>
+<p><img src="http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png" alt="Image"></p>
+<ol>
+<li>分析GLTrace文件<br>这张图是优化过后的图,对比优化前的图可以发现,优化后不会去绘制默认的背景图和CustomViewBehind的背景图.</li>
+</ol>
+<p><img src="http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png" alt="Image"></p>
+<p>这只是一帧的绘制,如果多操作几下生成多个帧的绘制trace文件,会发现这两个背景会被多次的重绘,去掉后不仅会减轻过渡绘制,也会加快GUP的绘制速度.</p>
 <h3 id="3-优化建议">3.优化建议</h3><ol>
 <li>ActionBar上有蓝色(紫色)说明appWindow绘制了一层背景,这层背景是可以去掉的.参考上面的教程.</li>
 <li>公共控件的背景重绘请公共控件的负责人关注一下.(SmartBar在只有两个图标(back,menu)时,不存在过渡绘制,一旦加上其他的按钮,就会出现比较严重的过渡绘制,这个需要注意一下.)</li>

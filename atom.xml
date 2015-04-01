@@ -692,7 +692,7 @@ finished. total time: 70.095s
     <link href="http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/"/>
     <id>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</id>
     <published>2015-01-13T11:38:53.000Z</published>
-    <updated>2015-04-01T10:24:46.000Z</updated>
+    <updated>2015-04-01T10:29:32.000Z</updated>
     <content type="html"><![CDATA[<p>上一篇<a href="\&quot;http://www.androidperformance.com/android-performance-optimization-overdraw-1.html\&quot;">文章</a>从理论的角度讲解了一下什么是过渡绘制，以及可以用来查看和确认过渡绘制的工具，还提供了一些优化过渡绘制的方法。对代码和布局比较熟悉的人，看完上一篇其实就已经可以对自己的应用进行优化了。我记得有人说过，用iphone你只需要保证苹果有节操即可，用Android你就得保证所有的Android开发者都有节操。但现实是残酷的，现在Android市场上，有很多粗制滥造的应用，其中不乏大厂之作，各位打开过渡绘制按钮，就知道我所言非虚。作为一个Android开发人员，我肯定是更希望Android能一步一步好起来，超越iphone。</p>
 <p>这篇文章从实战的角度，讲解了一个过渡绘制的优化过程。当然这里用到的只是很少的一部分，毕竟每个应用差别很大，优化方式也各不一样。所以这篇文章仅供参考，想把这块做好还是要下功夫的。不过令我比较欣慰的是，在公司内推行这个优化之后，我们Flyme内部的自带应用已经做得很好了，当然还是有不少界面有优化的空间，但总体还是比较满意的。</p>
 <p>如果没有看过前一篇，可以点这里：<a href="\&quot;http://www.androidperformance.com/android-performance-optimization-overdraw-1.html\&quot;" title="\&quot;Android性能优化之过渡绘制(一)\&quot;">Android性能优化之过渡绘制(一)</a></p>
@@ -772,9 +772,14 @@ finished. total time: 70.095s
 </ol>
 <h4 id="2-4_使用Tracer_For_OpenGL_ES工具查看每一帧的draw情况-">2.4 使用Tracer For OpenGL ES工具查看每一帧的draw情况.</h4><ol>
 <li>Tracer工具也在Android Device Monitor中.点击右上角的Tracer for OpenGL ES按钮就可以进入(如果没有这个按钮,点击旁边的Open Perspective按钮,从选项中选择Tracer for OpenGL ES即可).</li>
-<li>初次打开Tracer工具,里面是没有内容的,点击右上角的两个按钮(一个是打开现有的GLTrace文件,另一个是新建GLTrace文件)<br>点击Trace按钮, 手机会自动启动应用程序并启动对应的Activity,当手机上的内容完全绘制出来之后,就可以点击Stop按钮,生成GlTrace文件.文件会自动打开.<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png\&quot;" alt="\&quot;Image\&quot;"></a></li>
-<li>分析GLTrace文件<br>这张图是优化过后的图,对比优化前的图可以发现,优化后不会去绘制默认的背景图和CustomViewBehind的背景图.<br><a href="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png\&quot;"><img src="\&quot;http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png\&quot;" alt="\&quot;Image\&quot;"></a><br>这只是一帧的绘制,如果多操作几下生成多个帧的绘制trace文件,会发现这两个背景会被多次的重绘,去掉后不仅会减轻过渡绘制,也会加快GUP的绘制速度.</li>
+<li>初次打开Tracer工具,里面是没有内容的,点击右上角的两个按钮(一个是打开现有的GLTrace文件,另一个是新建GLTrace文件)<br>点击Trace按钮, 手机会自动启动应用程序并启动对应的Activity,当手机上的内容完全绘制出来之后,就可以点击Stop按钮,生成GlTrace文件.文件会自动打开.</li>
 </ol>
+<p><img src="http://www.androidperformance.com/wp-content/uploads/2015/01/Image3.png" alt="Image"></p>
+<ol>
+<li>分析GLTrace文件<br>这张图是优化过后的图,对比优化前的图可以发现,优化后不会去绘制默认的背景图和CustomViewBehind的背景图.</li>
+</ol>
+<p><img src="http://www.androidperformance.com/wp-content/uploads/2015/01/Image4.png" alt="Image"></p>
+<p>这只是一帧的绘制,如果多操作几下生成多个帧的绘制trace文件,会发现这两个背景会被多次的重绘,去掉后不仅会减轻过渡绘制,也会加快GUP的绘制速度.</p>
 <h3 id="3-优化建议">3.优化建议</h3><ol>
 <li>ActionBar上有蓝色(紫色)说明appWindow绘制了一层背景,这层背景是可以去掉的.参考上面的教程.</li>
 <li>公共控件的背景重绘请公共控件的负责人关注一下.(SmartBar在只有两个图标(back,menu)时,不存在过渡绘制,一旦加上其他的按钮,就会出现比较严重的过渡绘制,这个需要注意一下.)</li>
