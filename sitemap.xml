@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</loc>
+    <lastmod>2015-04-01T10:24:46.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/README.html</loc>
-    <lastmod>2015-04-01T10:19:49.000Z</lastmod>
+    <lastmod>2015-04-01T10:23:44.000Z</lastmod>
   </url>
   
   <url>
@@ -49,11 +54,6 @@
   <url>
     <loc>http://androidperformance.com/2015/01/30/android-performance-tools-systrace-1/</loc>
     <lastmod>2015-03-27T05:27:06.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</loc>
-    <lastmod>2015-03-27T05:26:55.000Z</lastmod>
   </url>
   
   <url>
