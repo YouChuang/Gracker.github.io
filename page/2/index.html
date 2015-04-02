@@ -126,93 +126,6 @@
           
           
             
-              <a class="post-title-link" href="../../2014/06/03/android-edittext-do-not-auto-get-focus/">
-                [Android小技巧]:如何让EditText不自动获取焦点
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-06-02
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/06/03/android-edittext-do-not-auto-get-focus/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/03/android-edittext-do-not-auto-get-focus/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.</p>
-<p>这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:</p>
-<p><pre class="lang:java decode:true ">android:focusable=”true”<br>android:focusableInTouchMode=”true”</pre><br>这样做的原理是让用户进入到这个页面之后,EditText的父控件 获取焦点,这样的话EditText就获取不到焦点,软键盘也不会自动弹起.只有在点击EditText的时候,软键盘才会弹起.</p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="../../2014/06/01/android-frame-animation/">
                 Android Frame animation模拟脉搏跳动小动画
               </a>
@@ -483,191 +396,6 @@
           
           
             
-              <a class="post-title-link" href="../../2014/05/28/javamodifier/">
-                JAVA修饰符
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-28
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Java/">Java</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/28/javamodifier/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/28/javamodifier/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <div style="color: #000000;font-family: 微软雅黑"><strong>java.lang.reflect.Modifier</strong><br><table><br><tbody><br><tr><br><td colspan="2"><strong>ABSTRACT</strong></td><br></tr><br><tr><br><td></td><br><td>Abstract(抽象)可以修饰类、方法。包含一个或多个抽象方法的类本身必须被声明为抽象类。除了抽象方法之外，抽象类还可以包含具体数据和具体方法。抽象方法充当着占位的角色，它们的具体实现在子类中。扩展抽象类可以有两种选择：一种是在子类中定义部分抽象方法或抽象方法也不定义，这样就必须将子类也标记为抽象类；另一种是定义全部的抽象方法，这样子类就不是抽象类了。<br><br>类即使不含有抽象方法也可以将类声明为抽象类。抽象类不能实例化。也就是说，如果将一个类声明为abstract，就不能创建这个类的对象。不过可以定义一个抽象类的对象变量，但是它只能引用继承抽象类的非抽象子类的对象。<br><br>注意比较：<br><strong>private void</strong> <strong>print(){}</strong>；此语句表示方法的空实现。<br><strong>Abstract void</strong> <strong>print()</strong>； 此语句表示方法的抽象，无实现。<br><br>Abstract和static或者Abstract和final不能放在一起，否则便会出现错误。<br><br>&nbsp;</td><br></tr><br><tr><br><td><strong>FINAL</strong></td><br><td></td><br></tr><br><tr><br><td></td><br><td>final可以修饰类，方法，域。<br>域被声明为final，则构造对象之后就不允许改变它们的值了。如果被修饰的域是对象引用，则对象内的值还是可以改变的，但是对象的引用不能改变。（必须初始化，不能被修改）<br>方法被声明为final，可以确保方法不会在子类中改变语义，就是说不能被子类覆盖。<br><br>PS：早期JAVA中，有时为了避免动态绑定带来的系统开销而使用final修饰符。如果一个方法很短并且没有被覆盖，编译器就能够对它进行优化处理，这个过程被称为内联（inlining）。例如，内联调用e.getName()将被替换为访问e.name域。这是由于CPU在处理调用方法的指令时，使用的分支转移会扰乱预取指令策略，增加系统开销，使用内联可以避免这一开销。但是，如果getName在另一个类中被覆盖，那么编译器就无法知道覆盖的代码将会做什么操作，因此就不能对它进行内敛处理了。<br><br>不过现在虚拟机中的即时编译器比传统编译器的处理能力要强得多。这种编译器可以准确地知道类之间的继承关系，并能够检测出类中是否真正地存在覆盖给定的方法。如果方法简短，被调用频繁而且没有真正地被覆盖，那么即时编译器就会对这个方法进行内联处理。如果虚拟机加载了另一个类，而在这个类中包含对内联方法的覆盖，那么优化器将取消对覆盖方法的内联。这过程很慢而且很少发生。<br><br>类被声明为final，相当于其中的方法自动成为final方法，但是不包括类中的域。这种操作可以阻止利用被修饰的类定义子类。就是说不允许被继承的类被称为final类。一般来说一个类要么为继承设计，并提供文档说明；要么就禁止继承，成为一个final类。<br>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/28/javamodifier/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/27/picture-about-vim/">
-                一张图记住Vim快捷键
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-27
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Linux/">Linux</a>
-
-                
-                
-                  ， 
-                
-
-              
-                <a href="../../categories/Linux/开发工具推荐/">开发工具推荐</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/27/picture-about-vim/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/27/picture-about-vim/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>微博上的一张配图(感谢图片作者),可以设为壁纸,记住VIM的快捷键.关于Vim的使用,可以查看这里:<a href="http://www.grackertalk.com/%e4%bd%bf%e7%94%a8vim.html" title="使用VIM" target="_blank" rel="external">Vim使用教程</a></p>
-<p><a href="http://www.grackertalk.com/wp-content/uploads/2014/05/vim快捷键.jpg" target="_blank" rel="external"><img src="http://www.grackertalk.com/wp-content/uploads/2014/05/vim快捷键.jpg" alt="vim快捷键"></a></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="../../2014/05/25/usevim/">
                 使用VIM
               </a>
@@ -722,104 +450,6 @@
             <div style="color: #000000;font-family: 微软雅黑"><br>    <span><br>        为什么有那么多编辑器我要使用vim？因为当我想保存文件时总是习惯性的：wq，即使我正在使用eclipse什么的~<br>        其实使用熟练使用vim可以让你完全摆脱鼠标，摆脱小键盘，摆脱方向键，你的手不用离开那块键盘区域就能完成你能想到的任何事情。<br>        不过vim并不算是个很友好的编辑器，刚开始使用你会觉得它十分特别非常极其的操蛋。你会想怎么会有人用这种东西，还不如notepad，不如gedit，更不如我比较喜欢用的sublime Text。但是如果你强迫自己使用一到两周后慢慢你会发现这东西真是让人爱不释手。<br>        刚开始使用这货的时候，也是各种蛋疼~去看各种VIM命令大全，VIM命令手册等等的吧，收效甚微，看了也记不住。后来慢慢觉得命令不是看会的，而是用会的。不要去记那些命令是什么，而是当你需要什么样的命令时再去找这样的命令，甚至你可以创造一个这样的命令。<br>    </span><br>
             <div class="post-more-link text-center">
               <a class="btn" href="../../2014/05/25/usevim/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/21/it-blog-rss-list/">
-                个人收藏的技术相关博客及其RSS地址(持续更新)
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-21
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-                  ， 
-                
-
-              
-                <a href="../../categories/Android/Github/">Github</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/21/it-blog-rss-list/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/21/it-blog-rss-list/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>这个项目记录了个人订阅的一些科技人的Blog地址,欢迎大家推荐,一起来完善!我使用的Mac客户端的Rss软件Readkit,如果你有更好的Rss阅读软件,欢迎推荐.目前手机上还没有找到对应的软件,Readkit没有手机的版本,也不知道什么时候会出手机版本.ORZ……目前的数量还不多,希望大家能多推荐些,但是最好是那种质量比较高的Blog,每个人的时间都有限,把最好的时光浪费在美好的事物上.</p>
-<p><strong>本文内容的github地址:<a href="https://github.com/Gracker/Rss-IT">https://github.com/Gracker/Rss-IT</a> 欢迎大家补充和推荐.github和本Blog我会持续更新.</strong></p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/21/it-blog-rss-list/#more">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1033,12 +663,417 @@
 
 
   
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/">
+                [Android4.4]Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-05-14
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h4 id="摘要:_Android4-4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案-">摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</h4><p>&nbsp;</p>
+<h3 id="0-_问题背景">0. 问题背景</h3><p>在Android4.4之前，许多应用程序使用如下代码去通知更新文件数据库</p>
+<pre class=\"lang:java decode:true\" title=\"通知系统更新文件系统\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, 
+     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
+
+<p>这样做的坏处：每次发送这个广播，都会<span style=\"color: #222222;\">让MediaScanner重新扫描一次系统文件，很影响设备的电池寿命。当然传入的路径可以</span> 是单个文件或者内容很少的文件夹，会减轻扫描系统文件的压力，但是还是会因为扫描频繁而浪费电。所以在Android4.4<span style=\"color: #222222;\">开始，只允许系统应用发送这样的intent。</span> 所以在Android4.4系统的机器上会出现如下错误：</p>
+<pre class=\"lang:java decode:true\" title=\"错误\"> Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED</pre>
+
+<h3 id="1-_解决办法：">1. 解决办法：</h3><p>1 . 将Intent换为 <a href="\"><code>ACTION_MEDIA_SCANNER_SCAN_FILE</code></a><span style=\"color: #000000;\">.</span></p>
+<pre class=\"lang:java decode:true\" title=\"ACTION_MEDIA_SCANNER_SCAN_FILE\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, 
+     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
+
+<p>但是这个Intent只扫描文件，不扫描文件夹。如果你的应用只操作单个文件而不是文件夹，就可以使用这个。 2. 不发广播，换为MediaScannerConnection进行通知更新</p>
+<pre class=\"lang:java decode:true\" title=\"MediaScannerConnection\"> MediaScannerConnection.scanFile(this,
+          new String[] { file.toString() }, null,
+          new MediaScannerConnection.OnScanCompletedListener() {
+      public void onScanCompleted(String path, Uri uri) {
+          Log.i(\"ExternalStorage\", \"Scanned \" + path + \":\");
+          Log.i(\"ExternalStorage\", \"-&gt; uri=\" + uri);
+      }
+ });</pre>
+
+<p>这样做就属于不发送广播,在4.4上可以正常工作.</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/05/02/android_log_to_file/">
+                Android开发:Log2File工具类
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-05-02
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+                  ， 
+                
+
+              
+                <a href="../../categories/Android/Github/">Github</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/05/02/android_log_to_file/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/02/android_log_to_file/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <div style="color: #000000;">Log2File工具类是用于Android程序将Log记录到文件中(如sd卡)的工具,应用场景：</div><br><div style="color: #000000;"><br><br>1.  无法连接电脑进行调试（usb线被usbotg占用）<br>2.  Log不容易被抓取<br>3.  Bug出现很随机，不是必出现<br>4.  其他自己脑补<br><br>##  0.说明<br><br>这篇文章最早是在我的CSDN博客上面发布了:<a href="http://blog.csdn.net/grackergao/article/details/18322749" title="Log2File类的使用">http://blog.csdn.net/grackergao/article/details/18322749</a> .现在讲他转移到了这里,代码的Github地址 :<a href="https://github.com/Gracker/Android-Utils/blob/master/Log2File.java" title="Log2File的github地址">https://github.com/Gracker/Android-Utils/blob/master/Log2File.java</a><br><br>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/05/02/android_log_to_file/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/05/02/use-vps-and-vpn/">
+                使用VPS搭建VPN+VPN路由设置+MacOS的VPN登录设置
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-05-02
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Linux/">Linux</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/05/02/use-vps-and-vpn/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/02/use-vps-and-vpn/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h4 id="虚拟专用网（英语：Virtual_Private_Network，简称VPN），是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。虚拟私人网络的讯息透过公用的网络架构（例如：互联网）来传送内联网的网络讯息。它利用已加密的通道协议（Tunneling_Protocol）来达到保密、传送端认证、信息准确性等私人信息安全效果。这种技术可以用不安全的网络（例如：互联网）来传送可靠、安全的信息。需要注意的是，加密信息与否是可以控制的。没有加密的虚拟专用网信息依然有被窃取的危险。"><strong>虚拟专用网</strong>（<span style=\"color: #0645ad;\">英语</span>：<a href="\"><strong>Virtual Private Network</strong></a>，简称<strong>VPN</strong>），是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。虚拟私人网络的讯息透过公用的网络架构（例如：<span style=\"color: #0645ad;\">互联网</span>）来传送内联网的网络讯息。它利用已加密的<span style=\"color: #0645ad;\">通道协议</span>（Tunneling Protocol）来达到保密、传送端认证、信息准确性等私人信息安全效果。这种技术可以用不安全的网络（例如：互联网）来传送可靠、安全的信息。需要注意的是，加密信息与否是可以控制的。没有加密的虚拟专用网信息依然有被窃取的危险。</h4><h1 id=""> </h1><h2 id="1-搭建VPN">1.搭建VPN</h2><p>使用这个VPS已经有一个月了，wordpress也折腾得差不多了，之前一直说要搭建一个VPN，由于种种原因没有去做，今天刚好有时间，就照着教程来了一遍，总算是搞定了，在Doit上划掉这个Task的时候，幸福感满满的。</p>
+<p>搭建过程还是蛮无聊的，教程都写得很清楚，我之所以要搬运一下，是因为搭建+配置+登录，这一套组合拳下来，才能在<a href="\">facebook</a>、<a href="\">youtube</a>上刷网，但是各个教程都只是讲了一部分。我把基本操作搬运过来，然后再加上自己遇到的问题和解决方法，可以让看博客的人对着这篇一路下来就可以直接上网了。</p>
+<h3 id="1-1_前提条件">1.1 前提条件</h3><p>首先，你要有一个VPS，国外的VPS。如果不懂可以查看<a href="\" title="\">如何搭建VPS</a>  我使用的是Linode在日本美帝的的服务器（如果你也想买Linode的VPS，购买的时候输入我的邀请code：a96df99ce34b5e0f76695558608c87fb2db5cc03 或者直接：<a href="\" title="\">https://www.linode.com/r=a96df99ce34b5e0f76695558608c87fb2db5cc03</a>）</p>
+<p>其次，要懂一点Linux，一点点就可以了。</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/05/02/use-vps-and-vpn/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/05/01/about_random/">
+                关于自由
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-05-01
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/生活感悟/">生活感悟</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/05/01/about_random/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/01/about_random/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p><strong>当Youtube被封的时候，我淡定，因为我们有优酷，而且Youtube的英文视频我也看不懂；</strong></p>
+<p><strong>当Facebook被封的时候，我淡定，因为我们有人人，而且我也没有多少国外朋友；</strong></p>
+<p><strong>当Google被封的时候，我淡定，因为我们有百度，而且百度更懂中文；</strong></p>
+<p><strong>当Twiiter被封的时候，我淡定，因为我们有微博，而且Twitter远没有微博功能强大；</strong></p>
+<p><strong>当Dropbox被封的时候，我有点不淡定了，因为国内同类服务做的像坨屎；</strong></p>
+<p><strong>当Gmail被封的时候，我有点不淡定了，因为Gmail几乎没有垃圾广告；</strong></p>
+<p><strong>当Google Docs被封的时候，我有点不淡定了，因为国内没有在线协作平台；</strong></p>
+<p><strong>当Google Reader被封的时候，我有点不淡定了，因为国内RSS订阅整合和分享功能远没有Reader优秀；</strong></p>
+<p><strong>这时候，我突然想起来Youtube有即时翻译功能，而且里面每天都会产生大量优秀视频；</strong></p>
+<p><strong>这时候，我突然想起来Facebook有各种有趣应用，甚至可以整合到Outlook里面；</strong></p>
+<p><strong>这时候，我突然想起来Google有scholar search，还有各种个性化的服务；</strong></p>
+<p><strong>这时候，我突然想起来Twiiter各种神奇，甚至可以用来估算龙卷风带来的损失；</strong></p>
+<p><strong>这时候，我突然想起来Wordpress可以做简易的网站，可以很轻松的定制个性化服务。</strong></p>
+<p><strong>于是，我想到墙外看看，却发现——我得不到他们 ，我自由获取信息的权利被默默的剥夺了。</strong></p>
+<p><strong>更加恐怖的是： 全世界都用Twitter，Facebook，只有我们用微博。</strong></p>
+<p><strong>我们和他们生活在不同的维度，我们使用的永远是劣质的山寨品，甚至还要承担比正品更高的价格。当我们断绝了与外界的联系，当我们只能获得经过别人筛选过的信息，无知者无畏将是我们唯一的宿命。</strong></p>
+<p><strong>比起在各种“异端邪说”中艰难寻找真理，对无知的恐惧更让我胆战心惊。</strong></p>
+<p><strong>给所有不翻墙的朋友：</strong></p>
+<p><strong>你可以说我在墙内得到的信息足够了，翻墙出去完全没有必要，但请记得，终究有一天，你想看看外面的世界，但却发现，由于当初的漠不关心，我们现在已经生活在信息的牢笼中，再也出不去了。</strong></p>
+<p><a href="http://weibo.com/p/1001603704341168019296" title="http://weibo.com/p/1001603704341168019296" target="_blank" rel="external">http://weibo.com/p/1001603704341168019296</a></p>
+<p><span style="color: #ff6600;">本文非原创,系转载,如侵犯版权,请与我联系,我会迅速删除.</span></p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
 
           </div>
 
           
             <div class="pagination">
-              <a class="extend prev" rel="prev" href="../..//">&laquo;</a><a class="page-number" href="../..//">1</a><span class="page-number current">2</span><a class="page-number" href="../3/">3</a><a class="page-number" href="../4/">4</a><a class="extend next" rel="next" href="../3/">&raquo;</a>
+              <a class="extend prev" rel="prev" href="../..//">&laquo;</a><a class="page-number" href="../..//">1</a><span class="page-number current">2</span><a class="page-number" href="../3/">3</a><a class="extend next" rel="next" href="../3/">&raquo;</a>
             </div>
           
         </div>
@@ -1065,7 +1100,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

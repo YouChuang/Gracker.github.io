@@ -126,698 +126,6 @@
           
           
             
-              <a class="post-title-link" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/">
-                [Android4.4]Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-14
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h4 id="摘要:_Android4-4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案-">摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</h4><p>&nbsp;</p>
-<h3 id="0-_问题背景">0. 问题背景</h3><p>在Android4.4之前，许多应用程序使用如下代码去通知更新文件数据库</p>
-<pre class=\"lang:java decode:true\" title=\"通知系统更新文件系统\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, 
-     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
-
-<p>这样做的坏处：每次发送这个广播，都会<span style=\"color: #222222;\">让MediaScanner重新扫描一次系统文件，很影响设备的电池寿命。当然传入的路径可以</span> 是单个文件或者内容很少的文件夹，会减轻扫描系统文件的压力，但是还是会因为扫描频繁而浪费电。所以在Android4.4<span style=\"color: #222222;\">开始，只允许系统应用发送这样的intent。</span> 所以在Android4.4系统的机器上会出现如下错误：</p>
-<pre class=\"lang:java decode:true\" title=\"错误\"> Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED</pre>
-
-<h3 id="1-_解决办法：">1. 解决办法：</h3><p>1 . 将Intent换为 <a href="\"><code>ACTION_MEDIA_SCANNER_SCAN_FILE</code></a><span style=\"color: #000000;\">.</span></p>
-<pre class=\"lang:java decode:true\" title=\"ACTION_MEDIA_SCANNER_SCAN_FILE\">sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, 
-     Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
-
-<p>但是这个Intent只扫描文件，不扫描文件夹。如果你的应用只操作单个文件而不是文件夹，就可以使用这个。 2. 不发广播，换为MediaScannerConnection进行通知更新</p>
-<pre class=\"lang:java decode:true\" title=\"MediaScannerConnection\"> MediaScannerConnection.scanFile(this,
-          new String[] { file.toString() }, null,
-          new MediaScannerConnection.OnScanCompletedListener() {
-      public void onScanCompleted(String path, Uri uri) {
-          Log.i(\"ExternalStorage\", \"Scanned \" + path + \":\");
-          Log.i(\"ExternalStorage\", \"-&gt; uri=\" + uri);
-      }
- });</pre>
-
-<p>这样做就属于不发送广播,在4.4上可以正常工作.</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/11/crazy-coder/">
-                读书笔记
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-11
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/读书笔记/">读书笔记</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/11/crazy-coder/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/11/crazy-coder/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>本书描写了绝影等程序员的成长之路，分为大学、工作、创业三部分。作者笔下以绝影、BOSS liu、Bug Yang等为代表的程序员是大多程序员成长的真实写照，很多网友看过小说之后都说“这些事好像就是我身上发生的事情，但是我写不出来，绝影写出来了”。绝影给疯狂的程序员下了一个定义,现在在我看来,是相当精髓的:‘疯狂的程序员’绝对不是靠狂妄和拼命的程序员，而是能够踏实，持续努力的程序员。等你真正做到了这两点，技术上去了，在写程序这个领域，能够限制你的只有你的想像力，到那个时候，你才算个‘疯狂的程序员’，这种程序员阿，是能令竞争对手无比恐惧的。” </p>
-<p>第一次读&lt;疯狂的程序员&gt;这本书,还是在大学的时候,现在也不记得当时是如何知道这本书的,总之读了之后,便一发不可收拾,翻来覆去读了好几遍,每次读完,都有种被打了鸡血的感觉. 绝影的身影陪伴着我读过了大学的一半生活. 工作了之后再来看这本书,还是依旧有那种感觉.在多看上看了以后,我在其中做了有一些笔记和书摘,摘录在下面,大家一起感受下.</p>
-<p>这是本值得程序员或IT界的年轻人一读的书。绝影和boss liu的经历一定会给年轻的程序员以鼓舞和启发。 读完这本书，我觉得绝影他们研究的技术并不难，但是很实在。我现在却是想得太多，动手太少，可以称做伪程序员吧，欠练。 我觉得在关注技术的同时也不能对身边的人关心太少。绝影原来的女朋友小燕还是不错的，只是一直以来绝影对她的关心太少了。等到失去的时候才发现这一点就太晚了</p>
-<p>另外作者在书中反复强调的一个观点就是:要么做第一个，要么做最好的一个. 这也是绝影所一直坚持的,所以对待每件事情都很认真,每件事情都去做到完美,他更像是给自己做东西,而不是给别人打工.</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/11/crazy-coder/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/02/android_log_to_file/">
-                Android开发:Log2File工具类
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-02
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-                  ， 
-                
-
-              
-                <a href="../../categories/Android/Github/">Github</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/02/android_log_to_file/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/02/android_log_to_file/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <div style="color: #000000;">Log2File工具类是用于Android程序将Log记录到文件中(如sd卡)的工具,应用场景：</div><br><div style="color: #000000;"><br><br>1.  无法连接电脑进行调试（usb线被usbotg占用）<br>2.  Log不容易被抓取<br>3.  Bug出现很随机，不是必出现<br>4.  其他自己脑补<br><br>##  0.说明<br><br>这篇文章最早是在我的CSDN博客上面发布了:<a href="http://blog.csdn.net/grackergao/article/details/18322749" title="Log2File类的使用">http://blog.csdn.net/grackergao/article/details/18322749</a> .现在讲他转移到了这里,代码的Github地址 :<a href="https://github.com/Gracker/Android-Utils/blob/master/Log2File.java" title="Log2File的github地址">https://github.com/Gracker/Android-Utils/blob/master/Log2File.java</a><br><br>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/02/android_log_to_file/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/02/use-vps-and-vpn/">
-                使用VPS搭建VPN+VPN路由设置+MacOS的VPN登录设置
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-02
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Linux/">Linux</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/02/use-vps-and-vpn/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/02/use-vps-and-vpn/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h4 id="虚拟专用网（英语：Virtual_Private_Network，简称VPN），是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。虚拟私人网络的讯息透过公用的网络架构（例如：互联网）来传送内联网的网络讯息。它利用已加密的通道协议（Tunneling_Protocol）来达到保密、传送端认证、信息准确性等私人信息安全效果。这种技术可以用不安全的网络（例如：互联网）来传送可靠、安全的信息。需要注意的是，加密信息与否是可以控制的。没有加密的虚拟专用网信息依然有被窃取的危险。"><strong>虚拟专用网</strong>（<span style=\"color: #0645ad;\">英语</span>：<a href="\"><strong>Virtual Private Network</strong></a>，简称<strong>VPN</strong>），是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。虚拟私人网络的讯息透过公用的网络架构（例如：<span style=\"color: #0645ad;\">互联网</span>）来传送内联网的网络讯息。它利用已加密的<span style=\"color: #0645ad;\">通道协议</span>（Tunneling Protocol）来达到保密、传送端认证、信息准确性等私人信息安全效果。这种技术可以用不安全的网络（例如：互联网）来传送可靠、安全的信息。需要注意的是，加密信息与否是可以控制的。没有加密的虚拟专用网信息依然有被窃取的危险。</h4><h1 id=""> </h1><h2 id="1-搭建VPN">1.搭建VPN</h2><p>使用这个VPS已经有一个月了，wordpress也折腾得差不多了，之前一直说要搭建一个VPN，由于种种原因没有去做，今天刚好有时间，就照着教程来了一遍，总算是搞定了，在Doit上划掉这个Task的时候，幸福感满满的。</p>
-<p>搭建过程还是蛮无聊的，教程都写得很清楚，我之所以要搬运一下，是因为搭建+配置+登录，这一套组合拳下来，才能在<a href="\">facebook</a>、<a href="\">youtube</a>上刷网，但是各个教程都只是讲了一部分。我把基本操作搬运过来，然后再加上自己遇到的问题和解决方法，可以让看博客的人对着这篇一路下来就可以直接上网了。</p>
-<h3 id="1-1_前提条件">1.1 前提条件</h3><p>首先，你要有一个VPS，国外的VPS。如果不懂可以查看<a href="\" title="\">如何搭建VPS</a>  我使用的是Linode在日本美帝的的服务器（如果你也想买Linode的VPS，购买的时候输入我的邀请code：a96df99ce34b5e0f76695558608c87fb2db5cc03 或者直接：<a href="\" title="\">https://www.linode.com/r=a96df99ce34b5e0f76695558608c87fb2db5cc03</a>）</p>
-<p>其次，要懂一点Linux，一点点就可以了。</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/02/use-vps-and-vpn/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/02/gracker-booklist/">
-                Gracker的书单(持续更新,欢迎推荐书籍)(10月30更新)
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-01
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/读书笔记/">读书笔记</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/02/gracker-booklist/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/02/gracker-booklist/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p><a href="https://github.com/Gracker/Gracker-book-list">Github</a></p>
-<h4 id="自从买了KindlePW,刷了多看之后,读了不少书,也涨了很多见识,这里把我读过的书记录在这里,分享的同时也作为一个记录,以此勉励我-也希望能找到志同道合的小伙伴一起读书-">自从买了KindlePW,刷了多看之后,读了不少书,也涨了很多见识,这里把我读过的书记录在这里,分享的同时也作为一个记录,以此勉励我.也希望能找到志同道合的小伙伴一起读书.</h4><h3 id="读过的书(非技术相关):">读过的书(非技术相关):</h3><ol>
-<li>疯狂的程序员     by绝影</li>
-<li>MacTalk 人生元编程  by 池建强</li>
-<li>黑客与画家  by<a href="\">Paul Graham</a><span style=\"color: #111111;\"> </span></li>
-<li>创业的乐趣  by Jason Yin</li>
-<li>天行健    by燕垒生</li>
-<li>三体1:地球往事    by<span style=\"color: #212121;\">刘慈欣</span></li>
-<li>三体2:黑暗森林  by<span style=\"color: #212121;\">刘慈欣</span></li>
-<li>三体3:死神永生  by<span style=\"color: #212121;\">刘慈欣</span></li>
-<li>Doom启示录  by<a href="\">大卫·卡什诺</a><span style=\"color: #111111;\"> </span></li>
-<li>明朝那些事儿(1-7)  by当年明月</li>
-<li>南明那些事儿   by<a href="\">洪兵</a><span style=\"color: #111111;\"> </span></li>
-<li>晚明兵变  by李文志</li>
-<li>中国的天空   by<a href="\">周斌</a><span style=\"color: #111111;\"> / </span><a href="\">邹新奇</a><span style=\"color: #111111;\"> </span>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/02/gracker-booklist/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/01/about_random/">
-                关于自由
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-01
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/生活感悟/">生活感悟</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/01/about_random/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/01/about_random/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p><strong>当Youtube被封的时候，我淡定，因为我们有优酷，而且Youtube的英文视频我也看不懂；</strong></p>
-<p><strong>当Facebook被封的时候，我淡定，因为我们有人人，而且我也没有多少国外朋友；</strong></p>
-<p><strong>当Google被封的时候，我淡定，因为我们有百度，而且百度更懂中文；</strong></p>
-<p><strong>当Twiiter被封的时候，我淡定，因为我们有微博，而且Twitter远没有微博功能强大；</strong></p>
-<p><strong>当Dropbox被封的时候，我有点不淡定了，因为国内同类服务做的像坨屎；</strong></p>
-<p><strong>当Gmail被封的时候，我有点不淡定了，因为Gmail几乎没有垃圾广告；</strong></p>
-<p><strong>当Google Docs被封的时候，我有点不淡定了，因为国内没有在线协作平台；</strong></p>
-<p><strong>当Google Reader被封的时候，我有点不淡定了，因为国内RSS订阅整合和分享功能远没有Reader优秀；</strong></p>
-<p><strong>这时候，我突然想起来Youtube有即时翻译功能，而且里面每天都会产生大量优秀视频；</strong></p>
-<p><strong>这时候，我突然想起来Facebook有各种有趣应用，甚至可以整合到Outlook里面；</strong></p>
-<p><strong>这时候，我突然想起来Google有scholar search，还有各种个性化的服务；</strong></p>
-<p><strong>这时候，我突然想起来Twiiter各种神奇，甚至可以用来估算龙卷风带来的损失；</strong></p>
-<p><strong>这时候，我突然想起来Wordpress可以做简易的网站，可以很轻松的定制个性化服务。</strong></p>
-<p><strong>于是，我想到墙外看看，却发现——我得不到他们 ，我自由获取信息的权利被默默的剥夺了。</strong></p>
-<p><strong>更加恐怖的是： 全世界都用Twitter，Facebook，只有我们用微博。</strong></p>
-<p><strong>我们和他们生活在不同的维度，我们使用的永远是劣质的山寨品，甚至还要承担比正品更高的价格。当我们断绝了与外界的联系，当我们只能获得经过别人筛选过的信息，无知者无畏将是我们唯一的宿命。</strong></p>
-<p><strong>比起在各种“异端邪说”中艰难寻找真理，对无知的恐惧更让我胆战心惊。</strong></p>
-<p><strong>给所有不翻墙的朋友：</strong></p>
-<p><strong>你可以说我在墙内得到的信息足够了，翻墙出去完全没有必要，但请记得，终究有一天，你想看看外面的世界，但却发现，由于当初的漠不关心，我们现在已经生活在信息的牢笼中，再也出不去了。</strong></p>
-<p><a href="http://weibo.com/p/1001603704341168019296" title="http://weibo.com/p/1001603704341168019296" target="_blank" rel="external">http://weibo.com/p/1001603704341168019296</a></p>
-<p><span style="color: #ff6600;">本文非原创,系转载,如侵犯版权,请与我联系,我会迅速删除.</span></p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/04/13/beautiful-ios-app-ios5coins/">
-                5coins–轻松记账
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-04-12
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/04/13/beautiful-ios-app-ios5coins/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/13/beautiful-ios-app-ios5coins/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p><a href="\"><img src="\" alt="\"></a></p>
-<p>记账,是个大工程.</p>
-<p>知乎出过一个周刊,叫从存钱罐到财务自由,很多人提到理财的时候,都提到了要记账.可见记账的重要性. 我也前前后后用过好几个记账软件,手机和电脑客户端都有过尝试,不过最终还是没有坚持下来.说来惭愧……毅力是一方面,记账软件的易用性也是一方面,前几次记账觉得这么多功能,狂拽酷炫屌炸天啊.用久了就觉得,老子记个帐而已,何必搞得这么麻烦,花了多少钱,再加个备注,就完事了. 什么地点啊,人啊,消费类型啊,其实没啥必要啊!</p>
-<p>今天给大家介绍的这个软件,就是一款很简洁的记账软件(ios) : 5coins - 轻松记账(<a href="\">https://itunes.apple.com/cn/app/5coins-spend-everyday/id572886919?mt=8</a>).现在这款软件已经占据我手机Dock栏一席之地.</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/04/13/beautiful-ios-app-ios5coins/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="../../2014/04/12/analysishashmap/">
                 HashMap源码分析
               </a>
@@ -1088,12 +396,475 @@
 
 
   
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/03/17/android-build-your-own-android-notification-service-app/">
+                Android Service：开发自己的通知中心(1):辅助性服务介绍
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-17
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/03/17/android-build-your-own-android-notification-service-app/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/17/android-build-your-own-android-notification-service-app/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id=""> </h2><h1 id="1_辅助性服务介绍">1 辅助性服务介绍</h1><p>辅助性服务是安卓框架的一个特性，它的设计是为了让已经安装在安卓设备上的应用程序能够为用户提供一种导航式(引导式）回应。一个辅助性服务能够传达给<br>用户关于这个应用程序的利益，例如把文本转换成语音、当用户手指停留屏幕的一个重要区域时的haptic反馈。这一节涵盖了怎样去创建一个辅助性服务，如何处理应用程序的信息接收，还有如何把信息反馈给用户。<br>创建自己的辅助性服务</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/03/17/android-build-your-own-android-notification-service-app/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/03/10/android-adb-push-and-adb-install-different/">
+                Android中adb push和adb install的使用区别
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-10
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/03/10/android-adb-push-and-adb-install-different/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/10/android-adb-push-and-adb-install-different/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>本篇文章由史迎春(<a href="http://weibo.com/ctj13513871718">@三俗小女子</a>)投稿。转载请注明原文地址。</p>
+<p>在Android实际开发中，经常会使用adb命令，安装应用程序可以使用adb push 或者adb install。下面就来讲讲这两种安装方式的区别。</p>
+<ol>
+<li>adb push 能够指定安装目录。比如执行”adb push xxx.apk system/app” 后，xxx.apk被安装到了system/app目录下，此目录下的软件为上文中提到的system application。（注意，system/app是只读的，所以只有有root权限才能push apk进去，而且在push进去的apk会把原本的apk覆盖掉。）adb push本身的意思是将文件复制到系统中的某个文件夹下，但是将apk push到system/app下并且重启手机以后会注册应用程序。</li>
+<li>adb install 用此命令安装的软件位于 data/app 目录，带有参数 -r才能强制安装，为user application。<br>由以上两条可知，adb install和adb push的apk主要区别有：<br><table cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"></td><br><td valign="middle">push</td><br><td valign="middle">install</td><br></tr><br><tr><br><td valign="middle">目录</td><br><td valign="middle">system/app</td><br><td valign="middle">data/app</td><br></tr><br><tr><br><td valign="middle">权限</td><br><td valign="middle">系统级（权限全开）</td><br><td valign="middle">用户级（没全开）</td><br></tr><br><tr><br><td valign="middle">卸载</td><br><td valign="middle">root后删除</td><br><td valign="middle">可卸载</td><br></tr><br><tr><br><td valign="middle">大小</td><br><td valign="middle">无限制，自定义</td><br><td valign="middle">有限制</td><br></tr><br><tr><br><td valign="middle">安装</td><br><td valign="middle">pm重新注册</td><br><td valign="middle">不会重新弄注册</td><br></tr><br></tbody><br></table><br>手动安装的APK版本号和系统内置API版本号一样。</li>
+</ol>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/03/10/android-adb-push-and-adb-install-different/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/03/01/life-and-college-about-gracker/">
+                大学 毕业 工作
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-01
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/生活感悟/">生活感悟</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/03/01/life-and-college-about-gracker/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/01/life-and-college-about-gracker/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>我是一个喜欢总结并且做计划的人。从我知道如何规划自己到现在，我做了无数的计划，这些计划雄心勃勃，大有上五天揽月下五洋捉鳖之势，仿佛自己就是救世主，亿万人民等着我去拯救。但现实总是那么的残酷，我做的计划很少有能够坚持下来并完成的，以至于大家都亲切地叫我：“三分钟热情”，每思及此，也没啥好的办法。还好每个人都有自己的缺点，也都有自己的优点，而且随着时间的变化，人也是会变的。这篇博客摘录了我大学期间，大学毕业，工作了一段时间三个时期的个人总结：变的是心态，是年龄，不变的是激情，是梦想。</p>
+<p>第一篇是大三开学之前在学校的实验室写的，那个夏天去了大连东软进行实训，为期半个月左右，具体做了什么忘记了，就记得大连的雨，一下就是好几天。实训结束后为没有回家，直接搬了床和被子在实验室住下了。每天和看实验室的大爷做斗争，晚上一个人睡觉，饿了就煮泡面，现在想来，那段日子真是惬意。然后快开学的时候，写了这篇总结（最后一句真是亮瞎我的24K氪金狗眼阿）：</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/03/01/life-and-college-about-gracker/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/02/26/build-your-own-blog-by-wordpress/">
+                使用Wordpress建立个人独立博客
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-02-26
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Wordpress/">Wordpress</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/02/26/build-your-own-blog-by-wordpress/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/26/build-your-own-blog-by-wordpress/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p><a href="\"><img src="\" alt="\"></a></p>
+<p>配图来自网络。</p>
+<h1 id="个人吐槽阶段">个人吐槽阶段</h1><p>说到建立独立博客，很多人都很不屑地说，CSDN、博客园不是也提供博客地址么？为什么要花这么大力气，自己搭建一个博客呢？举个不太恰当的例子，很多人刚毕业没钱，在外边租房子，提供租房服务的很多，一租好几年，但每个人都想拥有自己的房子。这独立博客就相当于自己的房子，自己的房子用起来，当然就要比租的房子用起来要那么用心一点，有空就搞个装修啊，买点家具啊，修个游泳池啊（想多了），养点花花草草猫猫狗狗之类的。租的房子，能住人绝对不养狗，能叫外面绝对不下厨。不能比啊不能比，这是个态度问题。</p>
+<h1 id="准备阶段">准备阶段</h1><p>废话说了这么多，还是尽快切入主题。说到个人建站，网上教程一堆一堆的，我自然也不会自己一个一个地去摸索。我主要参考的文章是Mac君的《趣谈个人建站》：<a href="\" title="\">http://macshuo.com/?p=547</a>。Mac君使用的是godaddy+ubuntu+linode。而我的不一样的点是我在国内买的域名：阿里云万网：<a href="\" title="\">http://www.net.cn/</a>。下面的内容大部分都来自Mac君的博文《趣谈个人建站》：<a href="\" title="\">http://macshuo.com/?p=547</a>。</p>
+<p>重复造轮子的行为是不被大家认可的，但我这里还是要重复造轮子，原因如下：1.本人的部分步骤和原文不太一样，直接说哪里哪里不一样，会有点麻烦。 2.原文中有些没有涉及到的东西，我会在这里讲清楚，因为我跟着他的步骤走的时候，有时候会掉到坑里，爬很久才出来。 3.各位想建站的同学可以直接跟着本文的教程就可以建好，不必再切来切去。里面红色的部分是我的注释，是我遇到的问题和解决办法，希望大家别再入黑胡同。</p>
+<p>搭建个人站点，大致需要做这么几件事情：</p>
+<ul>
+<li>一台具备公网IP的服务器</li>
+<li>安装操作系统，搭建环境</li>
+<li>购买域名，域名绑定IP</li>
+<li>部署应用程序</li>
+</ul>
+<p>基本上这四套组合拳打完，你的个人网站就算建起来了，后续的事情就是添砖加瓦和蓬荜生辉了。</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/02/26/build-your-own-blog-by-wordpress/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/02/24/hello-gracker-blog-was-build/">
+                Gracker的个人博客开通了！
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-02-24
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/生活感悟/">生活感悟</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/02/24/hello-gracker-blog-was-build/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/24/hello-gracker-blog-was-build/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>计划了很久，终于把博客开通了。</p>
+<p>自从接触到<a href="http://apple.com" target="_blank" rel="external">Mac OS</a>之后，便对苹果佩服的五体投地，硬件上突出一个高大上，而且携带方便，软件上更是无人出其右。有时候你用他就觉得是一种享受。这不是我有意夸大，谁用谁知道。</p>
+<p>然后顺理成章地知道了Mac君，微信上MacTalk也是每一篇都一字不差地看完，最后买了多看版，也买了实体书，一本书有这样的魔力，我也很惊奇。同样是搞技术的，为何他就能写出这样的文字，而我却只能对着程序发呆。究其原因，这里面有人生经历的原因，更重要的是他的热情和坚持，让我这种三分钟热情的人表示很汗颜。想想自己最能坚持的事，就是一局又一局的DOTA。每思及此，痛心疾首，所以下决心要做点什么。</p>
+<p>Mac君的书中有一段：“即便是最简单的坚持，最后的结果也都是惊人的。这世界上一直存在一条路，让我们的能力从平庸到杰出，这条路漫长而且艰辛，只有少数人愿意走下去，所以，优秀的人永远是少数”。这段话让我感触很多，也让我下定决定要把这个博客搭建起来，养成写作的习惯。少刷点微博，少打两把DOTA，时间就那么多，再浪费下去，以后的我，会痛恨现在的我的。</p>
+<p>现在计划每周更新博客两次，周一到周五发一篇，周末发一篇。尽量做到言之有物，对别人有实质性的帮助，不讲空话，技术上用实例说明问题。可能初期的文笔不是很好，但我相信，简单的坚持，借用红米的一句话：“永远相信美好的事情即将发生”。</p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
 
           </div>
 
           
             <div class="pagination">
-              <a class="extend prev" rel="prev" href="../2/">&laquo;</a><a class="page-number" href="../..//">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="extend next" rel="next" href="../4/">&raquo;</a>
+              <a class="extend prev" rel="prev" href="../2/">&laquo;</a><a class="page-number" href="../..//">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span>
             </div>
           
         </div>
@@ -1120,7 +891,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
