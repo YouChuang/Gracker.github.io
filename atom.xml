@@ -564,7 +564,7 @@
     <link href="http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/"/>
     <id>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</id>
     <published>2015-01-13T11:38:53.000Z</published>
-    <updated>2015-04-02T02:38:58.000Z</updated>
+    <updated>2015-04-02T02:41:35.000Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>上一篇<a href="http://www.androidperformance.com/android-performance-optimization-overdraw-1.html" target="_blank" rel="external">文章</a>从理论的角度讲解了一下什么是过渡绘制，以及可以用来查看和确认过渡绘制的工具，还提供了一些优化过渡绘制的方法。对代码和布局比较熟悉的人，看完上一篇其实就已经可以对自己的应用进行优化了。我记得有人说过，用iphone你只需要保证苹果有节操即可，用Android你就得保证所有的Android开发者都有节操。但现实是残酷的，现在Android市场上，有很多粗制滥造的应用，其中不乏大厂之作，各位打开过渡绘制按钮，就知道我所言非虚。作为一个Android开发人员，我肯定是更希望Android能一步一步好起来，超越iphone。</p>
 <p>这篇文章从实战的角度，讲解了一个过渡绘制的优化过程。当然这里用到的只是很少的一部分，毕竟每个应用差别很大，优化方式也各不一样。所以这篇文章仅供参考，想把这块做好还是要下功夫的。</p>
 <p>如果没有看过前一篇，可以点这里：<a href="http://androidperformance.com/2014/10/20/android-performance-optimization-overdraw-1/" target="_blank" rel="external">Android性能优化之过渡绘制(一)</a></p>
@@ -582,17 +582,18 @@
 <p>打开Monitor(Eclipse和Android Studio中都有快捷打开按钮,即DDMS,右上角选择 Hierarchy View,大概使用如图</p>
 <p><img src="/images/overdraw-1/HierarchyView-1.png" alt="Hierarchy View"></p>
 <p>其中根节点:PhoneWindos$DecorView是整个视图的根节点,唯一的子节点是ActionBarOverlayLayout,这个Layout包含了ActionBar,应用程序,以及SmartBar.</p>
-<h3 id="从Hierarchy_View结合代码分析出需要进行修改的区域">从Hierarchy View结合代码分析出需要进行修改的区域</h3><h4 id="去除默认背景">去除默认背景</h4><p>上面分析过渡绘制区域的第一条,整个window存在一个背景,所以进行了一次重绘,这个背景的重绘是系统级别的,和主题有关,即这个背景是属于ActionBarOverlayLayout的.这种类型的过渡绘制解决也比较方便,在文件管理器的主Activity的onCreate方法中,加入</p>
+<p>下面讲述如何从Hierarchy View结合代码分析出需要进行修改的区域</p>
+<h3 id="去除默认背景">去除默认背景</h3><p>上面分析过渡绘制区域的第一条,整个window存在一个背景,所以进行了一次重绘,这个背景的重绘是系统级别的,和主题有关,即这个背景是属于ActionBarOverlayLayout的.这种类型的过渡绘制解决也比较方便,在文件管理器的主Activity的onCreate方法中,加入</p>
 <p><code>this.getWindow().setBackgroundDrawableResource(android.R.color.transparent);</code></p>
 <p>就可以将这个看不见的主题背景去掉.下面是去掉主题背景后的效果图(一张是划开,一张是没有划开):</p>
 <p><img src="/images/overdraw-1/filemanager-2.png" alt="文件管理器"><img src="/images/overdraw-1/filemanager-3.png" alt="文件管理器"></p>
 <p>对比优化前的图可以发现,背景被去掉之后,少了一层过渡绘制. ActionBar上的蓝色已经消失了.中间的内容由绿色变为蓝色</p>
-<h4 id="消除子控件背景">消除子控件背景</h4><p>上面分析的第二条说”<strong>中间的内容部分,最底层是绿色,说明进行了2x的过渡绘制</strong>”,现在中间部分变成了蓝色,但是这是一个全局的背景,导致右边的view拉过来之后,还是存在大量的红色和绿色. 继续分析Hierarchy View,找到中间view对应的视图:DragRelativeLayout,查看源码可知,DragRelativeLayout继承自公共控件:SlidingMenu ，SlidingMenu 由CustomViewAbove和CustomViewBehind组成,前者是上面可以左右拉动的那部分,后者是底部不能拉动的那部分(这个从HierarchyView中也可以看出来:如下图所示:</p>
+<h3 id="消除子控件背景">消除子控件背景</h3><p>上面分析的第二条说”<strong>中间的内容部分,最底层是绿色,说明进行了2x的过渡绘制</strong>”,现在中间部分变成了蓝色,但是这是一个全局的背景,导致右边的view拉过来之后,还是存在大量的红色和绿色. 继续分析Hierarchy View,找到中间view对应的视图:DragRelativeLayout,查看源码可知,DragRelativeLayout继承自公共控件:SlidingMenu ，SlidingMenu 由CustomViewAbove和CustomViewBehind组成,前者是上面可以左右拉动的那部分,后者是底部不能拉动的那部分(这个从HierarchyView中也可以看出来:如下图所示:</p>
 <p><img src="/images/overdraw-1/HierarchyView-2.png" alt="Hierarchy View"></p>
 <p>点击CustomViewBehind,查看其所占的区域,就可以发现背景是这个View进行绘制的,打开CustomViewBehind的代码可以发现其构造函数中包含下面的代码:<br><code>setBackgroundColor(getResources().getColor(R.color.mz_slidingmenu_background_light));</code><br>这个背景是不需要的,查看源码可知,这个view会在SlidingMenu.setMenu的时候,被覆盖掉,还是看不到的.所以这一层view是可以去掉的.下面是去掉一层背景之后的预览图:</p>
 <p><img src="/images/overdraw-1/filemanager-4.png" alt="文件管理器"><img src="/images/overdraw-1/filemanager-5.png" alt="文件管理器"></p>
 <p>可以看到这一层背景去掉之后,过渡绘制减轻了很多.</p>
-<h4 id="进一步优化">进一步优化</h4><p>接着进行分析,可以看到CustomViewAbove也是存在一个过渡绘制的背景的,查看Hierarchy View的CustomViewAbove的子节点,可以看到过渡绘制是由ListView导致的.其id为:FilesList,在代码中找到它,并对他进行分析.在我将PartitionItemLayout中onDraw()函数的setBounds去掉之后,过渡绘制进一步改善了(但是ListItem的View的颜色也比之前要浅了,这一步优化需要根据具体情况进行) 下面是优化后的效果图:</p>
+<h3 id="进一步优化">进一步优化</h3><p>接着进行分析,可以看到CustomViewAbove也是存在一个过渡绘制的背景的,查看Hierarchy View的CustomViewAbove的子节点,可以看到过渡绘制是由ListView导致的.其id为:FilesList,在代码中找到它,并对他进行分析.在我将PartitionItemLayout中onDraw()函数的setBounds去掉之后,过渡绘制进一步改善了(但是ListItem的View的颜色也比之前要浅了,这一步优化需要根据具体情况进行) 下面是优化后的效果图:</p>
 <p><img src="/images/overdraw-1/filemanager-6.png" alt="文件管理器"><img src="/images/overdraw-1/filemanager-7.png" alt="文件管理器"></p>
 <p>可以看到图中的过渡绘制已经非常少了.!点个赞!</p>
 <h2 id="优化代码">优化代码</h2><h3 id="Lint工具">Lint工具</h3><p>Lint工具的使用比较简单,根据给出的提示做对应的修改即可.有时候需要工具具体情况来确定是否需要修改. 下图是一个简单地例子.箭头处提示这个Layout或者它的父Layout是不必须的.具体修改方法即去掉FrameLayout,将RelativeLayout提升为根VIew即可.</p>
