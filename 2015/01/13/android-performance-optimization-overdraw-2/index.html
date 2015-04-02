@@ -196,10 +196,10 @@
 <h4 id="消除子控件背景">消除子控件背景</h4><p>上面分析的第二条说”<strong>中间的内容部分,最底层是绿色,说明进行了2x的过渡绘制</strong>”,现在中间部分变成了蓝色,但是这是一个全局的背景,导致右边的view拉过来之后,还是存在大量的红色和绿色. 继续分析Hierarchy View,找到中间view对应的视图:DragRelativeLayout,查看源码可知,DragRelativeLayout继承自公共控件:SlidingMenu ，SlidingMenu 由CustomViewAbove和CustomViewBehind组成,前者是上面可以左右拉动的那部分,后者是底部不能拉动的那部分(这个从HierarchyView中也可以看出来:如下图所示:</p>
 <p><img src="/images/overdraw-1/HierarchyView-2.png" alt="Hierarchy View"></p>
 <p>点击CustomViewBehind,查看其所占的区域,就可以发现背景是这个View进行绘制的,打开CustomViewBehind的代码可以发现其构造函数中包含下面的代码:<br><code>setBackgroundColor(getResources().getColor(R.color.mz_slidingmenu_background_light));</code><br>这个背景是不需要的,查看源码可知,这个view会在SlidingMenu.setMenu的时候,被覆盖掉,还是看不到的.所以这一层view是可以去掉的.下面是去掉一层背景之后的预览图:</p>
-<p><img src="/images/overdraw-1/HierarchyView-4.png" alt="文件管理器"> <img src="/images/overdraw-1/HierarchyView-5.png" alt="文件管理器"></p>
+<p><img src="/images/overdraw-1/filemanager-4.png" alt="文件管理器"> <img src="/images/overdraw-1/filemanager-5.png" alt="文件管理器"></p>
 <p>可以看到这一层背景去掉之后,过渡绘制减轻了很多.</p>
 <h4 id="进一步优化">进一步优化</h4><p>接着进行分析,可以看到CustomViewAbove也是存在一个过渡绘制的背景的,查看Hierarchy View的CustomViewAbove的子节点,可以看到过渡绘制是由ListView导致的.其id为:FilesList,在代码中找到它,并对他进行分析.在我将PartitionItemLayout中onDraw()函数的setBounds去掉之后,过渡绘制进一步改善了(但是ListItem的View的颜色也比之前要浅了,这一步优化需要根据具体情况进行) 下面是优化后的效果图:</p>
-<p><img src="/images/overdraw-1/HierarchyView-6.png" alt="文件管理器"> <img src="/images/overdraw-1/HierarchyView-7.png" alt="文件管理器"></p>
+<p><img src="/images/overdraw-1/filemanager-6.png" alt="文件管理器"> <img src="/images/overdraw-1/filemanager-7.png" alt="文件管理器"></p>
 <p>可以看到图中的过渡绘制已经非常少了.!点个赞!</p>
 <h2 id="优化代码">优化代码</h2><h3 id="Lint工具">Lint工具</h3><p>Lint工具的使用比较简单,根据给出的提示做对应的修改即可.有时候需要工具具体情况来确定是否需要修改. 下图是一个简单地例子.箭头处提示这个Layout或者它的父Layout是不必须的.具体修改方法即去掉FrameLayout,将RelativeLayout提升为根VIew即可.</p>
 <p><img src="/images/overdraw-1/lint-1.png" alt="Lint"></p>
