@@ -974,8 +974,8 @@
           
           
             
-              <a class="post-title-link" href="../../2014/05/01/about_random/">
-                关于自由
+              <a class="post-title-link" href="../../2014/04/12/analysishashmap/">
+                HashMap源码分析
               </a>
             
           
@@ -985,7 +985,7 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2014-05-01
+            发表于 2014-04-11
           
         </span>
 
@@ -994,7 +994,7 @@
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="../../categories/生活感悟/">生活感悟</a>
+                <a href="../../categories/Java/">Java</a>
 
                 
                 
@@ -1008,8 +1008,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2014/05/01/about_random/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/01/about_random/"></span>
+            <a href="/2014/04/12/analysishashmap/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/12/analysishashmap/"></span>
             </a>
           </span>
           
@@ -1025,28 +1025,12 @@
 
         
           
-            <p><strong>当Youtube被封的时候，我淡定，因为我们有优酷，而且Youtube的英文视频我也看不懂；</strong></p>
-<p><strong>当Facebook被封的时候，我淡定，因为我们有人人，而且我也没有多少国外朋友；</strong></p>
-<p><strong>当Google被封的时候，我淡定，因为我们有百度，而且百度更懂中文；</strong></p>
-<p><strong>当Twiiter被封的时候，我淡定，因为我们有微博，而且Twitter远没有微博功能强大；</strong></p>
-<p><strong>当Dropbox被封的时候，我有点不淡定了，因为国内同类服务做的像坨屎；</strong></p>
-<p><strong>当Gmail被封的时候，我有点不淡定了，因为Gmail几乎没有垃圾广告；</strong></p>
-<p><strong>当Google Docs被封的时候，我有点不淡定了，因为国内没有在线协作平台；</strong></p>
-<p><strong>当Google Reader被封的时候，我有点不淡定了，因为国内RSS订阅整合和分享功能远没有Reader优秀；</strong></p>
-<p><strong>这时候，我突然想起来Youtube有即时翻译功能，而且里面每天都会产生大量优秀视频；</strong></p>
-<p><strong>这时候，我突然想起来Facebook有各种有趣应用，甚至可以整合到Outlook里面；</strong></p>
-<p><strong>这时候，我突然想起来Google有scholar search，还有各种个性化的服务；</strong></p>
-<p><strong>这时候，我突然想起来Twiiter各种神奇，甚至可以用来估算龙卷风带来的损失；</strong></p>
-<p><strong>这时候，我突然想起来Wordpress可以做简易的网站，可以很轻松的定制个性化服务。</strong></p>
-<p><strong>于是，我想到墙外看看，却发现——我得不到他们 ，我自由获取信息的权利被默默的剥夺了。</strong></p>
-<p><strong>更加恐怖的是： 全世界都用Twitter，Facebook，只有我们用微博。</strong></p>
-<p><strong>我们和他们生活在不同的维度，我们使用的永远是劣质的山寨品，甚至还要承担比正品更高的价格。当我们断绝了与外界的联系，当我们只能获得经过别人筛选过的信息，无知者无畏将是我们唯一的宿命。</strong></p>
-<p><strong>比起在各种“异端邪说”中艰难寻找真理，对无知的恐惧更让我胆战心惊。</strong></p>
-<p><strong>给所有不翻墙的朋友：</strong></p>
-<p><strong>你可以说我在墙内得到的信息足够了，翻墙出去完全没有必要，但请记得，终究有一天，你想看看外面的世界，但却发现，由于当初的漠不关心，我们现在已经生活在信息的牢笼中，再也出不去了。</strong></p>
-<p><a href="http://weibo.com/p/1001603704341168019296" title="http://weibo.com/p/1001603704341168019296" target="_blank" rel="external">http://weibo.com/p/1001603704341168019296</a></p>
-<p><span style="color: #ff6600;">本文非原创,系转载,如侵犯版权,请与我联系,我会迅速删除.</span></p>
-
+            <div style="text-align: left">          链表和数组可以按照人们意愿排列元素的次序，但是，如果想要查看某个指定的元素，却又忘记了它的位置，就需要访问所有的元素，直到找到为止。如果集合中元素很多，将会消耗很多时间。有一种数据结构可以快速查找所需要查找的对象，这个就是哈希表（hash table）。</div><br><div>          HashMap是基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了非同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。</div><br><div>          1.HashMap的数据结构：</div><br><div><a href="http://www.grackertalk.com/wp-content/uploads/2014/04/hm01.png"><img src="http://www.grackertalk.com/wp-content/uploads/2014/04/hm01.png" alt="hm01"></a></div><br><div>           HashMap使用数组和链表来共同组成的。可以看出底层是一个数组，而数组的每个元素都是一个链表头。</div><br><div></div><br><div><br><br>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/04/12/analysishashmap/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
         
       </div>
@@ -1100,7 +1084,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

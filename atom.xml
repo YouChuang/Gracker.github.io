@@ -1544,44 +1544,6 @@ iptables -t nat -I POSTROUTING -j MASQUERADE</pre>
   </entry>
   
   <entry>
-    <title><![CDATA[关于自由]]></title>
-    <link href="http://androidperformance.com/2014/05/01/about_random/"/>
-    <id>http://androidperformance.com/2014/05/01/about_random/</id>
-    <published>2014-05-01T05:18:03.000Z</published>
-    <updated>2015-03-26T12:45:53.000Z</updated>
-    <content type="html"><![CDATA[<p><strong>当Youtube被封的时候，我淡定，因为我们有优酷，而且Youtube的英文视频我也看不懂；</strong></p>
-<p><strong>当Facebook被封的时候，我淡定，因为我们有人人，而且我也没有多少国外朋友；</strong></p>
-<p><strong>当Google被封的时候，我淡定，因为我们有百度，而且百度更懂中文；</strong></p>
-<p><strong>当Twiiter被封的时候，我淡定，因为我们有微博，而且Twitter远没有微博功能强大；</strong></p>
-<p><strong>当Dropbox被封的时候，我有点不淡定了，因为国内同类服务做的像坨屎；</strong></p>
-<p><strong>当Gmail被封的时候，我有点不淡定了，因为Gmail几乎没有垃圾广告；</strong></p>
-<p><strong>当Google Docs被封的时候，我有点不淡定了，因为国内没有在线协作平台；</strong></p>
-<p><strong>当Google Reader被封的时候，我有点不淡定了，因为国内RSS订阅整合和分享功能远没有Reader优秀；</strong></p>
-<p><strong>这时候，我突然想起来Youtube有即时翻译功能，而且里面每天都会产生大量优秀视频；</strong></p>
-<p><strong>这时候，我突然想起来Facebook有各种有趣应用，甚至可以整合到Outlook里面；</strong></p>
-<p><strong>这时候，我突然想起来Google有scholar search，还有各种个性化的服务；</strong></p>
-<p><strong>这时候，我突然想起来Twiiter各种神奇，甚至可以用来估算龙卷风带来的损失；</strong></p>
-<p><strong>这时候，我突然想起来Wordpress可以做简易的网站，可以很轻松的定制个性化服务。</strong></p>
-<p><strong>于是，我想到墙外看看，却发现——我得不到他们 ，我自由获取信息的权利被默默的剥夺了。</strong></p>
-<p><strong>更加恐怖的是： 全世界都用Twitter，Facebook，只有我们用微博。</strong></p>
-<p><strong>我们和他们生活在不同的维度，我们使用的永远是劣质的山寨品，甚至还要承担比正品更高的价格。当我们断绝了与外界的联系，当我们只能获得经过别人筛选过的信息，无知者无畏将是我们唯一的宿命。</strong></p>
-<p><strong>比起在各种“异端邪说”中艰难寻找真理，对无知的恐惧更让我胆战心惊。</strong></p>
-<p><strong>给所有不翻墙的朋友：</strong></p>
-<p><strong>你可以说我在墙内得到的信息足够了，翻墙出去完全没有必要，但请记得，终究有一天，你想看看外面的世界，但却发现，由于当初的漠不关心，我们现在已经生活在信息的牢笼中，再也出不去了。</strong></p>
-<p><a href="http://weibo.com/p/1001603704341168019296" title="http://weibo.com/p/1001603704341168019296" target="_blank" rel="external">http://weibo.com/p/1001603704341168019296</a></p>
-<p><span style="color: #ff6600;">本文非原创,系转载,如侵犯版权,请与我联系,我会迅速删除.</span></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><strong>当Youtube被封的时候，我淡定，因为我们有优酷，而且Youtube的英文视频我也看不懂；</strong></p>
-<p><strong>当Facebook被封的时候，我淡定，因为我们有人人，而且我也没有多少国外朋友；</strong></p>
-<p><]]>
-    </summary>
-    
-      <category term="生活感悟" scheme="http://androidperformance.com/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[HashMap源码分析]]></title>
     <link href="http://androidperformance.com/2014/04/12/analysishashmap/"/>
     <id>http://androidperformance.com/2014/04/12/analysishashmap/</id>
@@ -2107,59 +2069,6 @@ public void onAccessibilityEvent(AccessibilityEvent event) {
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id=""> </h2><h1 id="1_辅助性服务介绍">1 辅助性服务介绍</h1><p>辅助性服务是安卓框架的一个特性，它的设计是为了让已经安装在安卓设备上的应用程序能够为用户提供一种导航式(引导式）回应。一个辅助性服务能够传达给<br>用户关于这个应用程序的利益，例如把文本转换成语音、当用户手指停留屏幕的一个重要区域时的haptic反馈。这一节涵盖了怎样去创建一个辅助性服务，如何处理应用程序的信息接收，还有如何把信息反馈给用户。<br>创建自己的辅助性服务</p>]]>
-    
-    </summary>
-    
-      <category term="Android" scheme="http://androidperformance.com/categories/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android中adb push和adb install的使用区别]]></title>
-    <link href="http://androidperformance.com/2014/03/10/android-adb-push-and-adb-install-different/"/>
-    <id>http://androidperformance.com/2014/03/10/android-adb-push-and-adb-install-different/</id>
-    <published>2014-03-10T15:41:41.000Z</published>
-    <updated>2015-03-27T05:26:09.000Z</updated>
-    <content type="html"><![CDATA[<p>本篇文章由史迎春(<a href="http://weibo.com/ctj13513871718" target="_blank" rel="external">@三俗小女子</a>)投稿。转载请注明原文地址。</p>
-<p>在Android实际开发中，经常会使用adb命令，安装应用程序可以使用adb push 或者adb install。下面就来讲讲这两种安装方式的区别。</p>
-<ol>
-<li>adb push 能够指定安装目录。比如执行”adb push xxx.apk system/app” 后，xxx.apk被安装到了system/app目录下，此目录下的软件为上文中提到的system application。（注意，system/app是只读的，所以只有有root权限才能push apk进去，而且在push进去的apk会把原本的apk覆盖掉。）adb push本身的意思是将文件复制到系统中的某个文件夹下，但是将apk push到system/app下并且重启手机以后会注册应用程序。</li>
-<li>adb install 用此命令安装的软件位于 data/app 目录，带有参数 -r才能强制安装，为user application。<br>由以上两条可知，adb install和adb push的apk主要区别有：<br><table cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"></td><br><td valign="middle">push</td><br><td valign="middle">install</td><br></tr><br><tr><br><td valign="middle">目录</td><br><td valign="middle">system/app</td><br><td valign="middle">data/app</td><br></tr><br><tr><br><td valign="middle">权限</td><br><td valign="middle">系统级（权限全开）</td><br><td valign="middle">用户级（没全开）</td><br></tr><br><tr><br><td valign="middle">卸载</td><br><td valign="middle">root后删除</td><br><td valign="middle">可卸载</td><br></tr><br><tr><br><td valign="middle">大小</td><br><td valign="middle">无限制，自定义</td><br><td valign="middle">有限制</td><br></tr><br><tr><br><td valign="middle">安装</td><br><td valign="middle">pm重新注册</td><br><td valign="middle">不会重新弄注册</td><br></tr><br></tbody><br></table><br>手动安装的APK版本号和系统内置API版本号一样。</li>
-</ol>
-<a id="more"></a>
-<p>更深一层的分析：</p>
-<p><strong>1**</strong>、<strong><strong>Android</strong></strong>系统应用更新机制**</p>
-<ul>
-<li><p>系统为每个应用在AndroidMainfest.xml提供了versionName、versionCode两个属性。</p>
-<ul>
-<li>versionName：String类型，用来给应用的使用者来查看版本.</li>
-<li>versionCode：Integer类型，作为系统判断应用是否能升级的依据。<br><strong>2**</strong>、<strong><strong>Android</strong></strong>系统内置应用更新判断代码**</li>
-</ul>
-</li>
-<li><p>代码来自frameworks/base/services/java/com/android/server/PackageManagerService.java 中 scanPackageLI函数的package更新判断条件<br>由以上资料分析：</p>
-</li>
-</ul>
-<ol>
-<li>同一个AP，若在data/app下有更高版本的app，但是system下有旧版本，则follow旧版本。</li>
-<li>又已知如果有两个以上的AP在同一个进程但是只有一个AP更改了API version则编译会出错</li>
-<li>假设有两个AP：AP1和AP2.两个AP都在API Version更新以后build通过且install进手机。且系统中有内置AP1是旧版本的，重新开机的时候还是会注册旧版本的AP1。则此时，系统中就会出现相同进程但是不同版本的AP1（system/app）和AP2（data/app）<br>综上，编译会出错。</li>
-</ol>
-<p>猜测：</p>
-<ol>
-<li>若同一个进程的AP都用同一版本的SDK编译，push进手机，则可以运行（已验证）。</li>
-<li>若同一进程的AP都用同一个版本的SDK编译。install进手机，则可以运行，前提是删除system/app内所有同一进程AP。（已验证）</li>
-<li>若同一个进程的AP都用同一个版本的SDK编译，push/install进手机都可以（待验证）。<br>&nbsp;</li>
-</ol>
-<p>作者介绍：</p>
-<p>史迎春，女程序员，主要研究Android系统Framework层，目前任职于HTC。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>本篇文章由史迎春(<a href="http://weibo.com/ctj13513871718">@三俗小女子</a>)投稿。转载请注明原文地址。</p>
-<p>在Android实际开发中，经常会使用adb命令，安装应用程序可以使用adb push 或者adb install。下面就来讲讲这两种安装方式的区别。</p>
-<ol>
-<li>adb push 能够指定安装目录。比如执行”adb push xxx.apk system/app” 后，xxx.apk被安装到了system/app目录下，此目录下的软件为上文中提到的system application。（注意，system/app是只读的，所以只有有root权限才能push apk进去，而且在push进去的apk会把原本的apk覆盖掉。）adb push本身的意思是将文件复制到系统中的某个文件夹下，但是将apk push到system/app下并且重启手机以后会注册应用程序。</li>
-<li>adb install 用此命令安装的软件位于 data/app 目录，带有参数 -r才能强制安装，为user application。<br>由以上两条可知，adb install和adb push的apk主要区别有：<br><table cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"></td><br><td valign="middle">push</td><br><td valign="middle">install</td><br></tr><br><tr><br><td valign="middle">目录</td><br><td valign="middle">system/app</td><br><td valign="middle">data/app</td><br></tr><br><tr><br><td valign="middle">权限</td><br><td valign="middle">系统级（权限全开）</td><br><td valign="middle">用户级（没全开）</td><br></tr><br><tr><br><td valign="middle">卸载</td><br><td valign="middle">root后删除</td><br><td valign="middle">可卸载</td><br></tr><br><tr><br><td valign="middle">大小</td><br><td valign="middle">无限制，自定义</td><br><td valign="middle">有限制</td><br></tr><br><tr><br><td valign="middle">安装</td><br><td valign="middle">pm重新注册</td><br><td valign="middle">不会重新弄注册</td><br></tr><br></tbody><br></table><br>手动安装的APK版本号和系统内置API版本号一样。</li>
-</ol>]]>
     
     </summary>
     

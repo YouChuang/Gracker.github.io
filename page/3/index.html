@@ -126,95 +126,6 @@
           
           
             
-              <a class="post-title-link" href="../../2014/04/12/analysishashmap/">
-                HashMap源码分析
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-04-11
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Java/">Java</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/04/12/analysishashmap/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/12/analysishashmap/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <div style="text-align: left">          链表和数组可以按照人们意愿排列元素的次序，但是，如果想要查看某个指定的元素，却又忘记了它的位置，就需要访问所有的元素，直到找到为止。如果集合中元素很多，将会消耗很多时间。有一种数据结构可以快速查找所需要查找的对象，这个就是哈希表（hash table）。</div><br><div>          HashMap是基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了非同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。</div><br><div>          1.HashMap的数据结构：</div><br><div><a href="http://www.grackertalk.com/wp-content/uploads/2014/04/hm01.png"><img src="http://www.grackertalk.com/wp-content/uploads/2014/04/hm01.png" alt="hm01"></a></div><br><div>           HashMap使用数组和链表来共同组成的。可以看出底层是一个数组，而数组的每个元素都是一个链表头。</div><br><div></div><br><div><br><br>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/04/12/analysishashmap/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="../../2014/04/01/android-service-build-your-own-notification-servers-app/">
                 Android Service：开发自己的通知中心(2):辅助性服务实战
               </a>
@@ -461,100 +372,6 @@
             <h2 id=""> </h2><h1 id="1_辅助性服务介绍">1 辅助性服务介绍</h1><p>辅助性服务是安卓框架的一个特性，它的设计是为了让已经安装在安卓设备上的应用程序能够为用户提供一种导航式(引导式）回应。一个辅助性服务能够传达给<br>用户关于这个应用程序的利益，例如把文本转换成语音、当用户手指停留屏幕的一个重要区域时的haptic反馈。这一节涵盖了怎样去创建一个辅助性服务，如何处理应用程序的信息接收，还有如何把信息反馈给用户。<br>创建自己的辅助性服务</p>
             <div class="post-more-link text-center">
               <a class="btn" href="../../2014/03/17/android-build-your-own-android-notification-service-app/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/03/10/android-adb-push-and-adb-install-different/">
-                Android中adb push和adb install的使用区别
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-03-10
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Android/">Android</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/03/10/android-adb-push-and-adb-install-different/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/10/android-adb-push-and-adb-install-different/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>本篇文章由史迎春(<a href="http://weibo.com/ctj13513871718">@三俗小女子</a>)投稿。转载请注明原文地址。</p>
-<p>在Android实际开发中，经常会使用adb命令，安装应用程序可以使用adb push 或者adb install。下面就来讲讲这两种安装方式的区别。</p>
-<ol>
-<li>adb push 能够指定安装目录。比如执行”adb push xxx.apk system/app” 后，xxx.apk被安装到了system/app目录下，此目录下的软件为上文中提到的system application。（注意，system/app是只读的，所以只有有root权限才能push apk进去，而且在push进去的apk会把原本的apk覆盖掉。）adb push本身的意思是将文件复制到系统中的某个文件夹下，但是将apk push到system/app下并且重启手机以后会注册应用程序。</li>
-<li>adb install 用此命令安装的软件位于 data/app 目录，带有参数 -r才能强制安装，为user application。<br>由以上两条可知，adb install和adb push的apk主要区别有：<br><table cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"></td><br><td valign="middle">push</td><br><td valign="middle">install</td><br></tr><br><tr><br><td valign="middle">目录</td><br><td valign="middle">system/app</td><br><td valign="middle">data/app</td><br></tr><br><tr><br><td valign="middle">权限</td><br><td valign="middle">系统级（权限全开）</td><br><td valign="middle">用户级（没全开）</td><br></tr><br><tr><br><td valign="middle">卸载</td><br><td valign="middle">root后删除</td><br><td valign="middle">可卸载</td><br></tr><br><tr><br><td valign="middle">大小</td><br><td valign="middle">无限制，自定义</td><br><td valign="middle">有限制</td><br></tr><br><tr><br><td valign="middle">安装</td><br><td valign="middle">pm重新注册</td><br><td valign="middle">不会重新弄注册</td><br></tr><br></tbody><br></table><br>手动安装的APK版本号和系统内置API版本号一样。</li>
-</ol>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/03/10/android-adb-push-and-adb-install-different/#more">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -891,7 +708,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
