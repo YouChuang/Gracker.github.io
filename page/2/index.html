@@ -396,187 +396,6 @@
           
           
             
-              <a class="post-title-link" href="../../2014/05/25/usevim/">
-                使用VIM
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-25
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Linux/">Linux</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/25/usevim/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/25/usevim/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <div style="color: #000000;font-family: 微软雅黑"><br>    <span><br>        为什么有那么多编辑器我要使用vim？因为当我想保存文件时总是习惯性的：wq，即使我正在使用eclipse什么的~<br>        其实使用熟练使用vim可以让你完全摆脱鼠标，摆脱小键盘，摆脱方向键，你的手不用离开那块键盘区域就能完成你能想到的任何事情。<br>        不过vim并不算是个很友好的编辑器，刚开始使用你会觉得它十分特别非常极其的操蛋。你会想怎么会有人用这种东西，还不如notepad，不如gedit，更不如我比较喜欢用的sublime Text。但是如果你强迫自己使用一到两周后慢慢你会发现这东西真是让人爱不释手。<br>        刚开始使用这货的时候，也是各种蛋疼~去看各种VIM命令大全，VIM命令手册等等的吧，收效甚微，看了也记不住。后来慢慢觉得命令不是看会的，而是用会的。不要去记那些命令是什么，而是当你需要什么样的命令时再去找这样的命令，甚至你可以创造一个这样的命令。<br>    </span><br>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/25/usevim/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="../../2014/05/18/wordpress-change-theme-with-blank/">
-                [Wordpress]修改主题后导致博客白屏的一种原因分析及解决办法
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-18
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Wordpress/">Wordpress</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/18/wordpress-change-theme-with-blank/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/18/wordpress-change-theme-with-blank/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>对于使用<a href="http://wpchina.org/">WordPress</a>建立个人博客的同学们来说，遭遇前后台白屏问题是一件非常令人郁闷的事情。wordpress白屏错误之所以令人郁闷，最重要的是你无法获知任何的错误信息，也没有弹出的对话提示，让人修复起来无从下手。想象一下你正在修改博客上的一个设置，或安装或升级一个插件，或升级最新版本的WordPress，或只是打开你的博客开始新的一天，但是你看到的，只是一个空白屏幕,估计想死的心都有了,于是各种google+百度,甚至bing都用上了,还是没有解决,结果若干配置文件被弄得越来越乱……</p>
-<h2 id="0-问题背景">0.问题背景</h2><p>在站长工具<a href="http://www.google.com.hk/webmasters/tools/richsnippets?q=http%3A%2F%2Fgrackertalk.com%2F">Google Structured Data Testing Tool</a>中跑网站测试的时候,发现会有很多bug导致搜索结果的富内容不完善,有个人信息(与Google+相连),也有文章中的Bug,我使用的主题是Dinky,作者是<span style="color: #121212;"><a href="http://misam.ir/">Misam Saki</a>,就会出现:错误： Missing required field “updated”.</span></p>
-<p>找到错误后,就去进行相应地修改,这个错误的意思就是说,文章中缺少updated这个字段,是因为有的主题(也可能是所有wordpress主题,不确定)会把updated这个字段去掉,用post_on这样类似的字段来代替.OK,原因找到了,就可以去修改了.然后就呵呵呵了.</p>
-<p>找到functions.php,找到显示post_on相关的字段,加上update字段(网上摘抄),点击更新…..然后…..就没有然后了.不管怎么刷,网站的所有页面都是白屏,啥都看不到.</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/18/wordpress-change-theme-with-blank/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="../../2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card/">
                 [Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读
               </a>
@@ -882,98 +701,6 @@
           
           
             
-              <a class="post-title-link" href="../../2014/05/02/use-vps-and-vpn/">
-                使用VPS搭建VPN+VPN路由设置+MacOS的VPN登录设置
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2014-05-02
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="../../categories/Linux/">Linux</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2014/05/02/use-vps-and-vpn/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/02/use-vps-and-vpn/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h4 id="虚拟专用网（英语：Virtual_Private_Network，简称VPN），是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。虚拟私人网络的讯息透过公用的网络架构（例如：互联网）来传送内联网的网络讯息。它利用已加密的通道协议（Tunneling_Protocol）来达到保密、传送端认证、信息准确性等私人信息安全效果。这种技术可以用不安全的网络（例如：互联网）来传送可靠、安全的信息。需要注意的是，加密信息与否是可以控制的。没有加密的虚拟专用网信息依然有被窃取的危险。"><strong>虚拟专用网</strong>（<span style=\"color: #0645ad;\">英语</span>：<a href="\"><strong>Virtual Private Network</strong></a>，简称<strong>VPN</strong>），是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。虚拟私人网络的讯息透过公用的网络架构（例如：<span style=\"color: #0645ad;\">互联网</span>）来传送内联网的网络讯息。它利用已加密的<span style=\"color: #0645ad;\">通道协议</span>（Tunneling Protocol）来达到保密、传送端认证、信息准确性等私人信息安全效果。这种技术可以用不安全的网络（例如：互联网）来传送可靠、安全的信息。需要注意的是，加密信息与否是可以控制的。没有加密的虚拟专用网信息依然有被窃取的危险。</h4><h1 id=""> </h1><h2 id="1-搭建VPN">1.搭建VPN</h2><p>使用这个VPS已经有一个月了，wordpress也折腾得差不多了，之前一直说要搭建一个VPN，由于种种原因没有去做，今天刚好有时间，就照着教程来了一遍，总算是搞定了，在Doit上划掉这个Task的时候，幸福感满满的。</p>
-<p>搭建过程还是蛮无聊的，教程都写得很清楚，我之所以要搬运一下，是因为搭建+配置+登录，这一套组合拳下来，才能在<a href="\">facebook</a>、<a href="\">youtube</a>上刷网，但是各个教程都只是讲了一部分。我把基本操作搬运过来，然后再加上自己遇到的问题和解决方法，可以让看博客的人对着这篇一路下来就可以直接上网了。</p>
-<h3 id="1-1_前提条件">1.1 前提条件</h3><p>首先，你要有一个VPS，国外的VPS。如果不懂可以查看<a href="\" title="\">如何搭建VPS</a>  我使用的是Linode在日本美帝的的服务器（如果你也想买Linode的VPS，购买的时候输入我的邀请code：a96df99ce34b5e0f76695558608c87fb2db5cc03 或者直接：<a href="\" title="\">https://www.linode.com/r=a96df99ce34b5e0f76695558608c87fb2db5cc03</a>）</p>
-<p>其次，要懂一点Linux，一点点就可以了。</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="../../2014/05/02/use-vps-and-vpn/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="../../2014/04/12/analysishashmap/">
                 HashMap源码分析
               </a>
@@ -1052,12 +779,293 @@
 
 
   
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/04/01/android-service-build-your-own-notification-servers-app/">
+                Android Service：开发自己的通知中心(2):辅助性服务实战
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-31
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/04/01/android-service-build-your-own-notification-servers-app/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/01/android-service-build-your-own-notification-servers-app/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id="1-辅助性服务实战介绍">1.辅助性服务实战介绍</h2><p>上一篇文章介绍了什么是Accessibility以及简单的使用，这一篇文章就来讲讲如何使用Accessibility服务来创建一个简单的Android通知中心。Android中通知中心是一个系统层面的服务，负责显示应用和系统发来的通知（Notification，比如USB插入、选择输入法、未接来电、截图、天气信息、新闻推送等等）。在android4.3之前，一般的第三方应用是无法获取Notification list的（在Android4.3之后，有了一个新的接口,NotificationListenerService.getActiveNotifications(),可以获取当前的Notification）。但是利用Accessibility服务可以监听到各种事件的特性，可以开发一个第三方的通知中心，实现与系统通知栏类似的功能。</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/04/01/android-service-build-your-own-notification-servers-app/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/03/25/ubuntu-adb-can-not-find-devices/">
+                Android:Ubuntu下执行Adb命令找不到设备
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-25
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+                  ， 
+                
+
+              
+                <a href="../../categories/Android/Linux/">Linux</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/03/25/ubuntu-adb-can-not-find-devices/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/25/ubuntu-adb-can-not-find-devices/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id="1-问题概述">1.问题概述</h2><p><span style="color: #000000;">最近开发Nokia项目，遇到的问题如下：</span></p>
+<p><span style="color: #000000;">插入Nokia x后，电脑没有反应，即不识别，同事的windows也不识别，最后在谷歌上搜索了良久，才找到了解决方案，但是没有记录，后来又要给别人配置的时候，发现忘记怎么配置了。想想这也是一个具有通性的问题，还是记录下来，分享给大家。</span></p>
+<h2 id="2-问题解决方案">2.问题解决方案</h2><p><span style="color: #000000;">首先问题是：执行adb命令提示找不到设备，在做其他操作之前，请先确认已经做了如下操作：</span></p>
+<ol>
+<li><span style="color: #000000;">确定已经打开了USB调试选项（设置-开发者选项-USB调试），有的机器没有开发者选项，需要到关于里面点击版本号若干下，或者去百度谷歌。</span></li>
+<li><span style="color: #000000;">确定使用sudo命令adb kill-server 和adb start-server后仍然没有用。</span><br><span style="color: #000000;">如果上述操作都确认了，还是找不到设备，那么继续往下看：</span></li>
+</ol>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/03/25/ubuntu-adb-can-not-find-devices/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="../../2014/03/17/android-build-your-own-android-notification-service-app/">
+                Android Service：开发自己的通知中心(1):辅助性服务介绍
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2014-03-17
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="../../categories/Android/">Android</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/03/17/android-build-your-own-android-notification-service-app/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/17/android-build-your-own-android-notification-service-app/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id=""> </h2><h1 id="1_辅助性服务介绍">1 辅助性服务介绍</h1><p>辅助性服务是安卓框架的一个特性，它的设计是为了让已经安装在安卓设备上的应用程序能够为用户提供一种导航式(引导式）回应。一个辅助性服务能够传达给<br>用户关于这个应用程序的利益，例如把文本转换成语音、当用户手指停留屏幕的一个重要区域时的haptic反馈。这一节涵盖了怎样去创建一个辅助性服务，如何处理应用程序的信息接收，还有如何把信息反馈给用户。<br>创建自己的辅助性服务</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="../../2014/03/17/android-build-your-own-android-notification-service-app/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
 
           </div>
 
           
             <div class="pagination">
-              <a class="extend prev" rel="prev" href="../..//">&laquo;</a><a class="page-number" href="../..//">1</a><span class="page-number current">2</span><a class="page-number" href="../3/">3</a><a class="extend next" rel="next" href="../3/">&raquo;</a>
+              <a class="extend prev" rel="prev" href="../..//">&laquo;</a><a class="page-number" href="../..//">1</a><span class="page-number current">2</span>
             </div>
           
         </div>
@@ -1084,7 +1092,7 @@
       <p class="site-description motion-element"></p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
