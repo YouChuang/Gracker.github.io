@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</loc>
+    <lastmod>2015-04-02T02:30:29.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2014/10/20/android-performance-optimization-overdraw-1/</loc>
-    <lastmod>2015-04-02T01:18:52.000Z</lastmod>
+    <lastmod>2015-04-02T02:29:23.000Z</lastmod>
   </url>
   
   <url>
@@ -19,11 +24,6 @@
   <url>
     <loc>http://androidperformance.com/2015/02/04/build-rom-for-nexus5/</loc>
     <lastmod>2015-04-01T13:11:05.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2/</loc>
-    <lastmod>2015-04-01T10:29:32.000Z</lastmod>
   </url>
   
   <url>
